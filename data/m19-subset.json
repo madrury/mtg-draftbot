@@ -1,0 +1,4296 @@
+[
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Abnormal Endurance",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "85c09af2-ef8b-5625-817c-574dbeedf89f"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Act of Treason",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "5fd6692f-5fa5-5964-a366-cbfe1e2548a3"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Aegis of the Heavens",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "afc1ca2e-736b-57e1-a46f-4072b7941d4b"
+  },
+  {
+    "colorIdentity": [
+      "U",
+      "W"
+    ],
+    "colors": [
+      "U",
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{U}",
+    "name": "Aerial Engineer",
+    "rarity": "uncommon",
+    "type": "Creature — Human Artificer",
+    "uuid": "dd77e8c9-25f8-558a-8b3b-2da413ba46fe"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Aether Tunnel",
+    "rarity": "uncommon",
+    "type": "Enchantment — Aura",
+    "uuid": "3d7a2aa1-b6ab-5adb-b1a6-71847c3c7fe4"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Aethershield Artificer",
+    "rarity": "uncommon",
+    "type": "Creature — Dwarf Artificer",
+    "uuid": "9ee6fd91-5aaa-5ba6-b9fe-122b4bd48718"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{3}{G}{G}{G}",
+    "name": "Aggressive Mammoth",
+    "rarity": "rare",
+    "type": "Creature — Elephant",
+    "uuid": "64bbdace-c966-5b6a-a841-695e88d4564f"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Air Elemental",
+    "rarity": "uncommon",
+    "type": "Creature — Elemental",
+    "uuid": "95370332-5916-51f9-b4aa-9fbb8066d979"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Ajani's Influence",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "08e2596a-d6fc-50d0-9806-4741905395c9"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Ajani's Last Stand",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "ec56517c-7421-5e36-aece-a9bfd5a5ed2a"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Ajani's Pridemate",
+    "rarity": "uncommon",
+    "type": "Creature — Cat Soldier",
+    "uuid": "6648cb26-d97f-5f59-ac19-c5b025705503"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Ajani's Welcome",
+    "rarity": "uncommon",
+    "type": "Enchantment",
+    "uuid": "31d8b53d-ac03-58f5-a415-1b35600abfb1"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Ajani, Adversary of Tyrants",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Ajani",
+    "uuid": "69fd3d98-0404-58b3-88cf-084f79fd2898"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{W}{W}",
+    "name": "Ajani, Wise Counselor",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Ajani",
+    "uuid": "d965f3d4-caff-5b18-ab7a-9870c4019024"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Alpine Moon",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "0b426496-9639-51bb-a030-545794e67fe4"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Amulet of Safekeeping",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "ea76e106-5aec-5548-b27a-1bc625a5edb4"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{W}",
+    "name": "Angel of the Dawn",
+    "rarity": "common",
+    "type": "Creature — Angel",
+    "uuid": "753fb4f6-9274-594a-b695-64caf6a3bf40"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Anticipate",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "0eecae0b-344b-5a22-8ca5-6d6abbbac82a"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 10,
+    "manaCost": "{7}{R}{R}{R}",
+    "name": "Apex of Power",
+    "rarity": "mythic",
+    "type": "Sorcery",
+    "uuid": "79d73934-3e85-5832-86bf-21127476484b"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "U",
+      "W"
+    ],
+    "colors": [
+      "G",
+      "U",
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{1}{G}{W}{U}",
+    "name": "Arcades, the Strategist",
+    "rarity": "mythic",
+    "type": "Legendary Creature — Elder Dragon",
+    "uuid": "e52c9d9a-096b-599e-bd5f-fdc8d6b337e6"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Arcane Encyclopedia",
+    "rarity": "uncommon",
+    "type": "Artifact",
+    "uuid": "fbcd0ff0-da22-5077-a0f2-2c996599bb02"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Arisen Gorgon",
+    "rarity": "uncommon",
+    "type": "Creature — Zombie Gorgon",
+    "uuid": "7de766e7-5a91-5bba-9402-d2de33590b79"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Aven Wind Mage",
+    "rarity": "common",
+    "type": "Creature — Bird Wizard",
+    "uuid": "4e07c856-4205-5e7a-bf4d-b71abaadc648"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Aviation Pioneer",
+    "rarity": "common",
+    "type": "Creature — Human Artificer",
+    "uuid": "81606692-5630-5fda-8ea7-d0a26629f866"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{X}{R}",
+    "name": "Banefire",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "f006ae83-377d-57a0-9e00-7a5047403830"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Befuddle",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "774db6fe-a204-577e-b5ab-2ebeb2006793"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Blanchwood Armor",
+    "rarity": "uncommon",
+    "type": "Enchantment — Aura",
+    "uuid": "620f4417-bf19-5273-b08b-2af6a679ae56"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Blood Divination",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "6b3dd0aa-b87b-525a-aa84-799ef4dbcfea"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Boggart Brute",
+    "rarity": "common",
+    "type": "Creature — Goblin Warrior",
+    "uuid": "6b432e2f-3f3a-5fcb-8893-21bf0850b68f"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{B}{B}",
+    "name": "Bogstomper",
+    "rarity": "common",
+    "type": "Creature — Beast",
+    "uuid": "88415bb9-e70a-59a1-abca-fc7e98a1739f"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Bone Dragon",
+    "rarity": "mythic",
+    "type": "Creature — Dragon Skeleton",
+    "uuid": "96ce29f2-661f-5cb9-a796-74bf8102b3c6"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{U}{U}",
+    "name": "Bone to Ash",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "2dfe2299-74b8-595b-8407-3ce583e6a664"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "R"
+    ],
+    "colors": [
+      "B",
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{B}{R}",
+    "name": "Brawl-Bash Ogre",
+    "rarity": "uncommon",
+    "type": "Creature — Ogre Warrior",
+    "uuid": "5cf6d64f-f18a-5171-84f9-236c97f8fbb7"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{G}",
+    "name": "Bristling Boar",
+    "rarity": "common",
+    "type": "Creature — Boar",
+    "uuid": "15fb725b-0e8c-5312-a434-a8ef892a09ba"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{U}{U}",
+    "name": "Cancel",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "75c8495d-304c-54ad-973f-35082f0e5f2d"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Catalyst Elemental",
+    "rarity": "common",
+    "type": "Creature — Elemental",
+    "uuid": "14d41c57-1ae7-505f-9ab4-528ccdd73445"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Cavalry Drillmaster",
+    "rarity": "common",
+    "type": "Creature — Human Knight",
+    "uuid": "3fc98736-0d98-52f8-9324-65cad44a73e2"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Centaur Courser",
+    "rarity": "common",
+    "type": "Creature — Centaur Warrior",
+    "uuid": "c1b0e8d5-7fb3-52bc-9608-5338d7b26ec8"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Chaos Wand",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "04650b89-de65-5d96-9f74-3ad78e81bd49"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Child of Night",
+    "rarity": "common",
+    "type": "Creature — Vampire",
+    "uuid": "b73c1005-a037-5da5-bb30-a696f8f53625"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "U",
+      "W"
+    ],
+    "colors": [
+      "B",
+      "U",
+      "W"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{4}{W}{U}{B}",
+    "name": "Chromium, the Mutable",
+    "rarity": "mythic",
+    "type": "Legendary Creature — Elder Dragon",
+    "uuid": "62344e2c-e814-5fce-9feb-4f315b7113ea"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Cinder Barrens",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "d4163b20-1441-525d-8f62-4283f4269dea"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{W}{W}",
+    "name": "Cleansing Nova",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "6713c58d-2bcd-5bc9-a25a-bb10bbfce654"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{G}{G}",
+    "name": "Colossal Dreadmaw",
+    "rarity": "common",
+    "type": "Creature — Dinosaur",
+    "uuid": "effe5d8a-188d-5f1c-ab1a-9f647cb1c3d8"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Colossal Majesty",
+    "rarity": "uncommon",
+    "type": "Enchantment",
+    "uuid": "4117fdc9-314d-56c4-bb59-f744e5f33eb1"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Court Cleric",
+    "rarity": "uncommon",
+    "type": "Creature — Human Cleric",
+    "uuid": "bbd98b07-0d36-5215-b89a-b164274f8ee2"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Crash Through",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "4e512273-dfbd-50be-ae0c-cb03613fe8e5"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Crucible of Worlds",
+    "rarity": "mythic",
+    "type": "Artifact",
+    "uuid": "31aaabfd-1f75-560f-bbd8-adb857509b09"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Daggerback Basilisk",
+    "rarity": "common",
+    "type": "Creature — Basilisk",
+    "uuid": "a5b8766f-7d66-51a1-b2b9-cde072eca28c"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Dark-Dweller Oracle",
+    "rarity": "rare",
+    "type": "Creature — Goblin Shaman",
+    "uuid": "2d18d6ad-e0c2-5cff-9149-6258a2637e84"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Daybreak Chaplain",
+    "rarity": "common",
+    "type": "Creature — Human Cleric",
+    "uuid": "dfd98c39-2255-51b7-b8cb-d4e41db761d1"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Death Baron",
+    "rarity": "rare",
+    "type": "Creature — Zombie Wizard",
+    "uuid": "1cf20ad4-cbeb-5909-942b-474f81bb1dbf"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{G}{G}",
+    "name": "Declare Dominance",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "617a6feb-8b51-56cf-bcd5-2af1ef2b9483"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Demanding Dragon",
+    "rarity": "rare",
+    "type": "Creature — Dragon",
+    "uuid": "d27c4699-3f7b-51de-9b36-3b0b3334b2ee"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{B}{B}",
+    "name": "Demon of Catastrophes",
+    "rarity": "rare",
+    "type": "Creature — Demon",
+    "uuid": "f8563767-953e-5b64-a359-0120b327589d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Departed Deckhand",
+    "rarity": "uncommon",
+    "type": "Creature — Spirit Pirate",
+    "uuid": "ca1612db-df17-58b1-bf27-da9e644e61a8"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Desecrated Tomb",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "c30ca43d-6ef6-59af-abe1-00590dd01237"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Detection Tower",
+    "rarity": "rare",
+    "type": "Land",
+    "uuid": "0b7a8872-753e-558c-9738-9988e88af3f2"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Diamond Mare",
+    "rarity": "uncommon",
+    "type": "Artifact Creature — Horse",
+    "uuid": "f19ad19f-fac8-5715-bd9f-b2070587c8a5"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Diregraf Ghoul",
+    "rarity": "uncommon",
+    "type": "Creature — Zombie",
+    "uuid": "86163c0e-cf8d-5c7c-942d-dd8a5f73554a"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Dismissive Pyromancer",
+    "rarity": "rare",
+    "type": "Creature — Human Wizard",
+    "uuid": "ba4aa9b6-6144-5de0-8c38-59733d3a04f4"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Disperse",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "c6b1b5c5-c235-5ff1-bccb-de9a2f24d5d4"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Divination",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "9e27eac6-7bfc-5ffd-b2ea-484cfe616beb"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Djinn of Wishes",
+    "rarity": "rare",
+    "type": "Creature — Djinn",
+    "uuid": "d6b6970b-1b51-5b71-88cd-3b5bf7ddce7c"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Doomed Dissenter",
+    "rarity": "common",
+    "type": "Creature — Human",
+    "uuid": "4ad7096e-ef28-5095-85e5-7f06ee37eba9"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{R}{R}",
+    "name": "Doublecast",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "0c019294-e6f2-5d0f-9f8c-15af9a12e516"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "R"
+    ],
+    "colors": [
+      "G",
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{R}{G}",
+    "name": "Draconic Disciple",
+    "rarity": "uncommon",
+    "type": "Creature — Human Shaman",
+    "uuid": "e3997fb4-bab1-5dd7-b118-9656ec0c5f0b"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Dragon Egg",
+    "rarity": "uncommon",
+    "type": "Creature — Dragon Egg",
+    "uuid": "42063f72-47ac-50c5-a33d-b66c87cd8904"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Dragon's Hoard",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "670ea7ee-c3b5-5656-a6d3-4c68d6b7a58b"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{G}",
+    "name": "Druid of Horns",
+    "rarity": "uncommon",
+    "type": "Creature — Human Druid",
+    "uuid": "1a724d99-ba88-5b9e-b5d2-0263bfb06b73"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Druid of the Cowl",
+    "rarity": "common",
+    "type": "Creature — Elf Druid",
+    "uuid": "055d38dd-3ef5-5fa1-974c-05f5093cc16d"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Dryad Greenseeker",
+    "rarity": "uncommon",
+    "type": "Creature — Dryad",
+    "uuid": "ad08b719-067c-519f-afe6-f500a6936d85"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Duress",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "cc85dbf0-552f-5b59-9471-0f77d42041cd"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Dwarven Priest",
+    "rarity": "common",
+    "type": "Creature — Dwarf Cleric",
+    "uuid": "a3cb413a-409f-53a1-b913-9a1055f39628"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Dwindle",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "21ec0a0e-0a4a-508c-884a-71d2704d7f4d"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Electrify",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "865857a5-9d03-511b-bb1e-4fb5364aecdf"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{G}{G}",
+    "name": "Elvish Clancaller",
+    "rarity": "rare",
+    "type": "Creature — Elf Druid",
+    "uuid": "22bc1699-e7ae-597f-837b-bdd8d2d243c1"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Elvish Rejuvenator",
+    "rarity": "common",
+    "type": "Creature — Elf Druid",
+    "uuid": "8426f97c-9183-5270-9f70-f9934f81b17b"
+  },
+  {
+    "colorIdentity": [
+      "R",
+      "U"
+    ],
+    "colors": [
+      "R",
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{U}{R}",
+    "name": "Enigma Drake",
+    "rarity": "uncommon",
+    "type": "Creature — Drake",
+    "uuid": "e7517699-8f8b-564d-b1a3-110b0cc28006"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{B}",
+    "name": "Epicure of Blood",
+    "rarity": "common",
+    "type": "Creature — Vampire",
+    "uuid": "69d5ac96-4648-50dc-a5eb-4a717bcb52e5"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Essence Scatter",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "0e46be56-493d-5fae-816f-e92f4a92066f"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Exclusion Mage",
+    "rarity": "uncommon",
+    "type": "Creature — Human Wizard",
+    "uuid": "83320a82-60e2-5d2e-96ce-9fb3e84d27bb"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 1,
+    "manaCost": "{1}",
+    "name": "Explosive Apparatus",
+    "rarity": "common",
+    "type": "Artifact",
+    "uuid": "611f0866-2df4-552a-97e9-f473f0a71d52"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Fell Specter",
+    "rarity": "uncommon",
+    "type": "Creature — Specter",
+    "uuid": "e8f1a17e-20f9-527f-a7a1-bf56ed2c5b4e"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Field Creeper",
+    "rarity": "common",
+    "type": "Artifact Creature — Scarecrow",
+    "uuid": "6597e979-d04d-56bf-93a3-83f20efb4f93"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{R}{R}",
+    "name": "Fiery Finish",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "16598cbf-e50d-5762-b6b7-562249b7ef11"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Fire Elemental",
+    "rarity": "common",
+    "type": "Creature — Elemental",
+    "uuid": "52ccfb90-c286-5349-b157-7104f68e7ea8"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Forest",
+    "rarity": "common",
+    "type": "Basic Land — Forest",
+    "uuid": "00f61f45-9c52-53f2-b9fa-072fdd5c96e5"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Forest",
+    "rarity": "common",
+    "type": "Basic Land — Forest",
+    "uuid": "bcd0301c-205f-58b2-a570-08db23eb736b"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Forest",
+    "rarity": "common",
+    "type": "Basic Land — Forest",
+    "uuid": "db12799e-e66f-590e-bc06-bdaf99298a8c"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Forest",
+    "rarity": "common",
+    "type": "Basic Land — Forest",
+    "uuid": "21a33334-f36f-5cd6-9133-13053883b99d"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Forsaken Sanctuary",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "8edcbcd4-24cc-580d-a55a-d98fcfdd21ac"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "G"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Foul Orchard",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "13da86fc-9e52-5b6c-ab54-32dc8c6ab9fd"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 1,
+    "manaCost": "{1}",
+    "name": "Fountain of Renewal",
+    "rarity": "uncommon",
+    "type": "Artifact",
+    "uuid": "aa76a4ff-685f-56ae-85b2-b2cc51303a72"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Fraying Omnipotence",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "2f7c54e1-6417-547d-b302-80bdb6193b19"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{U}{U}",
+    "name": "Frilled Sea Serpent",
+    "rarity": "common",
+    "type": "Creature — Serpent",
+    "uuid": "9efdf823-a734-51bf-9383-1beb071f9cfb"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Gallant Cavalry",
+    "rarity": "common",
+    "type": "Creature — Human Knight",
+    "uuid": "c521edaf-df1e-5bb2-8a87-4aff1719d86f"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Gargoyle Sentinel",
+    "rarity": "uncommon",
+    "type": "Artifact Creature — Gargoyle",
+    "uuid": "64f6c59d-e747-500d-a7e1-679b81e407d6"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 5,
+    "manaCost": "{5}",
+    "name": "Gearsmith Guardian",
+    "rarity": "common",
+    "type": "Artifact Creature — Construct",
+    "uuid": "d86cfdfb-0f66-5b51-9e53-31d5fd22b21e"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{U}",
+    "name": "Gearsmith Prodigy",
+    "rarity": "common",
+    "type": "Creature — Human Artificer",
+    "uuid": "a0cc2283-c50a-5eb7-ba58-ca2bb0c953cb"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{5}{G}{G}",
+    "name": "Ghastbark Twins",
+    "rarity": "uncommon",
+    "type": "Creature — Treefolk",
+    "uuid": "e1d093a1-b9b5-51ba-b844-4b3605f12378"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Ghirapur Guide",
+    "rarity": "uncommon",
+    "type": "Creature — Elf Scout",
+    "uuid": "087b9e48-3060-5650-b984-c5e73c7dbc5d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Ghostform",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "9c39753c-7327-55eb-8fd1-82442e0905d9"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{G}",
+    "name": "Giant Spider",
+    "rarity": "common",
+    "type": "Creature — Spider",
+    "uuid": "3fd3815d-a74a-5520-89de-702869ee125e"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Gift of Paradise",
+    "rarity": "uncommon",
+    "type": "Enchantment — Aura",
+    "uuid": "1eba58df-0bdf-5bfd-ab37-28560d6f50a4"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{G}{G}{G}{G}{G}",
+    "name": "Gigantosaurus",
+    "rarity": "rare",
+    "type": "Creature — Dinosaur",
+    "uuid": "21929621-f803-5b4e-9d5e-c8a123213c79"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Goblin Instigator",
+    "rarity": "common",
+    "type": "Creature — Goblin Rogue",
+    "uuid": "cbf019fb-f12f-56a8-b2e2-4a54f7a14a9e"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Goblin Motivator",
+    "rarity": "common",
+    "type": "Creature — Goblin Warrior",
+    "uuid": "66326867-3aea-5c85-9cb8-ba9b1a5a2988"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{R}{R}",
+    "name": "Goblin Trashmaster",
+    "rarity": "rare",
+    "type": "Creature — Goblin Warrior",
+    "uuid": "fb8ac5e7-1998-5ca9-92a2-2b217652b4b9"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{G}",
+    "name": "Goreclaw, Terror of Qal Sisma",
+    "rarity": "rare",
+    "type": "Legendary Creature — Bear",
+    "uuid": "0075c27c-abdf-503e-9629-9d3080be5b15"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Grasping Scoundrel",
+    "rarity": "common",
+    "type": "Creature — Human Pirate",
+    "uuid": "0f3782c4-9ccc-5bad-947e-24c0b2a6b42a"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Gravedigger",
+    "rarity": "uncommon",
+    "type": "Creature — Zombie",
+    "uuid": "81e0b1bf-1dfb-5fa7-8483-ebe5654be36f"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{B}{B}",
+    "name": "Gravewaker",
+    "rarity": "rare",
+    "type": "Creature — Bird Spirit",
+    "uuid": "4a1052a8-0ce9-5b26-ae54-b76777a11acb"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{B}{B}",
+    "name": "Graveyard Marshal",
+    "rarity": "rare",
+    "type": "Creature — Zombie Soldier",
+    "uuid": "605d5010-7fc7-537d-b9ad-78b6fc5a2d16"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Greenwood Sentinel",
+    "rarity": "common",
+    "type": "Creature — Elf Scout",
+    "uuid": "8c10cfb4-f3cf-59f9-abdc-270a63bb8d95"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Guttersnipe",
+    "rarity": "uncommon",
+    "type": "Creature — Goblin Shaman",
+    "uuid": "da99586d-41ca-5de6-83bb-18373c28ec69"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{R}{R}",
+    "name": "Havoc Devils",
+    "rarity": "common",
+    "type": "Creature — Devil",
+    "uuid": "2d99e25d-fbed-5374-a3b3-e5624c9949ab"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{W}{W}",
+    "name": "Herald of Faith",
+    "rarity": "uncommon",
+    "type": "Creature — Angel",
+    "uuid": "201fc784-8f42-50c1-a297-fe6e5396163b"
+  },
+  {
+    "colorIdentity": [
+      "R",
+      "W"
+    ],
+    "colors": [
+      "R",
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{R}{W}",
+    "name": "Heroic Reinforcements",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "10564261-7b3a-52b8-94af-48d3e0fcfcbe"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Hieromancer's Cage",
+    "rarity": "uncommon",
+    "type": "Enchantment",
+    "uuid": "0c36cf37-8a4a-5ea9-86b9-d677647d8522"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Highland Game",
+    "rarity": "common",
+    "type": "Creature — Elk",
+    "uuid": "3e1ec888-7f42-5666-ae04-57bf4a8aa298"
+  },
+  {
+    "colorIdentity": [
+      "R",
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Highland Lake",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "a81bd1fc-00f2-5f50-8299-2dcea25fa996"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{B}",
+    "name": "Hired Blade",
+    "rarity": "common",
+    "type": "Creature — Human Assassin",
+    "uuid": "d4bec109-5af4-57f7-b6fa-9f128eadde57"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{5}{U}",
+    "name": "Horizon Scholar",
+    "rarity": "uncommon",
+    "type": "Creature — Sphinx",
+    "uuid": "c65dc409-8bdb-5737-95fe-a0d52de10073"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Hostile Minotaur",
+    "rarity": "common",
+    "type": "Creature — Minotaur",
+    "uuid": "5a10345e-29ba-554e-a60c-5cc2554d343f"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{X}{G}",
+    "name": "Hungering Hydra",
+    "rarity": "rare",
+    "type": "Creature — Hydra",
+    "uuid": "6194f645-dc57-58ab-b365-fe1392a26f90"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Infectious Horror",
+    "rarity": "common",
+    "type": "Creature — Zombie Horror",
+    "uuid": "4fd4fee6-c63e-518b-b72d-9d41f8910659"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Infernal Reckoning",
+    "rarity": "rare",
+    "type": "Instant",
+    "uuid": "171a4a15-5a94-5f19-861f-558223f889be"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Infernal Scarring",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "9ecdad01-5bed-5be2-8410-313a019829e5"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Inferno Hellion",
+    "rarity": "uncommon",
+    "type": "Creature — Hellion",
+    "uuid": "0ddb4f0d-f8c5-54d6-b5b1-981f39d2359b"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Inspired Charge",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "e49a4912-23b2-5881-81a1-99e006bda5d2"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Invoke the Divine",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "54fe4816-e60c-5a2a-9b04-1f5db120ec27"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Isareth the Awakener",
+    "rarity": "rare",
+    "type": "Legendary Creature — Human Wizard",
+    "uuid": "15303308-76f7-57a8-b7b3-aff1f91f4210"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Island",
+    "rarity": "common",
+    "type": "Basic Land — Island",
+    "uuid": "59d397e3-68cc-5bea-a251-5c12d0d30859"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Island",
+    "rarity": "common",
+    "type": "Basic Land — Island",
+    "uuid": "253ee3c5-40e6-5c6b-85c7-46360a72589b"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Island",
+    "rarity": "common",
+    "type": "Basic Land — Island",
+    "uuid": "a45e768a-32a2-5f10-b3ca-49eb61beac1d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Island",
+    "rarity": "common",
+    "type": "Basic Land — Island",
+    "uuid": "572711e9-3656-5701-96d4-8b374d2e0bfb"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Isolate",
+    "rarity": "rare",
+    "type": "Instant",
+    "uuid": "71b3dfa3-b706-5640-94db-c25ed55f5186"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Kargan Dragonrider",
+    "rarity": "common",
+    "type": "Creature — Human Warrior",
+    "uuid": "b4e2e9ba-c1cc-5109-8f61-ca6673d98a75"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{W}{W}",
+    "name": "Knight of the Tusk",
+    "rarity": "common",
+    "type": "Creature — Human Knight",
+    "uuid": "07e75ffd-3233-5767-b290-392dc29b49d6"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Knight's Pledge",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "9100768b-fcbd-53b7-bd8a-0daf9d9013d0"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{W}",
+    "name": "Knightly Valor",
+    "rarity": "uncommon",
+    "type": "Enchantment — Aura",
+    "uuid": "f84b163e-a55b-51e5-be6e-a34bb0c28b6b"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{R}{R}",
+    "name": "Lathliss, Dragon Queen",
+    "rarity": "rare",
+    "type": "Legendary Creature — Dragon",
+    "uuid": "0c6f6baa-e63d-542b-9953-98596a0232e8"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{R}",
+    "name": "Lava Axe",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "9fb3cc7a-2e1f-57b4-a2fd-2fa7338f9c4e"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{W}{W}",
+    "name": "Lena, Selfless Champion",
+    "rarity": "rare",
+    "type": "Legendary Creature — Human Knight",
+    "uuid": "b8fb2444-4ae6-5b7c-a5dc-494019d66fa5"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Leonin Vanguard",
+    "rarity": "uncommon",
+    "type": "Creature — Cat Soldier",
+    "uuid": "0e86c219-d1ae-5d21-b1d6-a3e464f986d8"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Leonin Warleader",
+    "rarity": "rare",
+    "type": "Creature — Cat Soldier",
+    "uuid": "19595809-77ba-502e-bb8d-bca3f66ff596"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Lich's Caress",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "6499e894-1f24-53a6-bfd4-1f1704fada82"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{R}{R}",
+    "name": "Lightning Mare",
+    "rarity": "uncommon",
+    "type": "Creature — Elemental Horse",
+    "uuid": "ed9ca949-bf84-5f4b-ab5e-29cf419ee050"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Lightning Strike",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "0d7dcf15-814a-538c-b2c2-2cba2b83aa15"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Liliana's Contract",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "68a34b6f-038e-5a50-8d82-c62baebfd5bb"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Liliana's Spoils",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "57d2c4ef-1aa2-59c1-8c84-24d666c067a4"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{B}{B}",
+    "name": "Liliana, Untouched by Death",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Liliana",
+    "uuid": "d893f359-6f5e-58fa-9808-32a8efe147af"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Liliana, the Necromancer",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Liliana",
+    "uuid": "624c2115-4c92-5b5c-a663-527630360a23"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{G}",
+    "name": "Llanowar Elves",
+    "rarity": "common",
+    "type": "Creature — Elf Druid",
+    "uuid": "06a17c8e-4ca0-5455-bde5-7157065fdea1"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Loxodon Line Breaker",
+    "rarity": "common",
+    "type": "Creature — Elephant Soldier",
+    "uuid": "0efe2587-8b29-5733-9f6a-e3ff69a64ac2"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Luminous Bonds",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "1ca6c9b6-a70e-5387-af84-aff156b6b1e3"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Macabre Waltz",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "3d0be4eb-e489-58e1-8911-842b2407dc44"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Magistrate's Scepter",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "a94026d4-9d89-50e1-85f2-b5306fb1a0da"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Make a Stand",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "f0c52e67-b9f8-56b4-871a-6f806c3ee088"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Manalith",
+    "rarity": "common",
+    "type": "Artifact",
+    "uuid": "f6bca956-409b-5eb3-843e-660702325ee9"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Marauder's Axe",
+    "rarity": "common",
+    "type": "Artifact — Equipment",
+    "uuid": "cecf6d3e-6ecc-5433-b662-ef1ee7a62bf9"
+  },
+  {
+    "colorIdentity": [
+      "U",
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Meandering River",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "3f7ef757-aece-57a2-aa8d-66d6e87514ff"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Mentor of the Meek",
+    "rarity": "rare",
+    "type": "Creature — Human Soldier",
+    "uuid": "5f977ba1-bd5f-53ba-831e-86dadf35c265"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Metamorphic Alteration",
+    "rarity": "rare",
+    "type": "Enchantment — Aura",
+    "uuid": "61bbbc40-bc59-56b8-b454-ef598933eff8"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 7,
+    "manaCost": "{7}",
+    "name": "Meteor Golem",
+    "rarity": "uncommon",
+    "type": "Artifact Creature — Golem",
+    "uuid": "6df0b374-6ad1-5d3f-9d98-ac75f9da2734"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Mighty Leap",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "4ddc2113-5134-5d5d-a8ba-c9dd3966528c"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Militia Bugler",
+    "rarity": "uncommon",
+    "type": "Creature — Human Soldier",
+    "uuid": "6057393a-289e-5df8-85b7-27bd6ae7a98d"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Millstone",
+    "rarity": "uncommon",
+    "type": "Artifact",
+    "uuid": "279809a2-74a2-5e64-b4d4-f4a9f18f01ae"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{B}",
+    "name": "Mind Rot",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "e54301a5-0593-5c43-9c91-9375be129860"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Mirror Image",
+    "rarity": "uncommon",
+    "type": "Creature — Shapeshifter",
+    "uuid": "7d34614d-8619-5bc2-b124-a1654ff6c39d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{U}",
+    "name": "Mist-Cloaked Herald",
+    "rarity": "common",
+    "type": "Creature — Merfolk Warrior",
+    "uuid": "511e687d-d716-5fa3-a63d-7ab93332187f"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{U}",
+    "name": "Mistcaller",
+    "rarity": "rare",
+    "type": "Creature — Merfolk Wizard",
+    "uuid": "ecd5bda4-2b5e-59ec-bfcf-af7146ae5a61"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Mountain",
+    "rarity": "common",
+    "type": "Basic Land — Mountain",
+    "uuid": "45f4bf5e-7e60-5fe3-af68-b8c310da0284"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Mountain",
+    "rarity": "common",
+    "type": "Basic Land — Mountain",
+    "uuid": "658c56d6-d302-509c-ba0f-60f66eae88c4"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Mountain",
+    "rarity": "common",
+    "type": "Basic Land — Mountain",
+    "uuid": "d0a51e79-8959-5b67-afde-f5228e35f489"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Mountain",
+    "rarity": "common",
+    "type": "Basic Land — Mountain",
+    "uuid": "9054f682-1b20-5554-8af4-b9737dd69916"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Murder",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "4996f52a-6591-588d-8903-32d6e2a205c3"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Mystic Archaeologist",
+    "rarity": "rare",
+    "type": "Creature — Human Wizard",
+    "uuid": "28437cb0-6634-505a-815e-a7e5035c5674"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Naturalize",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "4618651a-3fa4-5570-af1b-7a7f308a1904"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{5}{U}{U}",
+    "name": "Nexus of Fate",
+    "rarity": "mythic",
+    "type": "Instant",
+    "uuid": "ab6d408f-63db-57b6-9382-586cbceade42"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "R",
+      "U"
+    ],
+    "colors": [
+      "B",
+      "R",
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": null,
+    "name": "Nicol Bolas, the Arisen",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Bolas",
+    "uuid": "19ade069-45aa-5137-b4b7-afdde5f864d3"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "R",
+      "U"
+    ],
+    "colors": [
+      "B",
+      "R",
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{1}{U}{B}{R}",
+    "name": "Nicol Bolas, the Ravager",
+    "rarity": "mythic",
+    "type": "Legendary Creature — Elder Dragon",
+    "uuid": "e740ce57-8692-51e3-b7f7-f715054f17a8"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Nightmare's Thirst",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "1f6229e6-8480-5c0f-ac49-2858a2e91785"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Novice Knight",
+    "rarity": "uncommon",
+    "type": "Creature — Human Knight",
+    "uuid": "8fe8121f-fa28-5f30-b4c0-cebf64f020b5"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Oakenform",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "fab0c9b3-2358-5b8a-a789-12b46744ddf8"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Omenspeaker",
+    "rarity": "common",
+    "type": "Creature — Human Wizard",
+    "uuid": "2b8630cd-5a7f-5905-9ff9-f92a53c6c283"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 10,
+    "manaCost": "{7}{U}{U}{U}",
+    "name": "Omniscience",
+    "rarity": "mythic",
+    "type": "Enchantment",
+    "uuid": "fb04cfee-152f-5c33-a938-bd20db88ff23"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Onakke Ogre",
+    "rarity": "common",
+    "type": "Creature — Ogre Warrior",
+    "uuid": "6fe79bdc-3342-54cb-9e80-557e5af3132d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{U}",
+    "name": "One with the Machine",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "b0ef7fe8-8433-5b1f-be87-fe5f786c8ede"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Open the Graves",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "da0cbbb6-79b8-5cce-94b6-ed0ca180e849"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Oreskos Swiftclaw",
+    "rarity": "common",
+    "type": "Creature — Cat Warrior",
+    "uuid": "ef78230d-cebf-5648-b7e2-0d2e1556b4f5"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "R",
+      "W"
+    ],
+    "colors": [
+      "G",
+      "R",
+      "W"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{3}{R}{G}{W}",
+    "name": "Palladia-Mors, the Ruiner",
+    "rarity": "mythic",
+    "type": "Legendary Creature — Elder Dragon",
+    "uuid": "02a84d04-6bc2-5416-bb62-311e705cb9ab"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Patient Rebuilding",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "65a89059-85ff-5f47-937c-8bf43a2e2f50"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Pegasus Courser",
+    "rarity": "common",
+    "type": "Creature — Pegasus",
+    "uuid": "3936ba56-80b4-5ee2-8a66-11cf7c8593a3"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{4}{G}{G}{G}",
+    "name": "Pelakka Wurm",
+    "rarity": "rare",
+    "type": "Creature — Wurm",
+    "uuid": "ea266f37-755f-51db-989d-bcc34882be69"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Pendulum of Patterns",
+    "rarity": "common",
+    "type": "Artifact",
+    "uuid": "bc4211e2-0d42-526f-ade8-9e897a8d7c82"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{B}{B}{B}",
+    "name": "Phylactery Lich",
+    "rarity": "rare",
+    "type": "Creature — Zombie",
+    "uuid": "e7cc7602-6907-56b6-9598-0b7914d38fab"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Plague Mare",
+    "rarity": "uncommon",
+    "type": "Creature — Nightmare Horse",
+    "uuid": "a610d3a8-180d-54cd-9f2e-4851b225ceb1"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Plains",
+    "rarity": "common",
+    "type": "Basic Land — Plains",
+    "uuid": "a70001b0-cce1-58f1-936b-fcddea69fa02"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Plains",
+    "rarity": "common",
+    "type": "Basic Land — Plains",
+    "uuid": "4ce1db65-0f19-53e6-a6d6-9eb59bb70856"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Plains",
+    "rarity": "common",
+    "type": "Basic Land — Plains",
+    "uuid": "2e7637fb-34cc-5a89-b2f1-89f15c1b9e16"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Plains",
+    "rarity": "common",
+    "type": "Basic Land — Plains",
+    "uuid": "1beef3bc-4890-5dcb-b08f-a124e948a7e4"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Plummet",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "c58e6e46-3b93-5f58-8d9e-62edb3ba3cbe"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "G"
+    ],
+    "colors": [
+      "B",
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{B}{G}",
+    "name": "Poison-Tip Archer",
+    "rarity": "uncommon",
+    "type": "Creature — Elf Archer",
+    "uuid": "d0ec5de2-7bec-5434-976a-74ba40d7c68d"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{G}{G}",
+    "name": "Prodigious Growth",
+    "rarity": "rare",
+    "type": "Enchantment — Aura",
+    "uuid": "6f24e261-4f88-5189-83bb-030fbba3fe07"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Psychic Corrosion",
+    "rarity": "uncommon",
+    "type": "Enchantment",
+    "uuid": "256c1dab-0d6f-5134-b4f6-35ea7d975376"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "U"
+    ],
+    "colors": [
+      "B",
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{U}{B}",
+    "name": "Psychic Symbiont",
+    "rarity": "uncommon",
+    "type": "Creature — Nightmare Horror",
+    "uuid": "1de4dec5-d2dd-5c85-b0d0-b800b209540d"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Rabid Bite",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "ba1df4f4-7a81-50c2-860e-a69777b0e4fd"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Radiating Lightning",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "ac0d2f62-3d04-5dcd-b78d-8f880d316fb1"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{B}",
+    "name": "Ravenous Harpy",
+    "rarity": "uncommon",
+    "type": "Creature — Harpy",
+    "uuid": "0e5d758b-74f1-5c33-9487-6d8053496187"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Reassembling Skeleton",
+    "rarity": "uncommon",
+    "type": "Creature — Skeleton Warrior",
+    "uuid": "7755b890-8a07-534b-b50e-a3ba45b7fc5d"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Reclamation Sage",
+    "rarity": "uncommon",
+    "type": "Creature — Elf Shaman",
+    "uuid": "6b20cc45-fc37-5a5a-a44a-1fd3a3843474"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Recollect",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "4f417115-b682-5470-9151-6ef4ac3f061a"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "W"
+    ],
+    "colors": [
+      "B",
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{W}{B}",
+    "name": "Regal Bloodlord",
+    "rarity": "uncommon",
+    "type": "Creature — Vampire Soldier",
+    "uuid": "81d3473c-2e53-5c6f-a484-122a95ed2237"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Reliquary Tower",
+    "rarity": "uncommon",
+    "type": "Land",
+    "uuid": "a6cd036c-bcac-5055-bb04-58d278ce8c44"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Remorseful Cleric",
+    "rarity": "rare",
+    "type": "Creature — Spirit Cleric",
+    "uuid": "c500d92f-896b-5440-b56a-6bfcd48c8fc3"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{W}{W}",
+    "name": "Resplendent Angel",
+    "rarity": "mythic",
+    "type": "Creature — Angel",
+    "uuid": "9d37e9b2-9a07-53ad-adf1-1619c6fbf520"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Revitalize",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "97c1f074-5d68-5b1f-bf87-8c189272ddb1"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{G}",
+    "name": "Rhox Oracle",
+    "rarity": "common",
+    "type": "Creature — Rhino Monk",
+    "uuid": "aa99fdbc-ada1-55a8-a3e3-07311d7d4cdf"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{U}{U}",
+    "name": "Riddlemaster Sphinx",
+    "rarity": "rare",
+    "type": "Creature — Sphinx",
+    "uuid": "ac661a8d-986e-592b-9efd-b4541dcd05d9"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{B}",
+    "name": "Rise from the Grave",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "5614fc9b-797f-57da-b963-ae5bd2d3728b"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Rogue's Gloves",
+    "rarity": "uncommon",
+    "type": "Artifact — Equipment",
+    "uuid": "3fe40bd6-4693-5c76-89e7-914f737c70bf"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Root Snare",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "c8a1498e-0e5b-5e06-b133-8a0344dac414"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{G}{G}",
+    "name": "Runic Armasaur",
+    "rarity": "rare",
+    "type": "Creature — Dinosaur",
+    "uuid": "c7dbfcce-eeb3-5598-8256-6704d0a5773d"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Rupture Spire",
+    "rarity": "uncommon",
+    "type": "Land",
+    "uuid": "b401a2d2-4f71-5e97-a77c-10321d0823d2"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{W}",
+    "name": "Rustwing Falcon",
+    "rarity": "common",
+    "type": "Creature — Bird",
+    "uuid": "b7ee9957-ad2c-5e02-bd0e-a4ba9598fde6"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Sai, Master Thopterist",
+    "rarity": "rare",
+    "type": "Legendary Creature — Human Artificer",
+    "uuid": "b37329f5-9fd2-538e-bdbf-c15787a8f6ba"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Salvager of Secrets",
+    "rarity": "common",
+    "type": "Creature — Merfolk Wizard",
+    "uuid": "3cc87011-3a60-558f-9422-a24c764fc5e4"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Sarkhan's Dragonfire",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "d7340784-767b-513d-a431-9924278e9bbd"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Sarkhan's Unsealing",
+    "rarity": "rare",
+    "type": "Enchantment",
+    "uuid": "29bfcba6-4f85-521d-92c4-7a245f971ad2"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Sarkhan's Whelp",
+    "rarity": "uncommon",
+    "type": "Creature — Dragon",
+    "uuid": "7fa0cbe5-87d6-56e3-8e92-48e1004e1f0d"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{R}{R}",
+    "name": "Sarkhan, Dragonsoul",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Sarkhan",
+    "uuid": "0e1502d5-8bc0-5404-8029-0376e8b4b35a"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{R}{R}",
+    "name": "Sarkhan, Fireblood",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Sarkhan",
+    "uuid": "53c01f49-dfc4-50d8-9124-41cc63182906"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "W"
+    ],
+    "colors": [
+      "G",
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{G}{W}",
+    "name": "Satyr Enchanter",
+    "rarity": "uncommon",
+    "type": "Creature — Satyr Druid",
+    "uuid": "379fd7c8-7aaa-5500-ac2f-492287b7e0f0"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{G}{G}",
+    "name": "Scapeshift",
+    "rarity": "mythic",
+    "type": "Sorcery",
+    "uuid": "0983555b-11a8-505d-a581-c19af54380bc"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{U}",
+    "name": "Scholar of Stars",
+    "rarity": "common",
+    "type": "Creature — Human Artificer",
+    "uuid": "7d9bcfb8-e29c-5143-b9c7-d2ba86fc6cb5"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{W}{W}",
+    "name": "Serra's Guardian",
+    "rarity": "rare",
+    "type": "Creature — Angel",
+    "uuid": "5c05eca7-960e-52e9-b970-e1b60bf5d6ff"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{W}{W}",
+    "name": "Shield Mare",
+    "rarity": "uncommon",
+    "type": "Creature — Horse",
+    "uuid": "809a03ff-b694-5a0d-95d0-ede74c69261e"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{R}{R}",
+    "name": "Shivan Dragon",
+    "rarity": "rare",
+    "type": "Creature — Dragon",
+    "uuid": "c57dbf6f-62ea-5a09-9b91-77c1003f6c6b"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Shock",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "a2513497-ca4c-5732-a322-b9a8a391c468"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Siegebreaker Giant",
+    "rarity": "uncommon",
+    "type": "Creature — Giant Warrior",
+    "uuid": "8017b926-db57-55ff-8cbb-4efdd685cea7"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{U}",
+    "name": "Sift",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "df9bb25a-83d0-538f-b436-ed2f911be7f1"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Sigiled Sword of Valeron",
+    "rarity": "rare",
+    "type": "Artifact — Equipment",
+    "uuid": "dfada566-4c61-5403-97e4-077c26b7bf2f"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{W}{W}",
+    "name": "Silverbeak Griffin",
+    "rarity": "common",
+    "type": "Creature — Griffin",
+    "uuid": "3ed1ef92-8799-56da-8797-f205c4e0f427"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{G}{G}",
+    "name": "Skalla Wolf",
+    "rarity": "rare",
+    "type": "Creature — Wolf Spirit",
+    "uuid": "5ea2ee06-d901-54fa-a4c9-822a0947cc99"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Skeleton Archer",
+    "rarity": "common",
+    "type": "Creature — Skeleton Archer",
+    "uuid": "26c42205-f5de-53c2-a61b-8dfa49dc8dd4"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Skilled Animator",
+    "rarity": "uncommon",
+    "type": "Creature — Human Artificer",
+    "uuid": "00e51520-f020-51dc-98e3-35fcfde28150"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{B}",
+    "name": "Skymarch Bloodletter",
+    "rarity": "common",
+    "type": "Creature — Vampire Soldier",
+    "uuid": "c54f519c-b288-5149-b720-0b2de17f2fa6"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "U"
+    ],
+    "colors": [
+      "G",
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{G}{U}",
+    "name": "Skyrider Patrol",
+    "rarity": "uncommon",
+    "type": "Creature — Elf Scout",
+    "uuid": "5dc18e7c-3ae2-52e6-9e1f-7924098e60b0"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Skyscanner",
+    "rarity": "common",
+    "type": "Artifact Creature — Thopter",
+    "uuid": "ea76a6b7-502e-55b3-8ba0-ca4a812061f7"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{U}{U}",
+    "name": "Sleep",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "0513833e-7956-5ccd-ba14-1bde5b50d86f"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Smelt",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "461601ce-d453-5d3a-b289-435c11c132a8"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{U}",
+    "name": "Snapping Drake",
+    "rarity": "common",
+    "type": "Creature — Drake",
+    "uuid": "358b497f-8772-560f-902a-dd7777311203"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Sovereign's Bite",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "26ef3534-c328-5ddc-9c52-89ef7dd80783"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Sparktongue Dragon",
+    "rarity": "common",
+    "type": "Creature — Dragon",
+    "uuid": "0dcba486-77a9-5ee4-8c0b-226ccddd8e20"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Spit Flame",
+    "rarity": "rare",
+    "type": "Instant",
+    "uuid": "4b01791d-bb0a-5ee7-83b0-bc98e90434d7"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Star-Crowned Stag",
+    "rarity": "common",
+    "type": "Creature — Elk",
+    "uuid": "30da711d-e618-57b0-be9f-10f843c79ee5"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Stitcher's Supplier",
+    "rarity": "uncommon",
+    "type": "Creature — Zombie",
+    "uuid": "0c7b364d-cd41-5b8c-a194-c733574866f7"
+  },
+  {
+    "colorIdentity": [
+      "R",
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Stone Quarry",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "233bb394-ecbe-5ccc-9c00-d9eb5562c814"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Strangling Spores",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "8d6c3777-635a-53b4-b68d-5ac84b9c0a12"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Submerged Boneyard",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "15ca27db-9737-563a-8106-0595c9da0950"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Sun Sentinel",
+    "rarity": "common",
+    "type": "Creature — Human Soldier",
+    "uuid": "c7cb5658-f4d1-533f-8d8b-a35c4fb86909"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Suncleanser",
+    "rarity": "rare",
+    "type": "Creature — Human Cleric",
+    "uuid": "f54cc8b5-79c1-5851-ad79-729978a8830d"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Supreme Phantom",
+    "rarity": "rare",
+    "type": "Creature — Spirit",
+    "uuid": "c43d90fa-8c3f-5b21-9c97-38385521a89a"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Sure Strike",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "9c0bebe9-2cff-5b11-9d5d-f7ea483bded6"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{U}{U}",
+    "name": "Surge Mare",
+    "rarity": "uncommon",
+    "type": "Creature — Horse Fish",
+    "uuid": "629db29e-baa9-5bd2-b247-fbbf8e7b594c"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 2,
+    "manaCost": "{2}",
+    "name": "Suspicious Bookcase",
+    "rarity": "uncommon",
+    "type": "Artifact Creature — Wall",
+    "uuid": "4b879948-1ce4-507a-b1b5-75e242f123b2"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Swamp",
+    "rarity": "common",
+    "type": "Basic Land — Swamp",
+    "uuid": "6cac24b2-0b29-5e26-8a64-60e21d730ce2"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Swamp",
+    "rarity": "common",
+    "type": "Basic Land — Swamp",
+    "uuid": "0dc20d0f-b11f-568d-948c-92c41939a8ed"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Swamp",
+    "rarity": "common",
+    "type": "Basic Land — Swamp",
+    "uuid": "38c15915-bb72-5711-b714-cafe7ed13095"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Swamp",
+    "rarity": "common",
+    "type": "Basic Land — Swamp",
+    "uuid": "b489c9ca-44fe-595b-8727-2d5211c7ad26"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{U}",
+    "name": "Switcheroo",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "74c6e359-0227-5985-aa55-d6701701a7b4"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{W}",
+    "name": "Take Vengeance",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "53fc9523-adba-5f33-985b-3ef13fdc637c"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Talons of Wildwood",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "a0952e2a-6a5f-5d96-9128-8a9bb3720814"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Tattered Mummy",
+    "rarity": "common",
+    "type": "Creature — Zombie Jackal",
+    "uuid": "c33e491f-e455-5c8d-99c1-5bc59728d991"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Tectonic Rift",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "5df2d17f-dd6b-5850-9773-759953cba2d4"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 4,
+    "manaCost": "{4}",
+    "name": "Tezzeret's Gatebreaker",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "dd0bd9bb-37ef-5204-a599-d3c3d954f833"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Tezzeret's Strider",
+    "rarity": "uncommon",
+    "type": "Artifact Creature — Golem",
+    "uuid": "072ffb45-6c5f-5217-9f50-09148f48d210"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Tezzeret, Artifice Master",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Tezzeret",
+    "uuid": "d6b0cca8-6cce-515d-bf83-8e63b4c47b31"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{U}{U}",
+    "name": "Tezzeret, Cruel Machinist",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Tezzeret",
+    "uuid": "0f2256ac-a7c5-519f-b936-68e78c52fc1b"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Thorn Lieutenant",
+    "rarity": "rare",
+    "type": "Creature — Elf Warrior",
+    "uuid": "6b0e47d2-5eaf-5b30-bae5-8f2ec1c566ef"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{G}",
+    "name": "Thornhide Wolves",
+    "rarity": "common",
+    "type": "Creature — Wolf",
+    "uuid": "eb4923c6-bfdb-5888-9146-2597d88192f5"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{R}",
+    "name": "Thud",
+    "rarity": "uncommon",
+    "type": "Sorcery",
+    "uuid": "0b07951f-58fb-5651-903b-ac0f774bb377"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "R"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Timber Gorge",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "6e184e6b-449c-57e5-9416-c660f902620a"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Titanic Growth",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "7cb6ef86-a9ba-5742-aa69-502bd296aad7"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Tolarian Scholar",
+    "rarity": "common",
+    "type": "Creature — Human Wizard",
+    "uuid": "e97247ff-9e7c-574d-b107-5fd455368546"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Tormenting Voice",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "0f55757a-225e-597f-bb1c-c38d5e323388"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{U}",
+    "name": "Totally Lost",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "32d393c1-615c-58e8-8f95-a5a86ddd8c8b"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "W"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Tranquil Expanse",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "8b837a3b-40c6-529c-aebc-d4164cdb75dd"
+  },
+  {
+    "colorIdentity": [],
+    "colors": [],
+    "convertedManaCost": 3,
+    "manaCost": "{3}",
+    "name": "Transmogrifying Wand",
+    "rarity": "rare",
+    "type": "Artifact",
+    "uuid": "043d55a8-4518-5d00-9683-5c0fabfe2150"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{R}",
+    "name": "Trumpet Blast",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "f6d41649-0ac6-5da3-8873-1696c7b202a3"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Trusty Packbeast",
+    "rarity": "common",
+    "type": "Creature — Beast",
+    "uuid": "f22577fb-5ab9-51c4-9e5c-539e1662a64c"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{B}",
+    "name": "Two-Headed Zombie",
+    "rarity": "common",
+    "type": "Creature — Zombie",
+    "uuid": "a9e53f79-39c2-5bf3-b79f-a2d924f9b112"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Uncomfortable Chill",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "57af9759-2d41-5d7f-a4d4-3f552454b3de"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Ursine Champion",
+    "rarity": "common",
+    "type": "Creature — Human Berserker",
+    "uuid": "b05c630e-e8e4-5902-9399-913465f57a63"
+  },
+  {
+    "colorIdentity": [
+      "B",
+      "G",
+      "R"
+    ],
+    "colors": [
+      "B",
+      "G",
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{3}{B}{R}{G}",
+    "name": "Vaevictis Asmadi, the Dire",
+    "rarity": "mythic",
+    "type": "Legendary Creature — Elder Dragon",
+    "uuid": "ea27dcab-1a5d-58b2-bb08-7f1f21b453df"
+  },
+  {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Valiant Knight",
+    "rarity": "rare",
+    "type": "Creature — Human Knight",
+    "uuid": "dfb2bde9-7de3-5540-9b22-f15b741c06af"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{B}",
+    "name": "Vampire Neonate",
+    "rarity": "common",
+    "type": "Creature — Vampire",
+    "uuid": "6e480079-92ff-5bf5-9b8b-28b16d8de4da"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Vampire Sovereign",
+    "rarity": "uncommon",
+    "type": "Creature — Vampire",
+    "uuid": "8b66ae34-b610-5192-a30b-786956353ad6"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Viashino Pyromancer",
+    "rarity": "common",
+    "type": "Creature — Viashino Wizard",
+    "uuid": "fa03e5b6-751e-5ec2-849e-116368c50760"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{G}{G}",
+    "name": "Vigilant Baloth",
+    "rarity": "uncommon",
+    "type": "Creature — Beast",
+    "uuid": "5c043578-5697-5b42-b6e7-7735e74ba196"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{G}{G}",
+    "name": "Vine Mare",
+    "rarity": "uncommon",
+    "type": "Creature — Elemental Horse",
+    "uuid": "4a1cdfbc-b608-597b-b3bf-6cdd83a6e131"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{G}{G}",
+    "name": "Vivien Reid",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Vivien",
+    "uuid": "b5efc701-88b6-59b4-9147-5feb82763aa9"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{G}{G}",
+    "name": "Vivien of the Arkbow",
+    "rarity": "mythic",
+    "type": "Legendary Planeswalker — Vivien",
+    "uuid": "bcc52082-b3f0-55f8-a62c-1028bc4b7b08"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{5}{G}{G}",
+    "name": "Vivien's Invocation",
+    "rarity": "rare",
+    "type": "Sorcery",
+    "uuid": "2e38a075-18d5-5c28-9d2b-80de9621aa6f"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{G}",
+    "name": "Vivien's Jaguar",
+    "rarity": "uncommon",
+    "type": "Creature — Cat Spirit",
+    "uuid": "96b58a51-10fb-52ca-a1fb-ed314fa45fb1"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{4}{R}{R}",
+    "name": "Volcanic Dragon",
+    "rarity": "uncommon",
+    "type": "Creature — Dragon",
+    "uuid": "4c27d179-3c36-5b0e-8056-ed95499c52ce"
+  },
+  {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Volley Veteran",
+    "rarity": "uncommon",
+    "type": "Creature — Goblin Warrior",
+    "uuid": "66b1dd4a-a811-52b2-b9e6-678be895a6d5"
+  },
+  {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Walking Corpse",
+    "rarity": "common",
+    "type": "Creature — Zombie",
+    "uuid": "279cb5f8-da16-5bea-911f-1e73cee52fbc"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Wall of Mist",
+    "rarity": "common",
+    "type": "Creature — Wall",
+    "uuid": "d3238e9b-6343-5399-a4f4-77353a27407e"
+  },
+  {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{G}",
+    "name": "Wall of Vines",
+    "rarity": "common",
+    "type": "Creature — Plant Wall",
+    "uuid": "c36e878b-e1bb-5e1c-afd8-b1bc386b3aa6"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{U}{U}",
+    "name": "Waterknot",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "1375e4a9-5906-5858-8d98-1866751dbefa"
+  },
+  {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{5}{U}{U}",
+    "name": "Windreader Sphinx",
+    "rarity": "rare",
+    "type": "Creature — Sphinx",
+    "uuid": "199cfdb6-8451-5079-afb5-5759a36db0a7"
+  },
+  {
+    "colorIdentity": [
+      "G",
+      "U"
+    ],
+    "colors": [],
+    "convertedManaCost": 0,
+    "manaCost": null,
+    "name": "Woodland Stream",
+    "rarity": "common",
+    "type": "Land",
+    "uuid": "7f5c9dfb-de3b-5e95-8b89-134238b9d5c6"
+  }
+]
