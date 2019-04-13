@@ -39,6 +39,7 @@ class Drafter:
             archytype_preferences = {arch: 1 for arch in M19_DECK_ARCHYTYPES}
         self.archytype_preferences = archytype_preferences
         self.cards = []
+        self._archytype_preferences_history = [archytype_preferences.copy()]
 
     def pick(self, pack):
         #choice = pack.pop(random.randrange(len(pack)))
@@ -47,6 +48,8 @@ class Drafter:
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
         self._update_preferences(choice)
+        self._archytype_preferences_history.append(
+            self.archytype_preferences.copy())
         self.cards.append(choice)
 
     def _update_preferences(self, card):
@@ -56,7 +59,7 @@ class Drafter:
 
     def calculate_score(self, card):
         card_values = M19_CARD_VALUES[card['name']]
-        score = sum(self.archytype_preferences[arch] * 2 * card_values[arch]
+        score = sum(self.archytype_preferences[arch] * card_values[arch]
                     for arch in M19_DECK_ARCHYTYPES)
         return score
         
