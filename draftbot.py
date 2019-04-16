@@ -4,7 +4,7 @@ from math import exp
 import numpy as np
 
 M19_CARDS = json.load(open('data/m19-subset.json'))
-M19_CARD_VALUES = json.load(open('data/m19-card-values.json'))
+M19_CARD_VALUES = json.load(open('data/m19-custom-card-values.json'))
 M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG")
 
 
@@ -42,7 +42,6 @@ class Drafter:
         self._archytype_preferences_history = [archytype_preferences.copy()]
 
     def pick(self, pack):
-        #choice = pack.pop(random.randrange(len(pack)))
         pick_scores = [self.calculate_score(card) for card in pack]
         pick_probabilities = convert_to_probabilities(pick_scores)
         choice = np.random.choice(pack, p=pick_probabilities)
@@ -53,20 +52,20 @@ class Drafter:
         self.cards.append(choice)
 
     def _update_preferences(self, card):
-        card_value = M19_CARD_VALUES[card['name']]
+        card_values = M19_CARD_VALUES.get(card['name'], {})
         for arch in M19_DECK_ARCHYTYPES:
-            self.archytype_preferences[arch] += card_value[arch]
+            self.archytype_preferences[arch] += card_values.get(arch, 0)
 
     def calculate_score(self, card):
-        card_values = M19_CARD_VALUES[card['name']]
-        score = sum(self.archytype_preferences[arch] * card_values[arch]
+        card_values = M19_CARD_VALUES.get(card['name'], {})
+        score = sum(self.archytype_preferences[arch] * card_values.get(arch, 0)
                     for arch in M19_DECK_ARCHYTYPES)
         return score
         
 class Pack:
 
     @staticmethod
-    def random_pack(size=12):
+    def random_pack(size=14):
         pack = []
         for _ in range(size):
             pack.append(random.choice(M19_CARDS))
