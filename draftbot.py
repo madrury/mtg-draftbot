@@ -3,16 +3,21 @@ import random
 from math import exp
 import numpy as np
 
-M19_CARDS = json.load(open('data/m19-subset.json'))
 M19_CARD_VALUES = json.load(open('data/m19-custom-card-values.json'))
 M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG")
+
+M19_CARDS = [card for card in json.load(open('data/m19-subset.json'))
+                  if card['name'] in M19_CARD_VALUES]
+M19_COMMONS = [card for card in M19_CARDS if card['rarity'] == 'common']
+M19_UNCOMMONS = [card for card in M19_CARDS if card['rarity'] == 'uncommon']
+M19_RARES = [card for card in M19_CARDS if card['rarity'] in {'rare', 'mythic'}]
 
 
 class Draft:
 
     def __init__(self, 
                  n_drafters=8,
-                 n_rounds = 3,
+                 n_rounds=3,
                  card_values=M19_CARD_VALUES):
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
@@ -21,6 +26,7 @@ class Draft:
     
     def draft(self):
         for _ in range(self.n_rounds):
+            print("Round: ", _)
             packs = [Pack.random_pack() for _ in range(self.n_drafters)]
             self._draft_packs(packs)
         return self.drafters
@@ -66,9 +72,13 @@ class Pack:
 
     @staticmethod
     def random_pack(size=14):
+        n_rares, n_uncommons, n_commons = 1, 3, size - 4
         pack = []
-        for _ in range(size):
-            pack.append(random.choice(M19_CARDS))
+        for _ in range(n_commons):
+            pack.append(random.choice(M19_COMMONS))
+        for _ in range(n_uncommons):
+            pack.append(random.choice(M19_UNCOMMONS))
+        pack.append(random.choice(M19_RARES))
         return pack
 
 
