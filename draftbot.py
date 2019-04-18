@@ -3,6 +3,7 @@ import random
 from math import exp
 import numpy as np
 
+
 M19_CARD_VALUES = json.load(open('data/m19-custom-card-values.json'))
 M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG")
 
@@ -15,28 +16,24 @@ M19_RARES = [card for card in M19_CARDS if card['rarity'] in {'rare', 'mythic'}]
 
 class Draft:
 
-    def __init__(self, 
-                 n_drafters=8,
-                 n_rounds=3,
-                 card_values=M19_CARD_VALUES):
+    def __init__(self, n_drafters=8, n_rounds=3):
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
         self.drafters = [Drafter() for _ in range(n_drafters)]
-        self.card_values = card_values
+        self._round = 0
     
     def draft(self):
         for _ in range(self.n_rounds):
-            print("Round: ", _)
             packs = [Pack.random_pack() for _ in range(self.n_drafters)]
             self._draft_packs(packs)
         return self.drafters
     
     def _draft_packs(self, packs):
         while len(packs[0]) > 0:
-            draft_pack_pairs = zip(self.drafters, packs)
-            for drafter, pack in draft_pack_pairs:
+            for drafter, pack in zip(self.drafters, packs):
                 drafter.pick(pack)
-            packs = rotate_list(packs)
+            packs = rotate_list(packs, round=self._round)
+        self._round += 1
 
 class Drafter:
 
@@ -82,10 +79,14 @@ class Pack:
         return pack
 
 
-def rotate_list(lst):
-    first, rest = lst[0], lst[1:]
-    rest.append(first)
-    return rest
+def rotate_list(lst, round):
+    if round % 2 == 0:
+        first, rest = lst[0], lst[1:]
+        rest.append(first)
+        return rest
+    else:
+        rest, last = lst[:-1], lst[-1]
+        return [last] + rest
  
 def convert_to_probabilities(scores):
     scores = np.asarray(scores)
