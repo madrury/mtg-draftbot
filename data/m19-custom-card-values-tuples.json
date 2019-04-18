@@ -1,5 +1,5 @@
 {
-    "archytype_names": ["WR", "UB", "GR", "WB", "GU", "WU", "BR", "WG", "UR", "BG"],
+    "archytype_names": ["WR", "UB", "GR", "WB", "UG", "WU", "BR", "WG", "UR", "BG"],
     "values": {
         "Abnormal Endurance":              [0,   1,   0,   1,   0,   0,   1,   0,   0,   1  ],
         "Act of Treason":                  [2,   0,   1,   0,   0,   0,   1,   0,   1,   0  ],
