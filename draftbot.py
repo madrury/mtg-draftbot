@@ -5,7 +5,7 @@ import numpy as np
 
 
 M19_CARD_VALUES = json.load(open('data/m19-custom-card-values.json'))
-M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG")
+M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "GR")
 
 M19_CARDS = [card for card in json.load(open('data/m19-subset.json'))
                   if card['name'] in M19_CARD_VALUES]
@@ -21,6 +21,7 @@ class Draft:
         self.n_rounds = n_rounds
         self.drafters = [Drafter() for _ in range(n_drafters)]
         self._round = 0
+        self._pick_num = 0
     
     def draft(self):
         for _ in range(self.n_rounds):
@@ -31,8 +32,9 @@ class Draft:
     def _draft_packs(self, packs):
         while len(packs[0]) > 0:
             for drafter, pack in zip(self.drafters, packs):
-                drafter.pick(pack)
+                drafter.pick(pack, self._pick_num)
             packs = rotate_list(packs, round=self._round)
+            self._pick_num += 1
         self._round += 1
 
 
@@ -45,20 +47,20 @@ class Drafter:
         self.cards = []
         self._archytype_preferences_history = [archytype_preferences.copy()]
 
-    def pick(self, pack):
+    def pick(self, pack, pick_num):
         pick_scores = [self.calculate_score(card) for card in pack]
         pick_probabilities = convert_to_probabilities(pick_scores, temperature=0.5)
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
-        self._update_preferences(choice)
+        self._update_preferences(choice, discount=convert_to_discount_factor(pick_num))
         self._archytype_preferences_history.append(
             self.archytype_preferences.copy())
         self.cards.append(choice)
 
-    def _update_preferences(self, card):
+    def _update_preferences(self, card, discount=1.0):
         card_values = M19_CARD_VALUES.get(card['name'], {})
         for arch in M19_DECK_ARCHYTYPES:
-            self.archytype_preferences[arch] += card_values.get(arch, 0)
+            self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
 
     def calculate_score(self, card):
         card_values = M19_CARD_VALUES.get(card['name'], {})
@@ -93,3 +95,6 @@ def convert_to_probabilities(scores, temperature=0.5):
     scores = np.asarray(scores)
     scores_exp = np.exp(scores / temperature)
     return scores_exp / np.sum(scores_exp) 
+
+def convert_to_discount_factor(pick_num, pack_size=14):
+    return 1 / (1 + np.exp((pick_num % pack_size - 10)))
