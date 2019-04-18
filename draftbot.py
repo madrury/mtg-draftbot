@@ -35,6 +35,7 @@ class Draft:
             packs = rotate_list(packs, round=self._round)
         self._round += 1
 
+
 class Drafter:
 
     def __init__(self, archytype_preferences=None):
@@ -46,7 +47,7 @@ class Drafter:
 
     def pick(self, pack):
         pick_scores = [self.calculate_score(card) for card in pack]
-        pick_probabilities = convert_to_probabilities(pick_scores)
+        pick_probabilities = convert_to_probabilities(pick_scores, temperature=0.5)
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
         self._update_preferences(choice)
@@ -81,26 +82,14 @@ class Pack:
 
 def rotate_list(lst, round):
     if round % 2 == 0:
+        rest, last = lst[:-1], lst[-1]
+        return [last] + rest
+    else:
         first, rest = lst[0], lst[1:]
         rest.append(first)
         return rest
-    else:
-        rest, last = lst[:-1], lst[-1]
-        return [last] + rest
  
-def convert_to_probabilities(scores):
+def convert_to_probabilities(scores, temperature=0.5):
     scores = np.asarray(scores)
-    scores_exp = np.exp(scores)
+    scores_exp = np.exp(scores / temperature)
     return scores_exp / np.sum(scores_exp) 
-
-
-if __name__ == '__main__':
-    draft = Draft()
-    drafters = draft.draft()
-    #print(list(d.cards for d in drafters))
-    #print(list(d.archytype_preferences for d in drafters))
-    #print()
-    for i, drafter in enumerate(drafters):
-        print(f"Picks for {i}'th drafter:")
-        print(list(card['name'] for card in drafter.cards))
-        print()
