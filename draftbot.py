@@ -21,6 +21,7 @@ class Draft:
         self.n_rounds = n_rounds
         self.drafters = [Drafter() for _ in range(n_drafters)]
         self._round = 0
+        # You may not need to track this since its always equal to the number of cards that a drafter has.
         self._pick_num = 0
     
     def draft(self):
@@ -48,7 +49,7 @@ class Drafter:
         self._archytype_preferences_history = [archytype_preferences.copy()]
 
     def pick(self, pack, pick_num):
-        pick_scores = [self.calculate_score(card) for card in pack]
+        pick_scores = [self._calculate_score(card) for card in pack]
         pick_probabilities = convert_to_probabilities(pick_scores, temperature=0.5)
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
@@ -62,12 +63,22 @@ class Drafter:
         for arch in M19_DECK_ARCHYTYPES:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
 
-    def calculate_score(self, card):
+    def _calculate_score(self, card):
         card_values = M19_CARD_VALUES.get(card['name'], {})
-        score = sum(self.archytype_preferences[arch] * card_values.get(arch, 0)
+        raw_score = sum(self.archytype_preferences[arch] * card_values.get(arch, 0)
                     for arch in M19_DECK_ARCHYTYPES)
-        return score
-        
+        pick_number_discount = self._calcualte_pick_number_discount(card)
+        return pick_number_discount * raw_score
+
+    def _calcualte_pick_number_discount(self, card):
+        pick_number = len(self.cards)
+        if len(card['colorIdentity']) == 1:
+            return 1.0
+        elif len(card['colorIdentity']) >= 2:
+            return multi_color_sigmoid(pick_number)
+        else:
+            return zero_color_sigmoid(pick_number)
+
 class Pack:
 
     @staticmethod
@@ -98,3 +109,11 @@ def convert_to_probabilities(scores, temperature=0.5):
 
 def convert_to_discount_factor(pick_num, pack_size=14):
     return 1 / (1 + np.exp((pick_num % pack_size - 10)))
+
+def make_sigmoid(*, a=2, b=1, t0=0, rate=1):
+    def sigmoid(t):
+        return (b - a) / (1 + np.exp(- rate * (t - t0))) + a
+    return sigmoid
+
+zero_color_sigmoid = make_sigmoid(a=4/10, b=1, t0=3, rate=2) 
+multi_color_sigmoid = make_sigmoid(a=7/10, b=1, t0=3, rate=2)
