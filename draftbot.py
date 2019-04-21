@@ -62,6 +62,7 @@ class Drafter:
         card_values = M19_CARD_VALUES.get(card['name'], {})
         for arch in M19_DECK_ARCHYTYPES:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
+        self._increment_maximum_preference()
 
     def _calculate_score(self, card):
         card_values = M19_CARD_VALUES.get(card['name'], {})
@@ -78,6 +79,10 @@ class Drafter:
             return multi_color_sigmoid(pick_number)
         else:
             return zero_color_sigmoid(pick_number)
+
+    def _increment_maximum_preference(self):
+        max_arcytype = max(self.archytype_preferences, key=self.archytype_preferences.get)
+        self.archytype_preferences[max_arcytype] += 0.2
 
 class Pack:
 
