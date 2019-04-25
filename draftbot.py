@@ -21,7 +21,8 @@ class Draft:
         self.n_rounds = n_rounds
         self.drafters = [Drafter() for _ in range(n_drafters)]
         self._round = 0
-        # You may not need to track this since its always equal to the number of cards that a drafter has.
+        # You may not need to track this since its always equal to the number
+        # of cards that a drafter has.
         self._pick_num = 0
     
     def draft(self):
@@ -45,24 +46,34 @@ class Drafter:
         if not archytype_preferences:
             archytype_preferences = {arch: 1 for arch in M19_DECK_ARCHYTYPES}
         self.archytype_preferences = archytype_preferences
+        self.archytype_power_seen = {arch: 0 for arch in M19_DECK_ARCHYTYPES}
         self.cards = []
-        self._archytype_preferences_history = [archytype_preferences.copy()]
+        self.archytype_preferences_history = [archytype_preferences.copy()]
+        self.archytype_power_seen_history = []
 
     def pick(self, pack, pick_num):
+        self._update_power_seen(pack)
         pick_scores = [self._calculate_score(card) for card in pack]
-        pick_probabilities = convert_to_probabilities(pick_scores, temperature=0.5)
+        pick_probabilities = convert_to_probabilities_softmax(pick_scores, temperature=2.0)
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
         self._update_preferences(choice, discount=convert_to_discount_factor(pick_num))
-        self._archytype_preferences_history.append(
-            self.archytype_preferences.copy())
+        self.archytype_preferences_history.append(self.archytype_preferences.copy())
+        self.archytype_power_seen_history.append(self.archytype_power_seen.copy())
         self.cards.append(choice)
+
+    def _update_power_seen(self, pack):
+        for card in pack:
+            card_values = M19_CARD_VALUES.get(card['name'], {})
+            for arch in M19_DECK_ARCHYTYPES:
+                self.archytype_power_seen[arch] += card_values.get(arch, 0)
 
     def _update_preferences(self, card, discount=1.0):
         card_values = M19_CARD_VALUES.get(card['name'], {})
         for arch in M19_DECK_ARCHYTYPES:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
         self._increment_maximum_preference()
+        self._increment_open_archytype()
 
     def _calculate_score(self, card):
         card_values = M19_CARD_VALUES.get(card['name'], {})
@@ -82,7 +93,11 @@ class Drafter:
 
     def _increment_maximum_preference(self):
         max_arcytype = max(self.archytype_preferences, key=self.archytype_preferences.get)
-        self.archytype_preferences[max_arcytype] += 0.2
+        self.archytype_preferences[max_arcytype] += 0.5
+    
+    def _increment_open_archytype(self):
+        open_archytype = max(self.archytype_power_seen, key=self.archytype_power_seen.get)
+        self.archytype_preferences[open_archytype] += 1.0
 
 class Pack:
 
@@ -107,7 +122,7 @@ def rotate_list(lst, round):
         rest.append(first)
         return rest
  
-def convert_to_probabilities(scores, temperature=0.5):
+def convert_to_probabilities_softmax(scores, temperature=0.5):
     scores = np.asarray(scores)
     scores_exp = np.exp(scores / temperature)
     return scores_exp / np.sum(scores_exp) 
