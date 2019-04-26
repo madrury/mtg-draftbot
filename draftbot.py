@@ -3,23 +3,25 @@ import random
 from math import exp
 import numpy as np
 
-
-M19_CARD_VALUES = json.load(open('data/m19-custom-card-values.json'))
 M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "GR")
-
-M19_CARDS = [card for card in json.load(open('data/m19-subset.json'))
-                  if card['name'] in M19_CARD_VALUES]
-M19_COMMONS = [card for card in M19_CARDS if card['rarity'] == 'common']
-M19_UNCOMMONS = [card for card in M19_CARDS if card['rarity'] == 'uncommon']
-M19_RARES = [card for card in M19_CARDS if card['rarity'] in {'rare', 'mythic'}]
 
 
 class Draft:
 
-    def __init__(self, n_drafters=8, n_rounds=3):
+    def __init__(self, *, 
+                 n_drafters=8,
+                 n_rounds=3,
+                 deck_archytypes=None,
+                 cards_path=None,
+                 card_values_path=None):
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
-        self.drafters = [Drafter() for _ in range(n_drafters)]
+        self.deck_archytypes = deck_archytypes
+        # Do I need to track these here, or is it sufficient to have this as a method of Set?
+        self.cards = json.load(open(cards_path))
+        self.card_values = json.load(open(card_values_path))
+        self.set = Set(cards=self.cards, card_values=self.card_values)
+        self.drafters = [Drafter(parent=self) for _ in range(n_drafters)]
         self._round = 0
         # You may not need to track this since its always equal to the number
         # of cards that a drafter has.
@@ -27,7 +29,7 @@ class Draft:
     
     def draft(self):
         for _ in range(self.n_rounds):
-            packs = [Pack.random_pack() for _ in range(self.n_drafters)]
+            packs = [self.set.random_pack() for _ in range(self.n_drafters)]
             self._draft_packs(packs)
         return self.drafters
     
@@ -42,11 +44,12 @@ class Draft:
 
 class Drafter:
 
-    def __init__(self, archytype_preferences=None):
+    def __init__(self, *, parent, archytype_preferences=None):
+        self.parent = parent
         if not archytype_preferences:
-            archytype_preferences = {arch: 1 for arch in M19_DECK_ARCHYTYPES}
+            archytype_preferences = {arch: 1 for arch in self.parent.deck_archytypes}
         self.archytype_preferences = archytype_preferences
-        self.archytype_power_seen = {arch: 0 for arch in M19_DECK_ARCHYTYPES}
+        self.archytype_power_seen = {arch: 0 for arch in self.parent.deck_archytypes}
         self.cards = []
         self.archytype_preferences_history = [archytype_preferences.copy()]
         self.archytype_power_seen_history = []
@@ -64,21 +67,21 @@ class Drafter:
 
     def _update_power_seen(self, pack):
         for card in pack:
-            card_values = M19_CARD_VALUES.get(card['name'], {})
-            for arch in M19_DECK_ARCHYTYPES:
+            card_values = self.parent.card_values.get(card['name'], {})
+            for arch in self.parent.deck_archytypes:
                 self.archytype_power_seen[arch] += card_values.get(arch, 0)
 
     def _update_preferences(self, card, discount=1.0):
-        card_values = M19_CARD_VALUES.get(card['name'], {})
-        for arch in M19_DECK_ARCHYTYPES:
+        card_values = self.parent.card_values.get(card['name'], {})
+        for arch in self.parent.deck_archytypes:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
         self._increment_maximum_preference()
         self._increment_open_archytype()
 
     def _calculate_score(self, card):
-        card_values = M19_CARD_VALUES.get(card['name'], {})
+        card_values = self.parent.card_values.get(card['name'], {})
         raw_score = sum(self.archytype_preferences[arch] * card_values.get(arch, 0)
-                    for arch in M19_DECK_ARCHYTYPES)
+                    for arch in self.parent.deck_archytypes)
         pick_number_discount = self._calcualte_pick_number_discount(card)
         return pick_number_discount * raw_score
 
@@ -94,23 +97,43 @@ class Drafter:
     def _increment_maximum_preference(self):
         max_arcytype = max(self.archytype_preferences, key=self.archytype_preferences.get)
         self.archytype_preferences[max_arcytype] += 0.5
-    
+
     def _increment_open_archytype(self):
         open_archytype = max(self.archytype_power_seen, key=self.archytype_power_seen.get)
         self.archytype_preferences[open_archytype] += 1.0
+    
+    def set_parent_draft(self, parent):
+        self.parent = parent
+        return self
 
-class Pack:
+class Set:
 
-    @staticmethod
-    def random_pack(size=14):
+    def __init__(self, cards, card_values):
+        self.commons, self.uncommons, self.rares = self.split_by_rarity(cards)
+        # self.card_values = card_values
+
+    def random_pack(self, size=14):
         n_rares, n_uncommons, n_commons = 1, 3, size - 4
         pack = []
         for _ in range(n_commons):
-            pack.append(random.choice(M19_COMMONS))
+            pack.append(random.choice(self.commons))
         for _ in range(n_uncommons):
-            pack.append(random.choice(M19_UNCOMMONS))
-        pack.append(random.choice(M19_RARES))
+            pack.append(random.choice(self.uncommons))
+        pack.append(random.choice(self.rares))
         return pack
+    
+    @staticmethod
+    def split_by_rarity(cards):
+        commons, uncommons, rares = [], [], []
+        for card in cards:
+            rarity = card['rarity']
+            if rarity == 'common':
+                commons.append(card)
+            elif rarity == 'uncommon':
+                uncommons.append(card)
+            elif rarity in {'rare', 'mythic'}:
+                rares.append(card)
+        return commons, uncommons, rares
 
 
 def rotate_list(lst, round):
