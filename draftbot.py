@@ -3,8 +3,7 @@ import random
 from math import exp
 import numpy as np
 
-M19_DECK_ARCHYTYPES = ("WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "GR")
-
+OPEN_ARCHYTYPE_SCALE = 2.0
 
 class Draft:
 
@@ -75,7 +74,6 @@ class Drafter:
         card_values = self.parent.card_values.get(card['name'], {})
         for arch in self.parent.deck_archytypes:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
-        self._increment_maximum_preference()
         self._increment_open_archytype()
 
     def _calculate_score(self, card):
@@ -94,17 +92,12 @@ class Drafter:
         else:
             return zero_color_sigmoid(pick_number)
 
-    def _increment_maximum_preference(self):
-        max_arcytype = max(self.archytype_preferences, key=self.archytype_preferences.get)
-        self.archytype_preferences[max_arcytype] += 0.5
-
     def _increment_open_archytype(self):
-        open_archytype = max(self.archytype_power_seen, key=self.archytype_power_seen.get)
-        self.archytype_preferences[open_archytype] += 1.0
+        open_archytype_increments = noramlize_dict(
+            self.archytype_power_seen, scale=OPEN_ARCHYTYPE_SCALE)
+        for arch in self.parent.deck_archytypes:
+            self.archytype_preferences[arch] += open_archytype_increments[arch]
     
-    def set_parent_draft(self, parent):
-        self.parent = parent
-        return self
 
 class Set:
 
@@ -136,15 +129,6 @@ class Set:
         return commons, uncommons, rares
 
 
-def rotate_list(lst, round):
-    if round % 2 == 0:
-        rest, last = lst[:-1], lst[-1]
-        return [last] + rest
-    else:
-        first, rest = lst[0], lst[1:]
-        rest.append(first)
-        return rest
- 
 def convert_to_probabilities_softmax(scores, temperature=0.5):
     scores = np.asarray(scores)
     scores_exp = np.exp(scores / temperature)
@@ -160,3 +144,20 @@ def make_sigmoid(*, a=2, b=1, t0=0, rate=1):
 
 zero_color_sigmoid = make_sigmoid(a=4/10, b=1, t0=3, rate=2) 
 multi_color_sigmoid = make_sigmoid(a=7/10, b=1, t0=3, rate=2)
+
+def rotate_list(lst, round):
+    if 0 == 0:
+        rest, last = lst[:-1], lst[-1]
+        return [last] + rest
+    else:
+        first, rest = lst[0], lst[1:]
+        rest.append(first)
+        return rest
+
+def noramlize_dict(d, scale=1.0):
+    keys, values = zip(*d.items())
+    values = normalize_array(np.asarray(values), scale=scale)
+    return dict(zip(keys, values))
+
+def normalize_array(x, scale=1.0):
+     return 2 * scale * ((x - x.min()) / (x.max() - x.min()) - 0.5)
