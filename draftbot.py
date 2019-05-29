@@ -6,7 +6,43 @@ import numpy as np
 OPEN_ARCHYTYPE_SCALE = 2.0
 
 class Draft:
+    """Simulate a Magic: The Gathering draft with algorithmic drafters
+    
+    Parameters
+    ----------
+    n_drafters:
+      The number of drafters in the draft pod.  Usually equal to 8.
 
+    n_rounds:
+      The number of rounds to the draft.  Usually equal to 3.
+
+    deck_archytypes:
+      Tuple contiaining names for the deck archytypes in the format being
+      drafted.
+
+    cards_path:
+      A path to a json file containing card definitions for the given set.
+      This data is aquired from mtgjson.
+
+    card_values_path:
+      A path to a json file contining ratings of each card in a set for each
+      deck archytype.
+
+    Attributes
+    ----------
+    cards:
+      The deserialized json from cards_path.
+
+    card_values:
+      The deserialized json from card_values_path.
+
+    set:
+      An object representing the set being drafted.  Contains methods for
+      randomizing a pack.
+
+    drafters:
+      A list of Drafter objects, representing each drafter participating.
+    """
     def __init__(self, *, 
                  n_drafters=8,
                  n_rounds=3,
@@ -42,6 +78,12 @@ class Draft:
 
 
 class Drafter:
+    """Represents a single drafter, and tracks that drafter's preferences
+    throughout the draft.
+
+    Parameters
+    ----------
+    """
 
     def __init__(self, *, parent, archytype_preferences=None):
         self.parent = parent
@@ -56,7 +98,7 @@ class Drafter:
     def pick(self, pack, pick_num):
         self._update_power_seen(pack)
         pick_scores = [self._calculate_score(card) for card in pack]
-        pick_probabilities = convert_to_probabilities_softmax(pick_scores, temperature=2.0)
+        pick_probabilities = convert_to_probabilities_softmax(pick_scores, temperature=5.0)
         choice = np.random.choice(pack, p=pick_probabilities)
         pack.remove(choice)
         self._update_preferences(choice, discount=convert_to_discount_factor(pick_num))
@@ -70,7 +112,7 @@ class Drafter:
             for arch in self.parent.deck_archytypes:
                 self.archytype_power_seen[arch] += card_values.get(arch, 0)
 
-    def _update_preferences(self, card, discount=1.0):
+    def _update_preferences(self, card, discount=0.5):
         card_values = self.parent.card_values.get(card['name'], {})
         for arch in self.parent.deck_archytypes:
             self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
@@ -135,7 +177,7 @@ def convert_to_probabilities_softmax(scores, temperature=0.5):
     return scores_exp / np.sum(scores_exp) 
 
 def convert_to_discount_factor(pick_num, pack_size=14):
-    return 1 / (1 + np.exp((pick_num % pack_size - 10)))
+    return 1 / (1 + np.exp((pick_num % pack_size - 8)))
 
 def make_sigmoid(*, a=2, b=1, t0=0, rate=1):
     def sigmoid(t):
