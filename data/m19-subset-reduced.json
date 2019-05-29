@@ -1,0 +1,352 @@
+{
+  "Angel of the Dawn": {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{4}{W}",
+    "name": "Angel of the Dawn",
+    "rarity": "common",
+    "type": "Creature — Angel",
+    "uuid": "753fb4f6-9274-594a-b695-64caf6a3bf40"
+  },
+  "Aviation Pioneer": {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{U}",
+    "name": "Aviation Pioneer",
+    "rarity": "common",
+    "type": "Creature — Human Artificer",
+    "uuid": "81606692-5630-5fda-8ea7-d0a26629f866"
+  },
+  "Demanding Dragon": {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Demanding Dragon",
+    "rarity": "rare",
+    "type": "Creature — Dragon",
+    "uuid": "d27c4699-3f7b-51de-9b36-3b0b3334b2ee"
+  },
+  "Demon of Catastrophes": {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{B}{B}",
+    "name": "Demon of Catastrophes",
+    "rarity": "rare",
+    "type": "Creature — Demon",
+    "uuid": "f8563767-953e-5b64-a359-0120b327589d"
+  },
+  "Djinn of Wishes": {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Djinn of Wishes",
+    "rarity": "rare",
+    "type": "Creature — Djinn",
+    "uuid": "d6b6970b-1b51-5b71-88cd-3b5bf7ddce7c"
+  },
+  "Doomed Dissenter": {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{B}",
+    "name": "Doomed Dissenter",
+    "rarity": "common",
+    "type": "Creature — Human",
+    "uuid": "4ad7096e-ef28-5095-85e5-7f06ee37eba9"
+  },
+  "Druid of the Cowl": {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Druid of the Cowl",
+    "rarity": "common",
+    "type": "Creature — Elf Druid",
+    "uuid": "055d38dd-3ef5-5fa1-974c-05f5093cc16d"
+  },
+  "Dryad Greenseeker": {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{G}",
+    "name": "Dryad Greenseeker",
+    "rarity": "uncommon",
+    "type": "Creature — Dryad",
+    "uuid": "ad08b719-067c-519f-afe6-f500a6936d85"
+  },
+  "Electrify": {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{R}",
+    "name": "Electrify",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "865857a5-9d03-511b-bb1e-4fb5364aecdf"
+  },
+  "Essence Scatter": {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{U}",
+    "name": "Essence Scatter",
+    "rarity": "common",
+    "type": "Instant",
+    "uuid": "0e46be56-493d-5fae-816f-e92f4a92066f"
+  },
+  "Giant Spider": {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{G}",
+    "name": "Giant Spider",
+    "rarity": "common",
+    "type": "Creature — Spider",
+    "uuid": "3fd3815d-a74a-5520-89de-702869ee125e"
+  },
+  "Hieromancer's Cage": {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{3}{W}",
+    "name": "Hieromancer's Cage",
+    "rarity": "uncommon",
+    "type": "Enchantment",
+    "uuid": "0c36cf37-8a4a-5ea9-86b9-d677647d8522"
+  },
+  "Horizon Scholar": {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 6,
+    "manaCost": "{5}{U}",
+    "name": "Horizon Scholar",
+    "rarity": "uncommon",
+    "type": "Creature — Sphinx",
+    "uuid": "c65dc409-8bdb-5737-95fe-a0d52de10073"
+  },
+  "Leonin Warleader": {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 4,
+    "manaCost": "{2}{W}{W}",
+    "name": "Leonin Warleader",
+    "rarity": "rare",
+    "type": "Creature — Cat Soldier",
+    "uuid": "19595809-77ba-502e-bb8d-bca3f66ff596"
+  },
+  "Lich's Caress": {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{B}{B}",
+    "name": "Lich's Caress",
+    "rarity": "common",
+    "type": "Sorcery",
+    "uuid": "6499e894-1f24-53a6-bfd4-1f1704fada82"
+  },
+  "Lightning Strike": {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Lightning Strike",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "0d7dcf15-814a-538c-b2c2-2cba2b83aa15"
+  },
+  "Llanowar Elves": {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 1,
+    "manaCost": "{G}",
+    "name": "Llanowar Elves",
+    "rarity": "common",
+    "type": "Creature — Elf Druid",
+    "uuid": "06a17c8e-4ca0-5455-bde5-7157065fdea1"
+  },
+  "Luminous Bonds": {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Luminous Bonds",
+    "rarity": "common",
+    "type": "Enchantment — Aura",
+    "uuid": "1ca6c9b6-a70e-5387-af84-aff156b6b1e3"
+  },
+  "Murder": {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{1}{B}{B}",
+    "name": "Murder",
+    "rarity": "uncommon",
+    "type": "Instant",
+    "uuid": "4996f52a-6591-588d-8903-32d6e2a205c3"
+  },
+  "Pegasus Courser": {
+    "colorIdentity": [
+      "W"
+    ],
+    "colors": [
+      "W"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{W}",
+    "name": "Pegasus Courser",
+    "rarity": "common",
+    "type": "Creature — Pegasus",
+    "uuid": "3936ba56-80b4-5ee2-8a66-11cf7c8593a3"
+  },
+  "Pelakka Wurm": {
+    "colorIdentity": [
+      "G"
+    ],
+    "colors": [
+      "G"
+    ],
+    "convertedManaCost": 7,
+    "manaCost": "{4}{G}{G}{G}",
+    "name": "Pelakka Wurm",
+    "rarity": "rare",
+    "type": "Creature — Wurm",
+    "uuid": "ea266f37-755f-51db-989d-bcc34882be69"
+  },
+  "Salvager of Secrets": {
+    "colorIdentity": [
+      "U"
+    ],
+    "colors": [
+      "U"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{U}{U}",
+    "name": "Salvager of Secrets",
+    "rarity": "common",
+    "type": "Creature — Merfolk Wizard",
+    "uuid": "3cc87011-3a60-558f-9422-a24c764fc5e4"
+  },
+  "Skymarch Bloodletter": {
+    "colorIdentity": [
+      "B"
+    ],
+    "colors": [
+      "B"
+    ],
+    "convertedManaCost": 3,
+    "manaCost": "{2}{B}",
+    "name": "Skymarch Bloodletter",
+    "rarity": "common",
+    "type": "Creature — Vampire Soldier",
+    "uuid": "c54f519c-b288-5149-b720-0b2de17f2fa6"
+  },
+  "Sparktongue Dragon": {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 5,
+    "manaCost": "{3}{R}{R}",
+    "name": "Sparktongue Dragon",
+    "rarity": "common",
+    "type": "Creature — Dragon",
+    "uuid": "0dcba486-77a9-5ee4-8c0b-226ccddd8e20"
+  },
+  "Viashino Pyromancer": {
+    "colorIdentity": [
+      "R"
+    ],
+    "colors": [
+      "R"
+    ],
+    "convertedManaCost": 2,
+    "manaCost": "{1}{R}",
+    "name": "Viashino Pyromancer",
+    "rarity": "common",
+    "type": "Creature — Viashino Wizard",
+    "uuid": "fa03e5b6-751e-5ec2-849e-116368c50760"
+  }
+}
