@@ -48,25 +48,26 @@ class Draft:
                  n_drafters=8,
                  n_rounds=3,
                  n_cards_in_pack=14,
-                 deck_archetypes=None,
                  cards_path=None,
                  card_values_path=None):
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
         self.n_cards_in_pack = n_cards_in_pack
-        self.deck_archetypes = deck_archetypes
-        self.n_archetypes = len(self.deck_archetypes)
-        self.set = Set(cards=json.load(open(cards_path)), 
-                       card_values=json.load(open(card_values_path)))
+        self.archetype_names = None # <+- Will be set in below method...
+        self.card_names = None      #  |- Will be set in below method...
         # This is what a machine lerning model could learn from draft data.
         self.archetype_weights = self.make_archetype_weights_array(
-            self.set.card_values, self.deck_archetypes)
+            json.load(open(card_values_path)))
+        self.n_archetypes = len(self.archetype_names)
+        self.set = Set(cards=json.load(open(cards_path)), 
+                       card_names=self.card_names)
         # Internal algorithmic data structure.
         self.drafter_preferences = np.ones(shape=(self.n_drafters, self.n_archetypes))
         self.round = 0
         # Output data structures.
         self.picks = np.zeros(
-            (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds))
+            (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds),
+            dtype=int)
         self.preferences_history = np.zeros(
             (self.n_drafters, self.n_archetypes, self.n_cards_in_pack * self.n_rounds))
     
@@ -103,25 +104,19 @@ class Draft:
             picks[ridx, pick_idx] = 1
         return picks
 
-    def make_archetype_weights_array(self, card_values, deck_archetypes):
+    def make_archetype_weights_array(self, card_values):
         archetype_weights_df = pd.DataFrame(card_values).T
-        archetype_weights_df.columns = deck_archetypes
+        self.archetype_names = archetype_weights_df.columns
+        self.card_names = archetype_weights_df.index
         return archetype_weights_df.values
 
 
 class Set:
 
-    def __init__(self, cards, card_values):
+    def __init__(self, cards, card_names):
         self.commons, self.uncommons, self.rares = self.split_by_rarity(cards)
-        self.card_names = self.make_card_names(cards)
+        self.card_names = card_names
         self.n_cards = len(self.card_names)
-        self.card_values = card_values
-
-    def make_card_names(self, cards):
-        card_names = []
-        for card in cards:
-            card_names.append(card['name'])
-        return card_names
 
     def random_packs_array(self, n_packs=8, pack_size=14):
         packs = [self.random_pack_dict(size=pack_size) for _ in range(n_packs)]
