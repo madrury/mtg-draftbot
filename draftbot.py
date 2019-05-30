@@ -1,6 +1,7 @@
 import json
 import random
-from math import exp
+import uuid
+import sqlite3
 import numpy as np
 import pandas as pd
 
@@ -50,6 +51,7 @@ class Draft:
                  n_cards_in_pack=14,
                  cards_path=None,
                  card_values_path=None):
+        self.draft_id = uuid.uuid4()
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
         self.n_cards_in_pack = n_cards_in_pack
@@ -109,6 +111,28 @@ class Draft:
         self.archetype_names = archetype_weights_df.columns
         self.card_names = archetype_weights_df.index
         return archetype_weights_df.values
+
+    def write_to_database(self, path):
+        conn = sqlite3.connect(path)
+        self._write_preferences_to_database(conn)
+        self._write_picks_to_database(conn)
+        conn.close()
+
+    def _write_preferences_to_database(self, conn, if_exists='append'):
+        for idx, ph in enumerate(self.preferences_history):
+            df = pd.DataFrame(ph.T, columns=self.archetype_names)
+            df['draft_id'] = str(self.draft_id)
+            df['drafter'] = idx
+            df['pick_number'] = np.arange(df.shape[0])
+            df.to_sql("preferences", conn, index=False, if_exists=if_exists)
+
+    def _write_picks_to_database(self, conn, if_exists='append'):
+        for idx, picks in enumerate(self.picks):
+            df = pd.DataFrame(picks.T, columns=self.card_names)
+            df['draft_id'] = str(self.draft_id)
+            df['drafter'] = idx
+            df['pick_number'] = np.arange(df.shape[0])
+            df.to_sql("picks", conn, index=False, if_exists='append')
 
 
 class Set:
