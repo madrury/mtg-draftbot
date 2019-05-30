@@ -114,6 +114,7 @@ class Draft:
 class Set:
 
     def __init__(self, cards, card_names):
+        self.cards = cards
         self.commons, self.uncommons, self.rares = self.split_by_rarity(cards)
         self.card_names = card_names
         self.n_cards = len(self.card_names)
