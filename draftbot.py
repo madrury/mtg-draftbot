@@ -47,28 +47,28 @@ class Draft:
     def __init__(self, *, 
                  n_drafters=8,
                  n_rounds=3,
+                 n_cards_in_pack=14,
                  deck_archetypes=None,
                  cards_path=None,
                  card_values_path=None):
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
+        self.n_cards_in_pack = n_cards_in_pack
         self.deck_archetypes = deck_archetypes
         self.n_archetypes = len(self.deck_archetypes)
-        self.cards = json.load(open(cards_path))
-        self.n_cards = len(self.cards)
-        self.card_values = json.load(open(card_values_path))
-        self.set = Set(cards=self.cards, card_values=self.card_values)
+        self.set = Set(cards=json.load(open(cards_path)), 
+                       card_values=json.load(open(card_values_path)))
         # This is what a machine lerning model could learn from draft data.
         self.archetype_weights = self.make_archetype_weights_array(
-            self.card_values, self.deck_archetypes)
+            self.set.card_values, self.deck_archetypes)
         # Internal algorithmic data structure.
         self.drafter_preferences = np.ones(shape=(self.n_drafters, self.n_archetypes))
         self.round = 0
         # Output data structures.
         self.picks = np.zeros(
-            (self.n_drafters, self.n_cards, 14 * self.n_rounds))
+            (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds))
         self.preferences_history = np.zeros(
-            (self.n_drafters, self.n_archetypes, 14 * self.n_rounds))
+            (self.n_drafters, self.n_archetypes, self.n_cards_in_pack * self.n_rounds))
     
     def draft(self):
         for _ in range(self.n_rounds):
@@ -80,8 +80,8 @@ class Draft:
         for n_pick in range(14):
             card_is_in_pack = np.sign(packs)
             pack_archetype_weights = (
-                card_is_in_pack.reshape((self.n_drafters, self.n_cards, 1)) * 
-                self.archetype_weights.reshape((1, self.n_cards, self.n_archetypes)))
+                card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) * 
+                self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
             preferences = np.einsum(
                 'dca,da->dc',pack_archetype_weights, self.drafter_preferences)
             pick_probs = softmax(preferences)
@@ -92,14 +92,14 @@ class Draft:
                 self.drafter_preferences +
                 np.einsum('ca,pc->pa', self.archetype_weights, picks))
             # Update output data structures
-            self.picks[:, :, n_pick + 14 * self.round] = picks.copy()
-            self.preferences_history[:, :, n_pick + 14 * self.round] = (
+            self.picks[:, :, n_pick + self.n_cards_in_pack * self.round] = picks.copy()
+            self.preferences_history[:, :, n_pick + self.n_cards_in_pack * self.round] = (
                 self.drafter_preferences.copy())
 
     def make_picks(self, pick_probs):
-        picks = np.zeros((self.n_drafters, self.n_cards), dtype=int)
+        picks = np.zeros((self.n_drafters, self.set.n_cards), dtype=int)
         for ridx, row in enumerate(pick_probs):
-            pick_idx = np.random.choice(self.n_cards, p=row)
+            pick_idx = np.random.choice(self.set.n_cards, p=row)
             picks[ridx, pick_idx] = 1
         return picks
 
@@ -108,69 +108,6 @@ class Draft:
         archetype_weights_df.columns = deck_archetypes
         return archetype_weights_df.values
 
-#class Drafter:
-#    """Represents a single drafter, and tracks that drafter's preferences
-#    throughout the draft.
-#
-#    Parameters
-#    ----------
-#    """
-#
-#    def __init__(self, *, parent, archytype_preferences=None):
-#        self.parent = parent
-#        if not archytype_preferences:
-#            archytype_preferences = {arch: 1 for arch in self.parent.deck_archetypes}
-#        self.archytype_preferences = archytype_preferences
-#        self.archytype_power_seen = {arch: 0 for arch in self.parent.deck_archetypes}
-#        self.cards = []
-#        self.archytype_preferences_history = [archytype_preferences.copy()]
-#        self.archytype_power_seen_history = []
-#
-#    def pick(self, pack, pick_num):
-#        self._update_power_seen(pack)
-#        pick_scores = [self._calculate_score(card) for card in pack]
-#        pick_probabilities = convert_to_probabilities_softmax(pick_scores, temperature=5.0)
-#        choice = np.random.choice(pack, p=pick_probabilities)
-#        pack.remove(choice)
-#        self._update_preferences(choice, discount=convert_to_discount_factor(pick_num))
-#        self.archytype_preferences_history.append(self.archytype_preferences.copy())
-#        self.archytype_power_seen_history.append(self.archytype_power_seen.copy())
-#        self.cards.append(choice)
-#
-#    def _update_power_seen(self, pack):
-#        for card in pack:
-#            card_values = self.parent.card_values.get(card['name'], {})
-#            for arch in self.parent.deck_archetypes:
-#                self.archytype_power_seen[arch] += card_values.get(arch, 0)
-#
-#    def _update_preferences(self, card, discount=0.5):
-#        card_values = self.parent.card_values.get(card['name'], {})
-#        for arch in self.parent.deck_archetypes:
-#            self.archytype_preferences[arch] += discount * card_values.get(arch, 0)
-#        # self._increment_open_archytype()
-#
-#    def _calculate_score(self, card):
-#        card_values = self.parent.card_values.get(card['name'], {})
-#        raw_score = sum(self.archytype_preferences[arch] * card_values.get(arch, 0)
-#                    for arch in self.parent.deck_archetypes)
-#        pick_number_discount = self._calcualte_pick_number_discount(card)
-#        return pick_number_discount * raw_score
-#
-#    def _calcualte_pick_number_discount(self, card):
-#        pick_number = len(self.cards)
-#        if len(card['colorIdentity']) == 1:
-#            return 1.0
-#        elif len(card['colorIdentity']) >= 2:
-#            return multi_color_sigmoid(pick_number)
-#        else:
-#            return zero_color_sigmoid(pick_number)
-#
-#    def _increment_open_archytype(self):
-#        open_archytype_increments = noramlize_dict(
-#            self.archytype_power_seen, scale=OPEN_ARCHYTYPE_SCALE)
-#        for arch in self.parent.deck_archetypes:
-#            self.archytype_preferences[arch] += open_archytype_increments[arch]
-    
 
 class Set:
 
@@ -178,6 +115,7 @@ class Set:
         self.commons, self.uncommons, self.rares = self.split_by_rarity(cards)
         self.card_names = self.make_card_names(cards)
         self.n_cards = len(self.card_names)
+        self.card_values = card_values
 
     def make_card_names(self, cards):
         card_names = []
