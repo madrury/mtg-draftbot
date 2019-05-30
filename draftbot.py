@@ -88,7 +88,7 @@ class Draft:
             pick_probs = softmax(preferences)
             picks = self.make_picks(pick_probs)
             # Update internal data structures
-            packs = packs - picks
+            packs = rotate_array(packs - picks, forward=True)
             self.drafter_preferences = (
                 self.drafter_preferences +
                 np.einsum('ca,pc->pa', self.archetype_weights, picks))
@@ -157,6 +157,16 @@ def softmax(x):
     row_sums = np.sum(exps, axis=1)
     probs = exps / row_sums.reshape(-1, 1)
     return probs
+
+def rotate_array(x, forward=True):
+    newx = np.zeros(x.shape)
+    if forward:
+        newx[0, :] = x[-1, :]
+        newx[1:, :] = x[:-1, :]
+    else:
+        newx[-1, :] = x[0, :]
+        newx[:-1, :] = x[1:, :]
+    return newx
 
 # Old bells and whistles, may use these again in the future.
 def convert_to_discount_factor(pick_num, pack_size=14):
