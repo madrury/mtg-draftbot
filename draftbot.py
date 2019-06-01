@@ -119,24 +119,39 @@ class Draft:
     def write_to_database(self, path):
         conn = sqlite3.connect(path)
         self._write_preferences_to_database(conn)
+        self._write_options_to_database(conn)
         self._write_picks_to_database(conn)
         conn.close()
 
-    def _write_preferences_to_database(self, conn, if_exists='append'):
-        for idx, ph in enumerate(self.preferences_history):
-            df = pd.DataFrame(ph.T, columns=self.archetype_names)
+    def _write_array_to_database(self, conn, *, 
+                                 array,
+                                 column_names,
+                                 table_name,
+                                 if_exists='append'):
+        for idx, table in enumerate(array):
+            df = pd.DataFrame(table.T, columns=column_names)
             df['draft_id'] = str(self.draft_id)
             df['drafter'] = idx
             df['pick_number'] = np.arange(df.shape[0])
-            df.to_sql("preferences", conn, index=False, if_exists=if_exists)
+            df.to_sql(table_name, conn, index=False, if_exists=if_exists)
 
-    def _write_picks_to_database(self, conn, if_exists='append'):
-        for idx, picks in enumerate(self.picks):
-            df = pd.DataFrame(picks.T, columns=self.card_names)
-            df['draft_id'] = str(self.draft_id)
-            df['drafter'] = idx
-            df['pick_number'] = np.arange(df.shape[0])
-            df.to_sql("picks", conn, index=False, if_exists='append')
+    def _write_preferences_to_database(self, conn, if_exists='append'):
+        self._write_array_to_database(conn,
+                                      array=self.preferences_history,
+                                      column_names=self.archetype_names,
+                                      table_name="preferences")
+
+    def _write_options_to_database(self, conn, if_exists='append'):
+        self._write_array_to_database(conn,
+                                      array=self.options,
+                                      column_names=self.card_names,
+                                      table_name="options")
+    
+    def _write_picks_to_database(self, conn, if_exists="append"):
+        self._write_array_to_database(conn,
+                                      array=self.picks,
+                                      column_names=self.card_names,
+                                      table_name="picks")
 
 
 class Set:
