@@ -67,6 +67,9 @@ class Draft:
         self.drafter_preferences = np.ones(shape=(self.n_drafters, self.n_archetypes))
         self.round = 0
         # Output data structures.
+        self.options = np.zeros(
+            (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds),
+            dtype=int)
         self.picks = np.zeros(
             (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds),
             dtype=int)
@@ -75,34 +78,35 @@ class Draft:
     
     def draft(self):
         for _ in range(self.n_rounds):
-            self.draft_pack()
+            packs = self.set.random_packs_array(self.n_drafters)
+            for n_pick in range(self.n_cards_in_pack):
+                packs = self.draft_packs(packs, n_pick)
             self.round += 1
 
-    def draft_pack(self):
-        packs = self.set.random_packs_array(self.n_drafters)
-        for n_pick in range(14):
-            card_is_in_pack = np.sign(packs)
-            pack_archetype_weights = (
-                card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) * 
-                self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
-            preferences = np.einsum(
-                'dca,da->dc',pack_archetype_weights, self.drafter_preferences)
-            pick_probs = softmax(preferences)
-            picks = self.make_picks(pick_probs)
-            # Update internal data structures
-            packs = rotate_array(packs - picks, forward=True)
-            self.drafter_preferences = (
-                self.drafter_preferences +
-                np.einsum('ca,pc->pa', self.archetype_weights, picks))
-            # Update output data structures
-            self.picks[:, :, n_pick + self.n_cards_in_pack * self.round] = picks.copy()
-            self.preferences_history[:, :, n_pick + self.n_cards_in_pack * self.round] = (
-                self.drafter_preferences.copy())
+    def draft_packs(self, packs, n_pick):
+        self.options[:, :, n_pick + self.n_cards_in_pack * self.round] = packs.copy()
+        card_is_in_pack = np.sign(packs)
+        pack_archetype_weights = (
+            card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) * 
+            self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
+        preferences = np.einsum(
+            'dca,da->dc',pack_archetype_weights, self.drafter_preferences)
+        pick_probs = softmax(preferences)
+        picks = self.make_picks(pick_probs)
+        packs = rotate_array(packs - picks, forward=True)
+        self.drafter_preferences = (
+            self.drafter_preferences +
+            np.einsum('ca,pc->pa', self.archetype_weights, picks))
+        self.picks[:, :, n_pick + self.n_cards_in_pack * self.round] = picks.copy()
+        self.preferences_history[:, :, n_pick + self.n_cards_in_pack * self.round] = (
+            self.drafter_preferences.copy())
+        return packs
 
     def make_picks(self, pick_probs):
         picks = np.zeros((self.n_drafters, self.set.n_cards), dtype=int)
         for ridx, row in enumerate(pick_probs):
-            pick_idx = np.random.choice(self.set.n_cards, p=row)
+            #pick_idx = np.random.choice(self.set.n_cards, p=row)
+            pick_idx = np.argmax(row)
             picks[ridx, pick_idx] = 1
         return picks
 
