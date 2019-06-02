@@ -5,22 +5,21 @@ import sqlite3
 import numpy as np
 import pandas as pd
 
-OPEN_ARCHYTYPE_SCALE = 2.0
 
 class Draft:
-    """Simulate a Magic: The Gathering draft with algorithmic drafters
-    
+    """Simulate a Magic: The Gathering draft with algorithmic drafters.
+
     Parameters
     ----------
-    n_drafters:
+    n_drafters: int
       The number of drafters in the draft pod.  Usually equal to 8.
 
-    n_rounds:
+    n_rounds: int
       The number of rounds to the draft.  Usually equal to 3.
 
-    deck_archetypes:
-      Tuple contiaining names for the deck archetypes in the format being
-      drafted.
+    n_cards_in_pack: int
+      The number of cards in a single pack, equal to the number of picks a
+      player must make in one round of the draft.
 
     cards_path:
       A path to a json file containing card definitions for the given set.
@@ -30,22 +29,62 @@ class Draft:
       A path to a json file contining ratings of each card in a set for each
       deck archytype.
 
-    Attributes
-    ----------
-    cards:
-      The deserialized json from cards_path.
+    Description of The Algorithm
+    ----------------------------
+    This algorithm depends on a prior enumeration of the various deck
+    archetypes in the draft format (though these could be learned from actual
+    human draft data, in which case only the number of such archetypes would
+    need to be pre-specified).
 
-    card_values:
-      The deserialized json from card_values_path.
+    Given this enumeration of archetypes, there are two essential data
+    structures used in this algorithm:
 
-    set:
-      An object representing the set being drafted.  Contains methods for
-      randomizing a pack.
+    drafter_preferences: np.array, shape (n_drafters, n_archetypes)
+      This array tracks the internal preference of each drafter for each
+      archetype.  This array contributes linearly to the relative log-odds that
+      a card in any given pack will be picked, and is updated each time a pick
+      is made (further preferencing the archetypes for which the selected card
+      is valuable).
 
-    drafters:
-      A list of Drafter objects, representing each drafter participating.
+    archetype_weights: np.array, shape (n_cards, n_archetypes)
+      This array contians relative ratings of how valuable each card is in each
+      archetypes.  Throughout a simulated draft, this array is static.  This
+      array could concevably be learned from human draft data, and then used to
+      simulate algorithmic drafters.
+
+    Given a single drafter considering a single pick from some number of
+    available cards, the preference of the drafter for each card is computed as
+    the dot product of their archetype preferences with the archetype weights
+    for that card in each available archetype.  These preferences are converted
+    into probabilities using a softmax, and then a card is selected using this
+    distribution.
+
+    After a card is selected, the drafter's preferences are updated by adding
+    the archetype weights for the selected card to teh drafter's current
+    archetype preferences.
+
+    Output Attributes
+    -----------------
+    Certain object attributes are available as output, and contiain complete
+    information about the progress of the draft.
+
+    options: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)
+      The options avaailable for each drafter over each pick of the draft.
+      Entries in this array are counts of how many of each card is available to
+      the given drafter over each pick of the draft.
+
+    picks: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)
+      Which card is chosen by each drafter over each pick of the draft.
+      Entries in this array are either zero or one, and there is a single one
+      in each 1-dimensional slice of the array of the form [d, :, p].
+
+    preferences: np.array, shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)
+      The preferences of each drafter for each archetype over each pick of the
+      draft.  Each 1-dimensional slice of this array of the form [d, :, p]
+      contains the current preferenced for a drafter at a single pick of the
+      draft.
     """
-    def __init__(self, *, 
+    def __init__(self, *,
                  n_drafters=8,
                  n_rounds=3,
                  n_cards_in_pack=14,
@@ -61,7 +100,7 @@ class Draft:
         self.archetype_weights = self.make_archetype_weights_array(
             json.load(open(card_values_path)))
         self.n_archetypes = len(self.archetype_names)
-        self.set = Set(cards=json.load(open(cards_path)), 
+        self.set = Set(cards=json.load(open(cards_path)),
                        card_names=self.card_names)
         # Internal algorithmic data structure.
         self.drafter_preferences = np.ones(shape=(self.n_drafters, self.n_archetypes))
@@ -73,9 +112,9 @@ class Draft:
         self.picks = np.zeros(
             (self.n_drafters, self.set.n_cards, self.n_cards_in_pack * self.n_rounds),
             dtype=int)
-        self.preferences_history = np.zeros(
+        self.preferences = np.zeros(
             (self.n_drafters, self.n_archetypes, self.n_cards_in_pack * self.n_rounds))
-    
+
     def draft(self):
         for _ in range(self.n_rounds):
             packs = self.set.random_packs_array(self.n_drafters)
@@ -87,7 +126,7 @@ class Draft:
         self.options[:, :, n_pick + self.n_cards_in_pack * self.round] = packs.copy()
         card_is_in_pack = np.sign(packs)
         pack_archetype_weights = (
-            card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) * 
+            card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) *
             self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
         preferences = np.einsum(
             'dca,da->dc',pack_archetype_weights, self.drafter_preferences)
@@ -98,7 +137,7 @@ class Draft:
             self.drafter_preferences +
             np.einsum('ca,pc->pa', self.archetype_weights, picks))
         self.picks[:, :, n_pick + self.n_cards_in_pack * self.round] = picks.copy()
-        self.preferences_history[:, :, n_pick + self.n_cards_in_pack * self.round] = (
+        self.preferences[:, :, n_pick + self.n_cards_in_pack * self.round] = (
             self.drafter_preferences.copy())
         return packs
 
@@ -123,7 +162,7 @@ class Draft:
         self._write_picks_to_database(conn)
         conn.close()
 
-    def _write_array_to_database(self, conn, *, 
+    def _write_array_to_database(self, conn, *,
                                  array,
                                  column_names,
                                  table_name,
@@ -137,7 +176,7 @@ class Draft:
 
     def _write_preferences_to_database(self, conn, if_exists='append'):
         self._write_array_to_database(conn,
-                                      array=self.preferences_history,
+                                      array=self.preferences,
                                       column_names=self.archetype_names,
                                       table_name="preferences")
 
@@ -146,7 +185,7 @@ class Draft:
                                       array=self.options,
                                       column_names=self.card_names,
                                       table_name="options")
-    
+
     def _write_picks_to_database(self, conn, if_exists="append"):
         self._write_array_to_database(conn,
                                       array=self.picks,
@@ -164,14 +203,14 @@ class Set:
 
     def random_packs_array(self, n_packs=8, pack_size=14):
         packs = [self.random_pack_dict(size=pack_size) for _ in range(n_packs)]
-        cards_in_pack_df = pd.DataFrame(np.zeros(shape=(n_packs, self.n_cards), dtype=int), 
+        cards_in_pack_df = pd.DataFrame(np.zeros(shape=(n_packs, self.n_cards), dtype=int),
                                         columns=self.card_names)
         for idx, pack in enumerate(packs):
             for card in pack:
                 name = card['name']
                 cards_in_pack_df.loc[cards_in_pack_df.index[idx], name] += 1
-        return cards_in_pack_df.values 
-    
+        return cards_in_pack_df.values
+
     def random_pack_dict(self, size=14):
         n_rares, n_uncommons, n_commons = 1, 3, size - 4
         pack = []
@@ -221,7 +260,7 @@ def make_sigmoid(*, a=2, b=1, t0=0, rate=1):
         return (b - a) / (1 + np.exp(- rate * (t - t0))) + a
     return sigmoid
 
-zero_color_sigmoid = make_sigmoid(a=4/10, b=1, t0=3, rate=2) 
+zero_color_sigmoid = make_sigmoid(a=4/10, b=1, t0=3, rate=2)
 multi_color_sigmoid = make_sigmoid(a=7/10, b=1, t0=3, rate=2)
 
 def normalize_array(x, scale=1.0):
