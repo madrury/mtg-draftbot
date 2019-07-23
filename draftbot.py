@@ -244,7 +244,23 @@ class Draft:
 
 
 class Set:
+    """A set of cards to draft from.
 
+    Parameters
+    ----------
+    cards: List[Dict[str, object]]
+      Data representing all the cards in the set, created by processing data
+      from mtgjson.com. Each card is represented by a dictionary inside this
+      list. Important keys in the dictionary are:
+        - name: The name of the card.
+        - rarity: The rarity of the card, common, uncommon, rare, or mythic.
+        - colorIdentity: The colors of the card.
+
+    card_names: List[str]
+      A list of card names in the set. This is used here to create a canonical
+      ordering of the cards in the set, since different sources may be
+      inconsistent about the ordering.
+    """
     def __init__(self, cards, card_names):
         self.cards = cards
         self.commons, self.uncommons, self.rares = self.split_by_rarity(cards)
@@ -252,6 +268,23 @@ class Set:
         self.n_cards = len(self.card_names)
 
     def random_packs_array(self, n_packs=8, pack_size=14):
+        """Make some random packs of cards from the set. Each pack contains one
+        rare/mytic, thre uncommons, and however many commons are needed to
+        round out the pack.
+
+        Parameters
+        ----------
+        n_packs: int
+          The number of packs to create.
+
+        pack_size: int
+          The number of cards in each pack.
+
+        Returns
+        -------
+        packs: np.array, shape (n_packs, n_cards)
+          The number of each card in each pack.
+        """
         packs = [self.random_pack_dict(size=pack_size) for _ in range(n_packs)]
         cards_in_pack_df = pd.DataFrame(np.zeros(shape=(n_packs, self.n_cards), dtype=int),
                                         columns=self.card_names)
