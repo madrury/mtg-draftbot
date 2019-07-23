@@ -32,9 +32,9 @@ class Draft:
     Description of The Algorithm
     ----------------------------
     This algorithm depends on a prior enumeration of the various deck
-    archetypes in the draft format (though these could be learned from actual
-    human draft data, in which case only the number of such archetypes would
-    need to be pre-specified).
+    archetypes in the draft format (though, the actual identities of these
+    could be learned from actual human draft data, in which case only the
+    number of such archetypes would need to be pre-specified).
 
     Given this enumeration of archetypes, there are two essential data
     structures used in this algorithm:
@@ -60,7 +60,7 @@ class Draft:
     distribution.
 
     After a card is selected, the drafter's preferences are updated by adding
-    the archetype weights for the selected card to teh drafter's current
+    the archetype weights for the selected card tothe drafter's current
     archetype preferences.
 
     Output Attributes
@@ -81,7 +81,7 @@ class Draft:
     preferences: np.array, shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)
       The preferences of each drafter for each archetype over each pick of the
       draft.  Each 1-dimensional slice of this array of the form [d, :, p]
-      contains the current preferenced for a drafter at a single pick of the
+      contains the current preferences for a drafter at a single pick of the
       draft.
     """
     def __init__(self, *,
@@ -94,14 +94,13 @@ class Draft:
         self.n_drafters = n_drafters
         self.n_rounds = n_rounds
         self.n_cards_in_pack = n_cards_in_pack
-        self.archetype_names = None # <+- Will be set in below method...
-        self.card_names = None      #  |- Will be set in below method...
-        # This is what a machine lerning model could learn from draft data.
-        self.archetype_weights = self.make_archetype_weights_array(
-            json.load(open(card_values_path)))
+        # These archetype weights could be learned from human draft data.
+        self.archetype_weights, self.archetype_names, self.card_names = (
+            self.make_archetype_weights_array(json.load(open(card_values_path))))
         self.n_archetypes = len(self.archetype_names)
-        self.set = Set(cards=json.load(open(cards_path)),
-                       card_names=self.card_names)
+        self.set = Set(
+            cards=json.load(open(cards_path)),
+            card_names=self.card_names)
         # Internal algorithmic data structure.
         self.drafter_preferences = np.ones(shape=(self.n_drafters, self.n_archetypes))
         self.round = 0
@@ -117,43 +116,94 @@ class Draft:
 
     def draft(self):
         for _ in range(self.n_rounds):
-            packs = self.set.random_packs_array(self.n_drafters)
+            packs = self.set.random_packs_array(n_packs=self.n_drafters)
             for n_pick in range(self.n_cards_in_pack):
                 packs = self.draft_packs(packs, n_pick)
             self.round += 1
 
     def draft_packs(self, packs, n_pick):
+        """Draft a single pick from a set of packs, one pick for each drafter.
+
+        Parameters
+        ----------
+        packs: np.array, shape (n_drafters, n_cards)
+          Array indicating how many of each card remains in each pack.
+
+        n_pick: int
+          Which pick of the draft is this?  Note that the first pick of the
+          draft is pick zero.
+
+        Modifies
+        --------
+        self.options: np.array 
+                      shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)
+          The initial packs array (before any picks are made) is copied into an
+          (n_drafters, n_cards) slice of this output array.
+
+        self.picks: np.array
+                    shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)
+          After picks are computed for each drafter, these are copied into an
+          (n_drafters, n_cards) slice of this output array.
+
+        self.preferences: np.array
+                          shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)
+          After archytype preferences are re-computed for each drafter post
+          pick, these are copied into an (n_drafters, n_archetypes) slice of
+          this output array.
+
+        Returns
+        -------
+        packs: np.array, shape (n_drafters, n_cards)
+          The input packs array, transformed given the results of the pick algorithm:
+            - The cards picked by each drafter are removed from the corresponding packs.
+            - The packs array is rotated (in the first dimension), to prepare
+              for the next pick (packs are passed around the drafters
+              circularly pick-to-pick.
+        """
         self.options[:, :, n_pick + self.n_cards_in_pack * self.round] = packs.copy()
         card_is_in_pack = np.sign(packs)
         pack_archetype_weights = (
             card_is_in_pack.reshape((self.n_drafters, self.set.n_cards, 1)) *
             self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
         preferences = np.einsum(
-            'dca,da->dc',pack_archetype_weights, self.drafter_preferences)
+            'dca,da->dc', pack_archetype_weights, self.drafter_preferences)
         pick_probs = softmax(preferences)
         picks = self.make_picks(pick_probs)
         packs = rotate_array(packs - picks, forward=True)
         self.drafter_preferences = (
             self.drafter_preferences +
-            np.einsum('ca,pc->pa', self.archetype_weights, picks))
+            np.einsum('ca,dc->da', self.archetype_weights, picks))
         self.picks[:, :, n_pick + self.n_cards_in_pack * self.round] = picks.copy()
         self.preferences[:, :, n_pick + self.n_cards_in_pack * self.round] = (
             self.drafter_preferences.copy())
         return packs
 
     def make_picks(self, pick_probs):
+        """Compute definate picks given an array of pick probabilities.
+
+        Parameters
+        ----------
+        pick_probs: np.array, shape (n_drafters, n_cards)
+          Pick probabilities for each drafter.
+
+        Returns
+        -------
+        picks: np.array, shape (n_drafters, n_cards)
+          Definate picks for each drafter, computed by sampling from according
+          to the each row of the pick probability array. 
+        """
         picks = np.zeros((self.n_drafters, self.set.n_cards), dtype=int)
         for ridx, row in enumerate(pick_probs):
-            #pick_idx = np.random.choice(self.set.n_cards, p=row)
-            pick_idx = np.argmax(row)
+            pick_idx = np.random.choice(self.set.n_cards, p=row)
+            #pick_idx = np.argmax(row)
             picks[ridx, pick_idx] = 1
         return picks
 
     def make_archetype_weights_array(self, card_values):
         archetype_weights_df = pd.DataFrame(card_values).T
-        self.archetype_names = archetype_weights_df.columns
-        self.card_names = archetype_weights_df.index
-        return archetype_weights_df.values
+        archetype_names = archetype_weights_df.columns
+        card_names = archetype_weights_df.index
+        return archetype_weights_df.values, archetype_names, card_names
 
     def write_to_database(self, path):
         conn = sqlite3.connect(path)
