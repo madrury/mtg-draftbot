@@ -31,17 +31,21 @@ class AnalyticTableConstructor:
 
         Returns
         -------
-        X: pd.DataFrame
+        X: pd.DataFrame[int]
           Data frame indexed by (draft_id, drafter_id, pick_number) containing
           features known at the time of a given pick in a draft, intended to be
           used as predictors for the next pick. There predictors come in two types:
             - The options for picks from the current pack.
             - The cards held by the current drafter (from past picks).
         
-        y: pd.Series
+        y: pd.Series[int]
           Data series indexed by (draft_id, drafter_id, pick_number) containing
           the pick made by the drafter, intended to be a used as a target for a
           predictive model.
+
+        y_to_name_mapping: Dict[int, str]
+          Dictionary mapping the interger id of a card used in the y series to
+          the actual name of the card.
         """
         options = self.fetch_table('options',
                                    table_validator=validate_options,
@@ -54,7 +58,8 @@ class AnalyticTableConstructor:
                                  table_validator=validate_picks)
         y = pd.Series(np.argmax(picks.values, axis=1), 
                           index=picks.index)
-        return X, y
+        y_to_name_mapping = dict(enumerate(picks.columns))
+        return X, y, y_to_name_mapping
 
     def validate_db(self):
         """Make sure that the database contains the needed tables."""
