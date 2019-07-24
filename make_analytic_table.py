@@ -20,10 +20,10 @@ class AnalyticTableConstructor:
     Given this database, the make_analytic_base_table method constructs
     analytic style data useful for machine learning.
     """
-    def __init__(self, db_path):
+    def __init__(self, db_path, validate_data=True):
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
-        self.validate_db()
+        self.validate_data = validate_data
 
     def make_analytic_base_table(self):
         """Construct analytic machine learning data from the tables in the
@@ -47,6 +47,7 @@ class AnalyticTableConstructor:
           Dictionary mapping the interger id of a card used in the y series to
           the actual name of the card.
         """
+        self.validate_db()
         options = self.fetch_table('options',
                                    table_validator=validate_options,
                                    name_transformer=name_sanitizer('options'))
@@ -76,7 +77,7 @@ class AnalyticTableConstructor:
         # the regretful string formatting here.
         table = pd.read_sql_query(f"select * from {table_name};", self.conn)
         table = table.set_index(['draft_id', 'drafter', 'pick_number'])
-        if table_validator is not None:
+        if self.validate_data and table_validator is not None:
             assert table_validator(table)
         if name_transformer is not None:
             table.columns = table.columns.map(name_transformer)
