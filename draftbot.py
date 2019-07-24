@@ -78,6 +78,12 @@ class Draft:
       Entries in this array are either zero or one, and there is a single one
       in each 1-dimensional slice of the array of the form [d, :, p].
 
+    cards: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)
+      The current set of cards owned by each drafter at each pick of the draft.
+      Equal to the cumlative sum of self.picks over the final axis, shifted up
+      one index (since there are no cards owned by any player for the first
+      pick of the draft).
+
     preferences: np.array, shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)
       The preferences of each drafter for each archetype over each pick of the
       draft.  Each 1-dimensional slice of this array of the form [d, :, p]
@@ -199,6 +205,12 @@ class Draft:
             picks[ridx, pick_idx] = 1
         return picks
 
+    @property
+    def cards(self):
+        cards = np.zeros(shape=self.picks.shape, dtype=int)
+        cards[:, :, 1:] = np.cumsum(self.picks, axis=2)[:, :, 0:-1]
+        return cards
+
     def make_archetype_weights_array(self, card_values):
         archetype_weights_df = pd.DataFrame(card_values).T
         archetype_names = archetype_weights_df.columns
@@ -210,6 +222,7 @@ class Draft:
         self._write_preferences_to_database(conn)
         self._write_options_to_database(conn)
         self._write_picks_to_database(conn)
+        self._write_cards_to_database(conn)
         conn.close()
 
     def _write_array_to_database(self, conn, *,
@@ -241,6 +254,12 @@ class Draft:
                                       array=self.picks,
                                       column_names=self.card_names,
                                       table_name="picks")
+
+    def _write_cards_to_database(self, conn, if_exists="append"):
+        self._write_array_to_database(conn,
+                                      array=self.cards,
+                                      column_names=self.card_names,
+                                      table_name="cards")
 
 
 class Set:
