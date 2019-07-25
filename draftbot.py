@@ -173,8 +173,10 @@ class Draft:
             self.archetype_weights.reshape((1, self.set.n_cards, self.n_archetypes)))
         preferences = np.einsum(
             'dca,da->dc', pack_archetype_weights, self.drafter_preferences)
-        pick_probs = softmax(preferences)
+        pick_probs = non_zero_softmax(preferences)
         picks = self.make_picks(pick_probs)
+        # We should not be able to pick a card that does not exist.
+        assert np.all(packs >= picks)
         packs = rotate_array(packs - picks, forward=True)
         self.drafter_preferences = (
             self.drafter_preferences +
@@ -200,8 +202,8 @@ class Draft:
         """
         picks = np.zeros((self.n_drafters, self.set.n_cards), dtype=int)
         for ridx, row in enumerate(pick_probs):
-            pick_idx = np.random.choice(self.set.n_cards, p=row)
-            #pick_idx = np.argmax(row)
+            #pick_idx = np.random.choice(self.set.n_cards, p=row)
+            pick_idx = np.argmax(row)
             picks[ridx, pick_idx] = 1
         return picks
 
@@ -337,10 +339,11 @@ class Set:
         return commons, uncommons, rares
 
 
-def softmax(x):
-    exps = np.exp(x)
-    row_sums = np.sum(exps, axis=1)
-    probs = exps / row_sums.reshape(-1, 1)
+def non_zero_softmax(x):
+    x = x / x.max()  # For numerical reasons, to avoid exps of massive numbers.
+    non_zero_exps = (x > 0) * np.exp(x)
+    row_sums = np.sum(non_zero_exps, axis=1)
+    probs = non_zero_exps / row_sums.reshape(-1, 1)
     return probs
 
 def rotate_array(x, forward=True):
