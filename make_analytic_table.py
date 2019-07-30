@@ -44,7 +44,7 @@ class AnalyticTableConstructor:
           predictive model.
 
         y_to_name_mapping: Dict[int, str]
-          Dictionary mapping the interger id of a card used in the y series to
+          Dictionary mapping the integer id of a card used in the y series to
           the actual name of the card.
         """
         self.validate_db()
