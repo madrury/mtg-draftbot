@@ -5,8 +5,9 @@ import itertools
 colors = "WUBRG"
 color_pairs = list(itertools.combinations(colors, 2))
 
+set_json = sys.argv[1]
 
-with open('data/m19-subset.json', 'rb') as f:
+with open(set_json, 'rb') as f:
     m19 = json.load(f)
 
 card_ratings = {}
