@@ -3,7 +3,7 @@ import json
 
 j = json.load(sys.stdin)
 
-archytype_names = j['archytype_names']
+archytype_names = j['archetype_names']
 archytype_values = j['values']
 
 card_values = {}
