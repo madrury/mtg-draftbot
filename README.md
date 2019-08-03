@@ -34,42 +34,46 @@ The basic simulation algorithm depends on enumerating the deck archetypes in the
 
 Once the deck archetypes for the set are defined, each card should be given a weight in each archetype, with larger weights indicating that the card is more desirable in the given archetype, and a zero indicating that the card is not at all desired in the given archetype (i.e. a red card in a black-blue deck).
 
-The card weights per-archetype are stored in a `json` file which is loaded at draft time. This data is stored as a nested dictionary, with the keys in the inner dictonary archetype names. The default file uses color pairs for archetype identities, and assigns zero-or-one weights depending on if the given card belongs to that color pair:
+The card weights per-archetype are stored in a `json` file which is loaded at draft time. This data is stored as a nested dictionary, with the keys in the inner dictonary archetype names.
 
 ```
 {
     "Act of Treason": {
-        "WU": 0, "WB": 0, "WR": 1, "WG": 0, "UB": 0,
-	"UR": 1, "UG": 0, "BR": 1, "BG": 0, "RG": 1},
+        "WU": 0.0, "WB": 0.0, "WR": 1.0, "WG": 0.0, "UB": 0.0,
+	"UR": 1.0, "UG": 0.0, "BR": 1.0, "BG": 0.0, "RG": 1.0}, 
     "Aerial Assault": {
-        "WU": 1, "WB": 1, "WR": 1, "WG": 1, "UB": 0,
-	"UR": 0, "UG": 0, "BR": 0, "BG": 0, "RG": 0},
+        "WU": 1.0, "WB": 1.0, "WR": 1.0, "WG": 1.0, "UB": 0.0,
+	"UR": 0.0, "UG": 0.0, "BR": 0.0, "BG": 0.0, "RG": 0.0},
     "Aether Gust": {
-        "WU": 1, "WB": 0, "WR": 0, "WG": 0,
-        "UB": 1, "UR": 1, "UG": 1, "BR": 0, "BG": 0, "RG": 0},
+        "WU": 1.1, "WB": 0.0, "WR": 0.0, "WG": 0.0, "UB": 1.1,
+	"UR": 1.1, "UG": 1.1, "BR": 0.0, "BG": 0.0, "RG": 0.0},
     ...
 }
 ```
 
-To create this default archetype weights file, use the `make-default-card-values.py` script:
+To create a default archetype weights file, use the `make-default-card-values.py` script:
 
 ```
 $ python scripts/make-default-card-values.py m20-cards.json > m20-default-weights.json
 ```
 
-If you would like to edit these default weights,  the  that will convert this format to a dictionary of tuples format that is more convenient for editing:
+This script creates a default weight for each card in each archetype based on the card's color identity and rarity.
 
+If you would like to edit these default weights,  the  that will convert this format to a dictionary of tuples format that is more convenient for editing:
 
 ```
 $ python scripts/tuples-to-dicts.py < m20-weights-tuples.json
 
 {
-    "archetype_names": ["WU", "WB", "WR", "WG", "UB",
-                        "UR", "UG", "BR", "BG", "RG"],
+    "archetype_names": [
+        "WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG"],
     "values": {
-        "Act of Treason": [0, 0, 1, 0, 0, 1, 0, 1, 0, 1],
-	"Aerial Assault": [1, 1, 1, 1, 0, 0, 0, 0, 0, 0], 
-	"Aether Gust":    [1, 0, 0, 0, 1, 1, 1, 0, 0, 0], 
+        "Act of Treason": [
+	    0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0], 
+	"Aerial Assault": [
+	    1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+	"Aether Gust":    [
+	    1.1, 0.0, 0.0, 0.0, 1.1, 1.1, 1.1, 0.0, 0.0, 0.0],
         ...
     }
 }
@@ -81,12 +85,56 @@ After editing to your liking, you can convert back into the nested dictionary fo
 python scripts/tuples-to-dicts.py < m20-weights-tuples.json
 ```
 
-Both the identities of the deck archetypes, and the values of weights themselves can be learned from real world draft data using the machine learning features of this library, but otherwise you will have to supply them by hand.  We have supplied some examples for the Core Set 2020 in this repository to get you started.
+Both the identities of the deck archetypes, and the values of weights themselves can be learned from real world draft data using the machine learning features of this library, but otherwise you will have to supply them by hand. The defaults should be a good start.
 
 ### Using the Simulation Code
 
-...
+Once you have both your set metadata and archetype weights files prepared, you are ready to simulate some drafts.
 
+```python
+from draftbot import Draft
+
+draft = Draft(n_drafters=8,
+              n_rounds=3,
+              n_cards_in_pack=14,
+              cards_path='../data/m20/m20-cards.json',
+              card_values_path='../data/m20/m20-default-weights.json')
+draft.draft()
+```
+
+After the simulation completes, the `draft` object has a few attributes containing the history of the draft:
+
+`draft.options: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)`
+The options available for each drafter over each pick of the draft. Entries in this array are counts of how many of each card is available to the given drafter over each pick of the draft.
+
+`draft.cards: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)`
+The current set of cards owned by each drafter at each pick of the draft. Equal to the cumlative sum of self.picks over the final axis, shifted up one index (since there are no cards owned by any player for the first
+pick of the draft).
+
+`draft.picks: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)`
+Which card is chosen by each drafter over each pick of the draft. Entries in this array are either zero or one, and there is a single one in each 1-dimensional slice of the array of the form [d, :, p].
+
+`draft.preferences: np.array, shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)`
+The preferences of each drafter for each archetype over each pick of the draft. Each 1-dimensional slice of this array of the form [d, :, p] contains the current preferences for a drafter at a single pick of the
+draft.
+
+Since these are numpy arrays, the `n_cards` axis requires some metadata to determine which cards, exactly, correspond to each position. This information is contained inside the internal `set` attribute:
+
+```
+draft.set.card_names
+```
+
+So, for example, to construct a data frame containing the draft picks for the third drafter:
+
+```
+df = pd.DataFrame(draft.picks[2, :, :], index=draft.set.card_names)
+```
+
+And to make a series contianing the names of the chosen card:
+
+```
+df.idxmax(axis=0)
+```
 
 ### Plotting the Draft Picks
 
