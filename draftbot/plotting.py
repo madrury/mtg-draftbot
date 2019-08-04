@@ -31,15 +31,14 @@ class DraftPlotter:
         iterdata = zip(axs, self.preferences_dfs, self.cards_picked)
         for ax, preferences_df, cards in iterdata:
             self.plot_single_drafter_history(
-                ax, preferences_df,cards, normalization_function=softmax)
+                ax, preferences_df, cards, normalization_function=softmax)
         return fig, axs
 
     def plot_single_drafter_history(self,
-                                  ax,
-                                  history_df,
-                                  cards_picked,
-                                  normalization_function=softmax):
-        
+                                    ax,
+                                    history_df,
+                                    cards_picked,
+                                    normalization_function=softmax):
         winning_archytype, winning_history = self.plot_history_lines(
             ax,
             history_df,
