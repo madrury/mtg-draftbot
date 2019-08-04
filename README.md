@@ -175,8 +175,31 @@ df.idxmax(axis=0)
 
 ### Plotting the Draft Picks
 
-...
+After the draft simulation is complete, you can easily plot the resulting draft picks.
 
+```python
+from draftbot.plotting import DraftPlotter
+
+plotter = DraftPlotter(draft=draft)
+fig, axs = plotter.plot_draft_history()
+```
+
+You'll get something like this (one copy for each drafter):
+
+![Example of Draft Picks Plot](img/izzet-draft.png)
+
+This plot has quite a few features:
+
+  - Each dot represents a single draft pick. The color in the interior of the dot communicates the color identity of the card chosen, and the color of the outline represents the rarity of the card chosen.
+  - The lines track the preferences of the drafter for each archetype. If the archetypes are the default color pairs, the lines will be colored accordingly.
+
+In this example, the drafter ended up solidly in a red-blue archetype. They initially flirted with red-green, but then picked up some blue cards at the end of pack one, and took a tri-color rare (on color!) first pick in pack two.
+
+Here's an example of a more difficult draft:
+
+![Example of A Difficult Draft](img/izzet-draft-hard.png)
+
+This drafter committed to red-green halfway though pack one, but had trouble picking up a good mass of green cards. Eventually the drafter settled on taking some blue cards, putting them in a bit of a three color bind. 
 ## Learning
 
 The machine learning algorithm is capable of learning both the identities of deck archetypes (though not their labels) in a given set, and the weights of each card in each archetype given real world draft data.
