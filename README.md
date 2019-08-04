@@ -1,6 +1,8 @@
 # Algorithmic Magic the Gathering Drafting
 
-This library implements an algorithmic strategy for [drafting](https://mtg.gamepedia.com/Booster_Draft) [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering), in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and learning a draft strategy from past draft data.
+![A Nice Picture of a Draft](img/gruul-draft.png)
+
+This library implements an algorithmic [drafting](https://mtg.gamepedia.com/Booster_Draft) strategy for [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering), in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from past data using a machine learning approach.
 
 ## Installation
 
@@ -14,7 +16,7 @@ To use some of the data processing scripts provided, you will need to install th
 
 ## Simulation
 
-### Algotithm Description
+### Algorithm Description
 
 The basic simulation algorithm depends on enumerating the deck archetypes in the set. If you are unfamiliar with the concept of deck archetypes, [this article](https://www.channelfireball.com/articles/ranking-the-archetypes-of-core-set-2020-draft/) discusses their definition for the most recent set (as of writing this readme).  It is a common default that deck archetypes are defined by the ten color pairs. 
 
@@ -37,7 +39,7 @@ Each card in the set is given a weight measuring its desirability within the giv
 
 We have provided utilities for generating default archetype weights, see below.
 
-Given a single drafter considering a single pick from some number of available cards, the preference of the drafter for each card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed. These archetype preferences are baed on the cards chosen by the drafter in precious picks from the draft. Each currently held card contrubutes its archetype weight additively to the drafter's current preferences for each archetype. As a static rule, this is simply a matrix product:
+Given a single drafter considering a single pick from some number of available cards, the preference of the drafter for each card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed. These archetype preferences are based on the cards chosen by the drafter in precious picks from the draft. Each currently held card contributes its archetype weight additively to the drafter's current preferences for each archetype. As a static rule, this is simply a matrix product:
 
 ```
 drafter_archetype_preferences = current_cards_held @ card_archetype_weights
@@ -67,7 +69,7 @@ $ cat M20.json | ./scripts/subset-json.jq > m20-cards.json
 
 ### Constructing Draft Archetype Weights
 
-The card weights per-archetype are stored in a `json` file which is loaded at draft time. This data is stored as a nested dictionary, with the keys in the inner dictonary archetype names.
+The card weights per-archetype are stored in a `json` file which is loaded at draft time. This data is stored as a nested dictionary, with the keys in the inner dictionary archetype names.
 
 ```
 {
@@ -147,7 +149,7 @@ Which card is chosen by each drafter over each pick of the draft. Entries in thi
 
 `draft.cards: np.array, shape (n_drafters, n_cards, n_cards_in_pack * n_rounds)`
 
-The current set of cards owned by each drafter at each pick of the draft. Equal to the cumlative sum of `draft.picks` over the final axis, shifted up one index (since there are no cards owned by any player for the first
+The current set of cards owned by each drafter at each pick of the draft. Equal to the cumulative sum of `draft.picks` over the final axis, shifted up one index (since there are no cards owned by any player for the first
 pick of the draft).
 
 `draft.preferences: np.array, shape (n_drafters, n_archetypes, n_cards_in_pack * n_rounds)`
@@ -167,7 +169,7 @@ So, for example, to construct a data frame containing the draft picks for the th
 df = pd.DataFrame(draft.picks[2, :, :], index=draft.set.card_names)
 ```
 
-And to make a series contianing the names of the chosen card:
+And to make a series containing the names of the chosen card:
 
 ```
 df.idxmax(axis=0)
@@ -193,7 +195,7 @@ cards        options      picks        preferences
 
 Each of these tables has `(draft_id, drafter_num, pick_num)` as a unique id. Joining the tables together gives a complete picture of the progress of the draft, and can be used for training the machine learning algorithm discussed below. 
 
-Note: If the database already exists, the tables will be appended to, not overwritten. Each set drafted should be stored in a seperate database file, as the columns in some tables are either card names, or draft archetypes.
+Note: If the database already exists, the tables will be appended to, not overwritten. Each set drafted should be stored in a separate database file, as the columns in some tables are either card names, or draft archetypes.
 
 ### Plotting the Draft Picks
 
