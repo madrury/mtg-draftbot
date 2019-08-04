@@ -173,6 +173,28 @@ And to make a series contianing the names of the chosen card:
 df.idxmax(axis=0)
 ```
 
+### Recording Simulated Draft Data
+
+After running a draft simulation, you can record the results in a `sqlite` database.
+
+```
+draft.write_to_database('data/sample.sqlite')
+```
+
+This will write each of the array discussed above into a table in the database:
+
+```
+$ sqlite3 data/sample.sqlite
+SQLite version 3.26.0 2018-12-01 12:34:55
+Enter ".help" for usage hints.
+sqlite> .tables
+cards        options      picks        preferences
+```
+
+Each of these tables has `(draft_id, drafter_num, pick_num)` as a unique id. Joining the tables together gives a complete picture of the progress of the draft, and can be used for training the machine learning algorithm discussed below. 
+
+Note: If the database already exists, the tables will be appended to, not overwritten. Each set drafted should be stored in a seperate database file, as the columns in some tables are either card names, or draft archetypes.
+
 ### Plotting the Draft Picks
 
 After the draft simulation is complete, you can easily plot the resulting draft picks.
@@ -202,9 +224,9 @@ Here's an example of a more difficult draft:
 This drafter committed to red-green halfway though pack one, but had trouble picking up a good mass of green cards. Eventually the drafter settled on taking some blue cards, putting them in a bit of a three color bind. 
 ## Learning
 
-The machine learning algorithm is capable of learning both the identities of deck archetypes (though not their labels) in a given set, and the weights of each card in each archetype given real world draft data.
+The machine learning algorithm is capable of learning archetype weights for each card from real world draft data. That is, both the identities of draft archetypes (though not their labels), and the weights of each card in each archetype.
 
-This training data needs to be rather rich. It should contain:
+Training data needs to contain a full record of multiple drafts:
 
   - The cards available to choose at each pick of the draft (i.e. what cards are left in the current pack).
   - The cards currently held by the drafter at each pick of the draft.
