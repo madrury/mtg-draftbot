@@ -167,7 +167,7 @@ class DraftBotModelTrainer:
             if epoch % self.report_freq == 0:
                 self.report_loss(epoch_loss, epoch)
                 if test_batcher:
-                    self.report_loss(epoch_loss, epoch, kind="Test")
+                    self.report_loss(test_loss, epoch, kind="Test")
 
     def report_loss(self, loss, epoch, kind="Train"):
         print(f"{kind}ing loss, epoch {epoch}: {loss}")
