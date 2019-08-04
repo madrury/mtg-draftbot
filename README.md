@@ -234,18 +234,91 @@ Training data needs to contain a full record of multiple drafts:
   - The cards currently held by the drafter at each pick of the draft.
   - The chosen card at each pick of the draft.
 
+If you have run some simulated drafts as described above, we have included a utility to load a modeling data set from the `sqlite` database used to store the draft data:
+
 ```
-Show Example Draft Data
+from draftbot import AnalyticTableConstructor
+
+atc = AnalyticTableConstructor(db_path="../data/drafts.sqlite")
+X, y, y_names_mapping = atc.make_analytic_base_table()
 ```
 
-Ideally, this data should be available for each drafter and each pick across many drafts. The simulation module automatically produces this data and can write it to a `sqlite` database for easy access and testing.
+The `X` and `y` returned here conttain the needed training data and labels (Note: In this section we will used a simplified set of cards, a twenty-five card subset of the 2019 core set, as our running example):
 
-The machine learning library uses `pytorch` internally to train the model. You will need to create a `TensorDataset` and a `DataLoader` object to supply training batches (and another to supply test data if desired). There is no current requirement that the training batches constitute picks from a single drafter of a single draft, though this could change in the future.
+```
+X.info()
+
+<class 'pandas.core.frame.DataFrame'>
+MultiIndex: 927360 entries, (2c75d6d5-7808-414b-ac81-f6918e000fd9, 0, 0) to (9ab44831-2abf-4dbb-9a5f-42a3b7993e66, 7, 41)
+Data columns (total 50 columns):
+options_angel_of_the_dawn        927360 non-null int64
+options_luminous_bonds           927360 non-null int64
+options_pegasus_courser          927360 non-null int64
+options_hieromancer's_cage       927360 non-null int64
+options_leonin_warleader         927360 non-null int64
+...
+cards_angel_of_the_dawn          927360 non-null int64
+cards_luminous_bonds             927360 non-null int64
+cards_pegasus_courser            927360 non-null int64
+cards_hieromancer's_cage         927360 non-null int64
+cards_leonin_warleader           927360 non-null int64
+...
+```
+
+The `y` series contiains card indexes instead of names:
+
+```
+y.head()
+
+draft_id                              drafter  pick_number
+2c75d6d5-7808-414b-ac81-f6918e000fd9  0        0              14
+                                               1              12
+                                               2               1
+                                               3              15
+                                               4               1
+```
+
+The `y_names_mapping` dictionary is a lookup table mapping these card indexes to actual names.
+
+The machine learning module uses `pytorch` internally to learn the archetype and weights. You will need to create a `TensorDataset` and a `DataLoader` object to supply training batches (and another to supply test data if desired). There is no current requirement that the training batches constitute picks from a single drafter of a single draft, though this could change in the future.
+
+```
+N_TRAINING = int(2 * X.shape[0] / 3)
+
+train = TensorDataset(
+    torch.from_numpy(X[:N_TRAINING].values.astype(np.float32)),
+    torch.from_numpy(y[:N_TRAINING].values))
+test = TensorDataset(
+    torch.from_numpy(X[N_TRAINING:].values.astype(np.float32)),
+    torch.from_numpy(y[N_TRAINING:].values))
+
+train_batcher = DataLoader(train, batch_size=42*25)
+test_batcher = DataLoader(test, batch_size=42*25)
+```
 
 To create a draftbot model and train it, use the following code outline:
 
 ```
-Example of training a model
+from draftbot import DraftBotModel, DraftBotModelTrainer
+
+draftbot = DraftBotModel(n_cards=N_CARDS, n_archetypes=10)
+trainer = DraftBotModelTrainer(loss_function=torch.nn.NLLLoss())
+trainer.fit(draftbot, train_batcher, test_batcher=test_batcher)
+
+Training loss, epoch 0: 1.296135688273328
+Training loss, epoch 1: 0.687958974890879
+Training loss, epoch 2: 0.516146991370287
+...
+Training loss, epoch 24: 0.1703336757492331
+```
+
+The `DraftBotModelTrainier` tracks the training and testing losses, which are then easily plotted:
+
+```
+fig, ax = plt.subplots(figsize=(12, 4))
+
+ax.plot(np.arange(trainer.n_epochs), trainer.epoch_training_losses)
+ax.plot(np.arange(trainer.n_epochs), trainer.epoch_testing_losses)
 ```
 
 After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model:
