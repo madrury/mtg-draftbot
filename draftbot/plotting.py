@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, BoundaryNorm
 
+TWO_COLOR_ARCHETYPES = {"WU", "WB", "WR", "WG", "UB", "UR", "UG", "BR", "BG", "RG"}
 
 # This needs to be up here, since its used as a default argument to a function.
 def softmax(df):
@@ -171,8 +172,10 @@ def make_archytype_colors(arch, alpha=1):
     MTG colors.
     """
     arch_color_mapping = make_archytype_color_mapping(alpha)
-    return [arch_color_mapping[c] for c in arch]
-
+    if arch in TWO_COLOR_ARCHETYPES:
+        return [arch_color_mapping[c] for c in arch]
+    else:
+        return [[0.6, 0.6, 0.6, alpha]]
 
 rarity_color_mapping = {
     'common': [0.0, 0.0, 0.0],

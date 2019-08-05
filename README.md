@@ -323,8 +323,4 @@ ax.plot(np.arange(trainer.n_epochs), trainer.epoch_testing_losses)
 
 After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model:
 
-```
-...
-```
-
 ## Further Work
