@@ -1,3 +1,6 @@
+from pathlib import Path
+import json
+
 import numpy as np
 import torch
 
@@ -86,6 +89,14 @@ class DraftBotModel(torch.nn.Module):
         log_probs = stable_non_zero_log_softmax(current_option_preferences)
         return log_probs
 
+    def to_json(self, fp):
+        weights = self.weights.detach().numpy().tolist()
+        list_of_dicts = [
+            {i: x for i, x in zip(range(len(row)), row)}
+            for row in weights]
+        json.dump(list_of_dicts, fp)
+
+
 
 class DraftBotModelTrainer:
     """Utility for training draftbot models and tracking their performance.
@@ -121,14 +132,16 @@ class DraftBotModelTrainer:
                  learning_rate=0.005,
                  alpha=0.001,
                  loss_function=torch.nn.NLLLoss,
-                 report_freq=1):
+                 report_freq=1,
+                 weights_path=None):
         self.n_epochs = n_epochs
         self.learning_rate = learning_rate
         self.alpha = alpha
-        self.report_freq = report_freq
         self.loss_function = loss_function
         self.epoch_training_losses = []
         self.epoch_testing_losses = []
+        self.report_freq = report_freq
+        self.weights_path = weights_path
 
     def fit(self, model, train_batcher, *, test_batcher=None):
         """Fit a model to draft data using gradient descent.
@@ -168,6 +181,14 @@ class DraftBotModelTrainer:
                 self.report_loss(epoch_loss, epoch)
                 if test_batcher:
                     self.report_loss(test_loss, epoch, kind="Test")
+            if self.weights_path:
+                self.write_weights_to_json(model, epoch)
+
+    def write_weights_to_json(self, model, epoch):
+        if self.weights_path is None:
+            raise IOError("You must supply a weights_path to log the weights.")
+        filename = Path(self.weights_path) / Path(f"weights-epoch-{epoch}.json")
+        model.to_json(open(filename, 'w'))
 
     def report_loss(self, loss, epoch, kind="Train"):
         print(f"{kind}ing loss, epoch {epoch}: {loss}")
