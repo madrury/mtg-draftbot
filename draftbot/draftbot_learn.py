@@ -21,6 +21,9 @@ class DraftBotModel(torch.nn.Module):
       learning algorithm. Less archetypes increases the bias of the model, more
       archetypes increases the variance.
 
+    idx_names_mapping: Dict[(int, str)]
+      Lookup table mapping array indicies to card names.
+
     Description of the Algorithm
     ----------------------------
     This algorithm is based on the draft simulation ideas contained in
@@ -47,10 +50,11 @@ class DraftBotModel(torch.nn.Module):
       The archetype weights to be learned from draft data. Initialized as random
       noise, then learned through gradient descent.
     """
-    def __init__(self, *, n_cards, n_archetypes):
+    def __init__(self, *, n_cards, n_archetypes, idx_names_mapping):
         super().__init__()
         self.n_cards = n_cards
         self.n_archetypes = n_archetypes
+        self.idx_names_mapping = idx_names_mapping
         self.weights = torch.nn.Parameter(
             torch.FloatTensor(n_cards, n_archetypes).uniform_(0.0, 1.0))
     
@@ -91,11 +95,11 @@ class DraftBotModel(torch.nn.Module):
 
     def to_json(self, fp):
         weights = self.weights.detach().numpy().tolist()
-        list_of_dicts = [
-            {i: x for i, x in zip(range(len(row)), row)}
-            for row in weights]
-        json.dump(list_of_dicts, fp)
-
+        d = {
+            cardnm: {
+                i: x for i, x in zip(range(len(row)), row)}
+            for cardnm, row in zip(self.idx_names_mapping.values(), weights)}
+        json.dump(d, open('weights.json', 'w'))
 
 
 class DraftBotModelTrainer:
@@ -106,8 +110,9 @@ class DraftBotModelTrainer:
     n_epochs: int
       The number of training epochs.
 
-    learning_rate: float
-      Learning rate for gradient descent.
+    learning_rate: Union[float, List[float]]
+      Learning rates to use for each epoch's gradient descent. If a float is
+      passed, then n_epochs * [learning_rate] is used.
 
     alpha: float
       L2 regularization hyperparameter.
@@ -135,7 +140,9 @@ class DraftBotModelTrainer:
                  report_freq=1,
                  weights_path=None):
         self.n_epochs = n_epochs
-        self.learning_rate = learning_rate
+        if isinstance(learning_rate, float):
+            learning_rate = [learning_rate] * n_epochs
+        self.learning_rate = learning_rate 
         self.alpha = alpha
         self.loss_function = loss_function
         self.epoch_training_losses = []
@@ -157,7 +164,7 @@ class DraftBotModelTrainer:
         test_batcher: torch.utils.data.DataLoader
           Generator for testing batches.
         """
-        for epoch in range(self.n_epochs):
+        for epoch, lr in enumerate(self.learning_rate):
             batch_losses = []
             for Xb, yb in train_batcher:
                 log_probs = model(Xb)
@@ -166,7 +173,7 @@ class DraftBotModelTrainer:
                     raw_loss + self.alpha * torch.sum(model.weights ** 2))
                 regularized_loss.backward()
                 with torch.no_grad():
-                    model.weights -= self.learning_rate * model.weights.grad
+                    model.weights -= lr * model.weights.grad
                     model.weights.grad.zero_()
                     batch_losses.append(raw_loss.item())
             epoch_loss = np.mean(batch_losses)
