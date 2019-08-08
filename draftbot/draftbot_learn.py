@@ -99,7 +99,7 @@ class DraftBotModel(torch.nn.Module):
             cardnm: {
                 i: x for i, x in zip(range(len(row)), row)}
             for cardnm, row in zip(self.idx_names_mapping.values(), weights)}
-        json.dump(d, open('weights.json', 'w'))
+        json.dump(d, fp)
 
 
 class DraftBotModelTrainer:
