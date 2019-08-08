@@ -325,15 +325,15 @@ from draftbot import DraftBotModel, DraftBotModelTrainer
 
 N_CARDS = int(X.shape[1] / 2)
 
-draftbot = DraftBotModel(n_cards=N_CARDS, n_archetypes=10)
-trainer = DraftBotModelTrainer(loss_function=torch.nn.NLLLoss())
-trainer.fit(draftbot, train_batcher, test_batcher=test_batcher)
+draftbot = DraftBotModel(n_cards=N_CARDS,
+                         n_archetypes=10,
+                         idx_names_mapping=y_names_mapping)
 
-Training loss, epoch 0: 1.296135688273328
-Training loss, epoch 1: 0.687958974890879
-Training loss, epoch 2: 0.516146991370287
-...
-Training loss, epoch 24: 0.1703336757492331
+LEARNING_RATE_SCHEDULE = [0.01]*10 + [0.005]*10 + [0.001]*20 + [0.0001]*30
+trainer = DraftBotModelTrainer(n_epochs=len(LEARNING_RATE_SCHEDULE), 
+                               learning_rate=LEARNING_RATE_SCHEDULE,
+                               loss_function=torch.nn.NLLLoss())
+trainer.fit(draftbot, train_batcher, test_batcher=test_batcher)
 ```
 
 The `DraftBotModelTrainier` tracks the training and testing losses, which are then easily plotted:
@@ -347,7 +347,7 @@ ax.plot(np.arange(trainer.n_epochs), trainer.epoch_testing_losses)
 
 ![Loss Curves for Simulated M20 Data](img/loss-curves.png)
 
-After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model:
+After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model. It is useful to put these in a DataFrame for easy inspection:
 
 ```
 weights_df = pd.DataFrame(draftbot.weights.detach().numpy(),
@@ -356,24 +356,60 @@ weights_df = pd.DataFrame(draftbot.weights.detach().numpy(),
 
 A heatmap of these weights reveals what the algorithm has learned:
 
+```
+fig, ax = plt.subplots(figsize=(8, 8))
+
+ax.imshow(weights_df.T)
+
+ax.set_yticks([], [])
+ax.set_ylabel("Fit Archetypes")
+ax.set_xticks(np.arange(len(weights_df)))
+ax.set_xticklabels(weights_df.index, rotation='vertical')
+ax.set_title("Card Archetype Weights")
+```
+
 ![Weights Heatmap](img/weights-heatmap.png)
 
-There are ten columns here, one for each archetype learned by the algorithm, and each card is assigned a weight in each archetype (for information on how these weights are used to simulate a draft, see the description of draft simulation above), and each row corresponds to a single card.
+There are ten rows here, one for each archetype learned by the algorithm. Each column corresponds to a single card, so the entries here are the weight given to a card in a specified archetype (for information on how these weights are used to simulate a draft, see the description of draft simulation above).
 
-The first 45 cards here are all single colored, for example, Cavalier of Dawn through Inspiring Captain are all white cards, and Cavalier of Gales through Winged Words are all blue. The banding structure of these weights is evident: within a single archetype the weights for a given card color are either all "on" or "off", so archetype is strongly influenced by color, as we would expect.
+The first 45 cards here are all single colored. For example, _Cavalier of Dawn_ through _Inspiring Captain_ are all white cards, and _Cavalier of Gales_ through _Winged Words_ are all blue. The banding structure of these weights is evident: within a single archetype the weights for a given card color are either all "on" or "off", so archetype is strongly influenced by color, as we would expect.
 
-The last three cards are all colorless (they can be useful in almost any deck). The weights for the colorless cards are not strongly influenced by archetype, as we would also expect.
+The last three cards, _Bag of Holding_, _Meteor Golumn_, and _Heart-Peircer Bow_, are all colorless (they can be useful in almost any deck). The weights for the colorless cards are not strongly influenced by archetype, which also meets our expectations.
 
-Finally, Empyrean Eagle (white-blue) through Risen Reef (blue-green) are all two color cards. A pattern in their weights is harder to discern. We can illuminate the situation a bit by making a correlation matrix between the weight vectors of each card:
+Finally, _Empyrean Eagle_ (white-blue) through _Risen Reef_ (blue-green) are all two color cards. A pattern in their weights is harder to discern.
+
+If we sum each column, and compute the *average* weight for each card, another pattern emerges.
+
+![Total Weight Heatmap](img/total-weight-heatmap.png)
+
+Here the pattern corresponds to the *rarity* of the card, a proxy for the power level of the card. Each _Cavilier_ is a rare, powerful card, and they are assigned on average a high weight. The next two cards in each color are uncommons, and the last four are common. The uncommons are assigned, on average, larger weights.
+
+Finally, we can illuminate the situation a bit more by showing a correlation matrix between the weight vectors of each card:
+
+```
+fig, ax = plt.subplots(figsize=(8, 8))
+
+corr = weights_df.T.corr()
+ax.imshow(corr)
+
+ax.set_yticks(np.arange(len(weights_df)))
+_ = ax.set_yticklabels(weights_df.index)
+```
 
 ![Correlation Matrix of Weights](img/weights-correlation.png)
 
-Each entry in this matrix is the correlation between two rows of the weight matrix above.  This has some very clear structure.
+Each entry in this matrix is the correlation between two columns of the weight matrix above. There is some very evident structure.
 
-The correlation between weight vectors for single colored cards is either very strong when the cards are the same color, or very weak, when the cards are different colored. 
+The correlation between weight vectors for single colored cards is either very strong when the cards are the same color, or slightly negative, when the cards are different colors (purple here corresponds to a slightly negative correlation). 
 
-Within the two color cards, correlation with weight vectors for single colored cards is either strong, when one of the card's two colors is that single color, or very weak, when not.
+Correlations between the weight vectors for two-colored and one-colored cards show an interesting pattern of bands.
 
-Correlations between weight vectors for two two-colored cards is strong when the cards share a single color, or weak when they don't.  Note that for any color pair (say white-blue), there are exactly three other color pairs disjoint from it (black-red, black-green, and red-green). This accounts for the three dark correlations in the two-colored card comparison region.
+![Subset of Correlation Matrix Comparing Two Color to One Color Cards](img/weights-correlation-two-to-one.png)
 
-It should be noted that this example model was fit to simulated draft data based on the default weight values described above, so this discussion only proves that the algorithm can learn the structure inherit in the simulated data from only the options and picks themselves. We hope to test this library on actual human draft data in the future.
+Each of these cards is two-colored (for example, _Risen Reef_ is blue *and* green, and can only be played in a deck with the resources to make both blue and green mana, a serious constraint). For each two colored card, there are fourteen (7 + 7) single colored cards that share at least one color with it (_Risen Reef_ shares a color with all mono-blue and all mono-green cards). This accounts for the banding in the above heatmap, where 2/5'ths of the weights are "on" in each row. The correlations between cards that share a color is quite strong, and is moderately negative if they do not.
+
+![Subset of Correlation Matrix Comparing Two Color Cards](img/weights-correlation-two-to-two.png)
+
+Correlations between weight vectors between two two-colored cards is positive when the cards share a color, and is negative when they do not.  Note that for any color pair (say white-blue), there are exactly three other color pairs disjoint from it (black-red, black-green, and red-green). This accounts for the three dark correlations in the two-colored card comparison region.
+
+*Note:* This example model was fit to simulated draft data based on the default weight values described above, so this discussion only proves that the algorithm can learn reasonable structure from data containing *only* the options and picks in a draft. We hope to test this library on actual human draft data in the future, (if you have any available, please contact the author!).
