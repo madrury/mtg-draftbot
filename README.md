@@ -300,7 +300,7 @@ y_names_mapping
  }
  ```
 
-### Learning
+### Training a Model
 
 The machine learning module uses `pytorch` internally to learn the archetypes and weights. You will need to create a `TensorDataset` and a `DataLoader` object to supply training batches (and another to supply test data if desired). There is no current requirement that the training batches constitute picks from a single drafter of a single draft, though this could change in the future.
 
@@ -346,6 +346,8 @@ ax.plot(np.arange(trainer.n_epochs), trainer.epoch_testing_losses)
 ```
 
 ![Loss Curves for Simulated M20 Data](img/loss-curves.png)
+
+### Inspecting the Fit Weights
 
 After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model. It is useful to put these in a DataFrame for easy inspection:
 
@@ -413,3 +415,35 @@ Each of these cards is two-colored (for example, _Risen Reef_ is blue *and* gree
 Correlations between weight vectors between two two-colored cards is positive when the cards share a color, and is negative when they do not.  Note that for any color pair (say white-blue), there are exactly three other color pairs disjoint from it (black-red, black-green, and red-green). This accounts for the three dark correlations in the two-colored card comparison region.
 
 *Note:* This example model was fit to simulated draft data based on the default weight values described above, so this discussion only proves that the algorithm can learn reasonable structure from data containing *only* the options and picks in a draft. We hope to test this library on actual human draft data in the future, (if you have any available, please contact the author!).
+
+### Simulating Drafts with Learned Weights
+
+After training a `draftbot` model, we can use the fit weights to simulate drafters.
+
+The first step is to write the resulting weights to a JSON file:
+
+```
+with open('data/weights.json', 'w') as f:
+    draftbot.to_json(f)
+```
+
+This JSON file can now be used, just like the default weights file, to simulate drafts:
+
+```
+draft = Draft(n_drafters=8,
+              n_rounds=3,
+              n_cards_in_pack=14,
+              cards_path='../data/m20/m20-cards-subset.json',
+              card_values_path='data/weights.json')
+draft.draft()
+```
+
+Since the archetypes no longer correspond to exact two color combinations, the resulting draft plots look a bit less on the nose:
+
+![Selesnia Fit Draft](img/selesnia-fit-draft.png)
+
+![Gruul Fit Draft](img/gruul-fit-draft.png)
+
+But the results are good, drafters find there way into reasonable two color archetypes. This is good support that this methodology has promise when applied to real world draft data.
+
+
