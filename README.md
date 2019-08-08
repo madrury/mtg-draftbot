@@ -175,7 +175,7 @@ And to make a series containing the names of the chosen card:
 df.idxmax(axis=0)
 ```
 
-### Recording Simulated Draft Data
+### Saving Simulated Draft Data
 
 After running a draft simulation, you can record the results in a `sqlite` database.
 
@@ -202,7 +202,7 @@ Note: If the database already exists, the tables will be appended to, not overwr
 After the draft simulation is complete, you can easily plot the resulting draft picks.
 
 ```python
-from draftbot.plotting import DraftPlotter
+from draftbot import DraftPlotter
 
 plotter = DraftPlotter(draft=draft)
 fig, axs = plotter.plot_draft_history()
@@ -224,9 +224,13 @@ Here's an example of a more difficult draft:
 ![Example of A Difficult Draft](img/izzet-draft-hard.png)
 
 This drafter committed to red-green halfway though pack one, but had trouble picking up a good mass of green cards. Eventually the drafter settled on taking some blue cards, putting them in a bit of a three color bind. 
+
+
 ## Learning
 
 The machine learning algorithm is capable of learning archetype weights for each card from real world draft data. That is, both the identities of draft archetypes (though not their labels), and the weights of each card in each archetype.
+
+### Training Data
 
 Training data needs to contain a full record of multiple drafts:
 
@@ -239,48 +243,66 @@ If you have run some simulated drafts as described above, we have included a uti
 ```
 from draftbot import AnalyticTableConstructor
 
-atc = AnalyticTableConstructor(db_path="../data/drafts.sqlite")
+atc = AnalyticTableConstructor(db_path="../data/m20/drafts.sqlite")
 X, y, y_names_mapping = atc.make_analytic_base_table()
 ```
 
-The `X` and `y` returned here conttain the needed training data and labels (Note: In this section we will used a simplified set of cards, a twenty-five card subset of the 2019 core set, as our running example):
+The `X` and `y` returned here contain the needed training data and labels (Note: In this section we will used a simplified set of cards, a twenty-five card subset of the 2019 core set, as our running example):
 
 ```
 X.info()
 
 <class 'pandas.core.frame.DataFrame'>
-MultiIndex: 927360 entries, (2c75d6d5-7808-414b-ac81-f6918e000fd9, 0, 0) to (9ab44831-2abf-4dbb-9a5f-42a3b7993e66, 7, 41)
-Data columns (total 50 columns):
-options_angel_of_the_dawn        927360 non-null int64
-options_luminous_bonds           927360 non-null int64
-options_pegasus_courser          927360 non-null int64
-options_hieromancer's_cage       927360 non-null int64
-options_leonin_warleader         927360 non-null int64
+MultiIndex: 1680000 entries, (9aefe0d5-be93-41dc-b6fb-a77a5dbc0faa, 0, 0) to (fb98d2e8-e3c4-421b-abfb-876af1f999ea, 7, 41)
+Data columns (total 96 columns):
+options_cavalier_of_dawn              1680000 non-null int64
+options_ancestral_blade               1680000 non-null int64
+options_fencing_ace                   1680000 non-null int64
+options_pacifism                      1680000 non-null int64
+options_raise_the_alarm               1680000 non-null int64
+options_griffin_protector             1680000 non-null int64
+options_inspiring_captain             1680000 non-null int64
+options_cavalier_of_gales             1680000 non-null int64
 ...
-cards_angel_of_the_dawn          927360 non-null int64
-cards_luminous_bonds             927360 non-null int64
-cards_pegasus_courser            927360 non-null int64
-cards_hieromancer's_cage         927360 non-null int64
-cards_leonin_warleader           927360 non-null int64
-...
+cards_bag_of_holding                  1680000 non-null int64
+cards_meteor_golem                    1680000 non-null int64
+cards_heart-piercer_bow               1680000 non-null int64
+dtypes: int64(96)
+memory usage: 1.3+ GB
+
 ```
 
-The `y` series contiains card indexes instead of names:
+The `y` series contains card indexes instead of names:
 
 ```
 y.head()
 
 draft_id                              drafter  pick_number
-2c75d6d5-7808-414b-ac81-f6918e000fd9  0        0              14
-                                               1              12
-                                               2               1
-                                               3              15
-                                               4               1
+9aefe0d5-be93-41dc-b6fb-a77a5dbc0faa  0        0              0
+                                               1              1
+                                               2              4
+                                               3              5
+                                               4              4
+dtype: int64
 ```
 
 The `y_names_mapping` dictionary is a lookup table mapping these card indexes to actual names.
 
-The machine learning module uses `pytorch` internally to learn the archetype and weights. You will need to create a `TensorDataset` and a `DataLoader` object to supply training batches (and another to supply test data if desired). There is no current requirement that the training batches constitute picks from a single drafter of a single draft, though this could change in the future.
+```
+y_names_mapping
+
+{0: 'Cavalier of Dawn',
+ 1: 'Ancestral Blade',
+ 2: 'Fencing Ace',
+ 3: 'Pacifism',
+ 4: 'Raise the Alarm',
+ ...
+ }
+ ```
+
+### Learning
+
+The machine learning module uses `pytorch` internally to learn the archetypes and weights. You will need to create a `TensorDataset` and a `DataLoader` object to supply training batches (and another to supply test data if desired). There is no current requirement that the training batches constitute picks from a single drafter of a single draft, though this could change in the future.
 
 ```
 N_TRAINING = int(2 * X.shape[0] / 3)
@@ -300,6 +322,8 @@ To create a draftbot model and train it, use the following code outline:
 
 ```
 from draftbot import DraftBotModel, DraftBotModelTrainer
+
+N_CARDS = int(X.shape[1] / 2)
 
 draftbot = DraftBotModel(n_cards=N_CARDS, n_archetypes=10)
 trainer = DraftBotModelTrainer(loss_function=torch.nn.NLLLoss())
@@ -321,6 +345,35 @@ ax.plot(np.arange(trainer.n_epochs), trainer.epoch_training_losses)
 ax.plot(np.arange(trainer.n_epochs), trainer.epoch_testing_losses)
 ```
 
+![Loss Curves for Simulated M20 Data](img/loss-curves.png)
+
 After training the model, the `weights` attribute contains the weights for each card in each draft archetype determined by the model:
 
-## Further Work
+```
+weights_df = pd.DataFrame(draftbot.weights.detach().numpy(),
+                          index=y_names_mapping.values())
+```
+
+A heatmap of these weights reveals what the algorithm has learned:
+
+![Weights Heatmap](img/weights-heatmap.png)
+
+There are ten columns here, one for each archetype learned by the algorithm, and each card is assigned a weight in each archetype (for information on how these weights are used to simulate a draft, see the description of draft simulation above), and each row corresponds to a single card.
+
+The first 45 cards here are all single colored, for example, Cavalier of Dawn through Inspiring Captain are all white cards, and Cavalier of Gales through Winged Words are all blue. The banding structure of these weights is evident: within a single archetype the weights for a given card color are either all "on" or "off", so archetype is strongly influenced by color, as we would expect.
+
+The last three cards are all colorless (they can be useful in almost any deck). The weights for the colorless cards are not strongly influenced by archetype, as we would also expect.
+
+Finally, Empyrean Eagle (white-blue) through Risen Reef (blue-green) are all two color cards. A pattern in their weights is harder to discern. We can illuminate the situation a bit by making a correlation matrix between the weight vectors of each card:
+
+![Correlation Matrix of Weights](img/weights-correlation.png)
+
+Each entry in this matrix is the correlation between two rows of the weight matrix above.  This has some very clear structure.
+
+The correlation between weight vectors for single colored cards is either very strong when the cards are the same color, or very weak, when the cards are different colored. 
+
+Within the two color cards, correlation with weight vectors for single colored cards is either strong, when one of the card's two colors is that single color, or very weak, when not.
+
+Correlations between weight vectors for two two-colored cards is strong when the cards share a single color, or weak when they don't.  Note that for any color pair (say white-blue), there are exactly three other color pairs disjoint from it (black-red, black-green, and red-green). This accounts for the three dark correlations in the two-colored card comparison region.
+
+It should be noted that this example model was fit to simulated draft data based on the default weight values described above, so this discussion only proves that the algorithm can learn the structure inherit in the simulated data from only the options and picks themselves. We hope to test this library on actual human draft data in the future.
