@@ -2,7 +2,7 @@
 
 ![A Nice Picture of a Draft](img/gruul-draft.png)
 
-This library implements an algorithmic [drafting](https://mtg.gamepedia.com/Booster_Draft) strategy for [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering), in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from past data using a machine learning approach.
+This library implements an algorithmic drafting strategy for Magic: The Gathering, in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from past data using a machine learning approach.
 
 ## Installation
 
@@ -14,29 +14,34 @@ pip install git+https://github.com/madrury/mtg-draftbot.git
 
 To use some of the data processing scripts provided, you will need to install the `jq` json processing tool.
 
-## An Introduction to Magic, The Gathering Drafting
+## An Introduction to Drafting Magic, The Gathering
 
-Magic: The Gathering is a popular collectable card game featuring deep and complex gameplay.  Magic is played with a custom set of cards, and new sets of cards are released frequently.  [Booster Draft](https://mtg.gamepedia.com/Booster_Draft) is a way of playing the card game Magic: The Gathering that supplies a level playing field for all players, regardless of the size and quality of their collection.
+Magic: The Gathering is a popular collectable card game featuring deep and complex gameplay. Magic is played with a custom set of cards, and new sets of cards are released frequently. [Booster Draft](https://mtg.gamepedia.com/Booster_Draft) is a way of playing the card game [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering) that supplies a level playing field for all players, regardless of the size and quality of their collection.
 
-In standard Magic: The Gathering, a player constructs a deck of cards from thier collection, while in booster draft the player must construct a deck from a random set of cards chosen in real time. This project's goal is to algorithmatize the card selection problem in booster draft.
+In standard Magic: The Gathering, a player constructs a deck of cards from their personal collection fo cards, while in booster draft the player must construct a deck from a random set of cards chosen in real time. This project's goal is twofold:
+
+  - Algorithmatize the card selection problem in booster draft.
+  - Provide an algorithm for learning the parameters of the draft process from real world draft data.
+
+This library contains modules providing solutions to both of these problems.
 
 ### Magic Sets
 
-Magic cards are periodically (about once a quarter) released in *sets*, with each set containing approximately 250 new cards.In booster draft, players are using one and only one set of cards. Throughout this documentation we will use examples from teh most recent set, the [2020 Core Set](https://scryfall.com/sets/m20).
+Magic cards are periodically (about once a quarter) released in **sets**, with each set containing approximately 250 new cards. In booster draft, players are using one and only one set of cards. Throughout this documentation we will use examples from the most recent set, the [2020 Core Set](https://scryfall.com/sets/m20).
 
 ### Features of Magic Cards
 
-The most important feature of a Magic card, for purposed of learning to draft, is its *color*. Each card in Magic has a *color identity*, which is made up on one, or multiple, of five colors: white, blue, black, red, and green.
+The most important feature of a Magic card, for purposes of learning to draft, is its **color identity**. Each card in Magic has a color identity, which is made up of one, or multiple, of five colors: **white, blue, black, red, and green**.
 
 ![The Cavaliers](img/cavaliers.png)
 
-Above are examples of Magic cards, one of each possible single color.  There are also multi-colored cards:
+Above are examples of Magic cards, one of each possible single color. There are also multi-colored cards:
 
 ![Two Colored Cards](img/gold-cards.png)
 
-The color identity of each of these cards is a *pair* of colors.  The first is white-blue, the second blue-black, the third red-green, the fourth green-blue, and the final is 'white-black'. Each color and color pair has a gameplay strengths and weaknesses in a actual gameplay, but that will not concern us in this project.
+The color identity of each of these cards is a *pair* of colors.  The first is white-blue, the second blue-black, the third red-green, the fourth green-blue, and the final is white-black. Each color and color pair has gameplay strengths and weaknesses in a actual gameplay, but that will not concern us in this project.
 
-A secondary feature of Magic cards that will be of some importance to us is their *rarity*. Some cards are more easily aquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: commons, uncommons, rares, and mythics.
+A secondary feature of Magic cards that will be of some importance to us is their **rarity**. Some cards are more easily aquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: commons, uncommons, rares, and mythics.
 
 ![One Card of each Rarity](img/cards-of-each-rarity.png)
 
@@ -44,9 +49,28 @@ Above, each card has a different rarity, as indicated by the color of the M20 sy
 
 ### Magic Decks
 
-The color identity of cards is very important when constructing Magic decks, due to the way resources are aquired and managed in Magic. Resource generating cards (lands) generate *mana* which is needed to actually use cards in game, and these resources are colored. So a blue cards requires blue mana to play, and a blue-white card requires *both* blue *and* white mana, making them harder to play in game. This balance of resources tends to push magic decks to constrain the color of cards they contain: *most Magic: The Gathering decks contain cards of only two colors*.
+The color identity of cards is very important when constructing Magic decks, due to the way resources are aquired and managed in Magic.
 
-This two color identity of a Magic deck is, losely, referred to as the deck's *archetype*. A successful deck has a clear and well defined archetype, so the main constraint when building a deck is to ensure that the player has a sufficient number of cards that fit into a single archetype. The simplest version of this is ensuring that the player has a sufficient number of cards in at least one color pair.
+There are five basic resource generating cards in Magic: the Gathering, the **basic lands**.
+
+![Basic Lands](img/basic-lands.png)
+
+Lands are used to generate **mana** which is needed to actually use cards in game, and each land can only be used to generate one mana each turn. Mana is a colored resource:
+
+  - _Plains_s generate white mana.
+  - _Island_s generate blue mana.
+  - _Swamp_s generate black mana.
+  - _Mountain_s generate red mana.
+  - _Forest_s generate green mana.
+
+A blue cards requires blue mana to play, and so a player needs an _Island_ in play to use a blue card. A blue-white card, such as _Empyrian Eagle_ above, requires *both* blue *and* white mana, so a player must have *both* an _Island_ and a _Plains_ in play to use _Empyrian Eagle_. Since:
+
+  - It is a basic rule of magic that only one card is drawn each turn, and only one land can be played each turn.
+  - Lands must be put in the the players deck, just like all other cards, meaning not every land type is always availabledue to draw variance.
+
+this balance of resources tends to push Magic decks to contain only a few colors of cards. **Most successful Magic: The Gathering decks contain cards of only two colors**.
+
+This two color identity of a Magic deck is, losely, referred to as the deck's **archetype**. A successful deck has a clear and well defined archetype, so the main constraint when building a deck is to ensure that the player has a sufficient number of cards that fit into a single archetype. The simplest version of this is ensuring that the player has a sufficient number of cards in at least one color pair.
 
 ![Sample Cards from Selesnia Deck](img/selesnia-cards.png)
 
@@ -58,7 +82,7 @@ Booster drafts generally involve eight different players each attempting to buil
 
 To begin the draft, each player recieves a random pack of 14 cards. The drafter's task is to take one of these cards for their deck, then the rest are passed to the drafter sitting to the left. This process continues, now with 13 cards to choose from, one is taken, the rest is passed. This continues until each drafter is forced to take the final card left in a pack. This entire process is then repeated two more times, resulting in each drafter holding 14 × 3 = 42 cards from which to construct a deck.
 
-Since the goal of the drafter is (again, this is a simplified picture) two end up with a deck that fits cleanly into one of the two color archetypes, each drafter must eventually commit to taking cards identifying with a color pair (i.e. only take white or green cards, when possible). Therefore the process of drafting has an explore / exploit mechanic where the drafter both influences what colors are available to the drafters they pass to, and recieves information about what colors are avalable from the drafter passing to them.
+Since the goal of the drafter is (again, this is a simplified picture) to end up with a deck that fits cleanly into one of the two color archetypes, each drafter must eventually commit to taking cards identifying with a color pair (i.e. only take white or green cards, when possible). Therefore the process of drafting has an explore / exploit mechanic where the drafter both influences what colors are available to the drafters they pass to, and recieves information about what colors are available from the drafter passing to them.
 
 Our algorithm will manage this by tracking an internal state for each drafter indicating their preference for each possible archetype (generally, color pairs).
 
