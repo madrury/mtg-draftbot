@@ -57,11 +57,11 @@ There are five basic resource generating cards in Magic: the Gathering, the **ba
 
 Lands are used to generate **mana** which is needed to actually use cards in game, and each land can only be used to generate one mana each turn. Mana is a colored resource:
 
-  - _Plains_s generate white mana.
-  - _Island_s generate blue mana.
-  - _Swamp_s generate black mana.
-  - _Mountain_s generate red mana.
-  - _Forest_s generate green mana.
+  - _Plains_ generate white mana.
+  - _Islands_ generate blue mana.
+  - _Swamps_ generate black mana.
+  - _Mountains_ generate red mana.
+  - _Forests_ generate green mana.
 
 A blue cards requires blue mana to play, and so a player needs an _Island_ in play to use a blue card. A blue-white card, such as _Empyrian Eagle_ above, requires *both* blue *and* white mana, so a player must have *both* an _Island_ and a _Plains_ in play to use _Empyrian Eagle_. Since:
 
