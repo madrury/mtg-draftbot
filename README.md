@@ -2,7 +2,7 @@
 
 ![A Nice Picture of a Draft](img/gruul-draft.png)
 
-This library implements an algorithmic drafting strategy for Magic: The Gathering, in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from past data using a machine learning approach.
+This library implements an algorithmic drafting strategy for Magic: The Gathering, in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from records of past drafts.
 
 ## Installation
 
@@ -14,14 +14,14 @@ pip install git+https://github.com/madrury/mtg-draftbot.git
 
 To use some of the data processing scripts provided, you will need to install the `jq` json processing tool.
 
-## An Introduction to Drafting Magic, The Gathering
+## An Introduction to Drafting Magic: The Gathering
 
-Magic: The Gathering is a popular collectable card game featuring deep and complex gameplay. Magic is played with a custom set of cards, and new sets of cards are released frequently. [Booster Draft](https://mtg.gamepedia.com/Booster_Draft) is a way of playing the card game [Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering) that supplies a level playing field for all players, regardless of the size and quality of their collection.
+[Magic: The Gathering](https://en.wikipedia.org/wiki/Magic:_The_Gathering) is a popular [collectable card game](https://en.wikipedia.org/wiki/Collectible_card_game) featuring deep and complex gameplay. Magic is played with a custom set of cards, and new sets of cards are released frequently. Booster draft is a specific way of playing Magic that does not use a players pre-existing collection of cards, thus supplying a fair field for testing the skill of players.
 
-In standard Magic: The Gathering, a player constructs a deck of cards from their personal collection fo cards, while in booster draft the player must construct a deck from a random set of cards chosen in real time. This project's goal is twofold:
+In booster draft the player must construct a deck of Magic cards in real time by choosing cards from a random pool, which is different every time the player drafts. This project's goal is twofold:
 
   - Algorithmatize the card selection problem in booster draft.
-  - Provide an algorithm for learning the parameters of the draft process from real world draft data.
+  - Provide an method for learning the parameters of the draft algorithm from real world draft data.
 
 This library contains modules providing solutions to both of these problems.
 
@@ -35,13 +35,15 @@ The most important feature of a Magic card, for purposes of learning to draft, i
 
 ![The Cavaliers](img/cavaliers.png)
 
-Above are examples of Magic cards, one of each possible single color. There are also multi-colored cards:
+Above are examples of Magic cards, one of each possible single color. From left to right, _Cavalier of Dawn_ is white, _Cavalier of Gales_ is blue, _Cavalier of Night_ is black, _Cavalier of Flames_ is red, and _cavalier of Thorns_ is green.
+
+There are also multi-colored cards:
 
 ![Two Colored Cards](img/gold-cards.png)
 
 The color identity of each of these cards is a *pair* of colors.  The first is white-blue, the second blue-black, the third red-green, the fourth green-blue, and the final is white-black. Each color and color pair has gameplay strengths and weaknesses in a actual gameplay, but that will not concern us in this project.
 
-A secondary feature of Magic cards that will be of some importance to us is their **rarity**. Some cards are more easily aquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: commons, uncommons, rares, and mythics.
+A secondary feature of Magic cards that will be of some importance to us is their **rarity**. Some cards are more easily aquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: **commons, uncommons, rares, and mythics**.
 
 ![One Card of each Rarity](img/cards-of-each-rarity.png)
 
@@ -63,10 +65,10 @@ Lands are used to generate **mana** which is needed to actually use cards in gam
   - _Mountains_ generate red mana.
   - _Forests_ generate green mana.
 
-A blue cards requires blue mana to play, and so a player needs an _Island_ in play to use a blue card. A blue-white card, such as _Empyrian Eagle_ above, requires *both* blue *and* white mana, so a player must have *both* an _Island_ and a _Plains_ in play to use _Empyrian Eagle_. Since:
+A blue card requires blue mana to use, and so a player needs an _Island_ in play to use a blue card. A blue-white card, such as _Empyrian Eagle_ above, requires *both* blue *and* white mana, so a player must have *both* an _Island_ and a _Plains_ in play to use _Empyrian Eagle_. Since:
 
   - It is a basic rule of magic that only one card is drawn each turn, and only one land can be played each turn.
-  - Lands must be put in the the players deck, just like all other cards, meaning not every land type is always availabledue to draw variance.
+  - Lands must be put in the the players deck, just like all other cards, meaning not every land type is always available due to draw variance.
 
 this balance of resources tends to push Magic decks to contain only a few colors of cards. **Most successful Magic: The Gathering decks contain cards of only two colors**.
 
@@ -74,11 +76,11 @@ This two color identity of a Magic deck is, losely, referred to as the deck's **
 
 ![Sample Cards from Selesnia Deck](img/selesnia-cards.png)
 
-Above is a sample of cards from a Magic: The Gathering deck. Notice that each card is one of two colors: either white or green. Losely speaking, this situation is representative of a successful Magic deck (at least in booster draft).
+Above is a sample of cards from a Magic: The Gathering deck. Notice that each card is one of two colors: either white or green. Losely speaking, this situation is representative of any successful Magic deck (at least in booster draft).
 
 ### The Drafting Process
 
-Booster drafts generally involve eight different players each attempting to build a deck from a shared pool of cards.
+Booster drafts involve eight different players each attempting to build a deck from a shared pool of cards.
 
 To begin the draft, each player recieves a random pack of 14 cards. The drafter's task is to take one of these cards for their deck, then the rest are passed to the drafter sitting to the left. This process continues, now with 13 cards to choose from, one is taken, the rest is passed. This continues until each drafter is forced to take the final card left in a pack. This entire process is then repeated two more times, resulting in each drafter holding 14 × 3 = 42 cards from which to construct a deck.
 
@@ -90,9 +92,9 @@ Our algorithm will manage this by tracking an internal state for each drafter in
 
 ### Algorithm Description
 
-The basic simulation algorithm depends on enumerating the deck archetypes in the set. If you are unfamiliar with the concept of deck archetypes, [this article](https://www.channelfireball.com/articles/ranking-the-archetypes-of-core-set-2020-draft/) discusses their definition for the most recent set (as of writing this readme).  It is a common default that deck archetypes are defined by the ten color pairs. 
+Our simulation algorithm requires enumerating the deck archetypes in the set. As discussed above, a default definition of deck archetypes is the set of color pairs.
 
-Each card in the set is given a weight measuring its desirability within each possible archetype:
+Each card in the set is given a **archetype weight** measuring its desirability within each possible archetype:
 
 ```
 {
@@ -111,21 +113,23 @@ Each card in the set is given a weight measuring its desirability within each po
 
 We have provided utilities for generating default archetype weights, see below.
 
-Given a single drafter considering a single pick from some number of available cards, the preference of the drafter for each available card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed. These archetype preferences are based on the cards chosen by the drafter in precious picks from the draft. Each currently held card contributes its archetype weight additively to the drafter's current preferences for each archetype. As a static rule, this is simply a matrix product:
+Given a single drafter considering a single pick from some number of available cards, the **preference** of the drafter for each available card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed, we call these the drafter's current **archetype preferences**. These preferences roughly corresponds to how "commited" the drafter is to that archetype. The archetype preferences are functions of the cards chosen by the drafter in precious picks from the draft (though they could also incorperate other information, see the **further work** section of this documentation). 
+
+Specifically, each currently held card contributes its archetype weight additively to the drafter's preferences for each archetype. I.e., the drafters preference for the white-blue archetype is the total weight of all the cards held by the drafter in the white-blue archetype. Its easy to verify that this can be statically computed as a matrix product:
 
 ```
 drafter_archetype_preferences = current_cards_held @ card_archetype_weights
 ```
 
-Given these archetype preferences, the drafter's preference for each available *card* is computed as a dot product between the drafter's current archetype preferences, and the weight of each available card in each archetype:
+Given these archetype preferences, the drafter's preference for each available *card* is computed as a dot product between the drafter's current archetype preference vector, and the arcetype weight vector of the card:
 
 ```
 drafter_card_preference = dot(card_archetype_weights, drafter_archetype_perferences)
 ```
 
-These preferences are now interpreted as log-probabilities. Applying a softmax function to these card preferences gives probabilities, and we can use them to make a pick by either taking the most likely card, or drawing from the resulting categorical distribution over the available cards.
+These preferences are now interpreted as log-probabilities. Applying a softmax function gives card pick probabilities, and we can use them to take a card by either choosing the most likely card, or drawing from the resulting categorical distribution over the available cards.
 
-Note that after choosing a card, the drafters archetype preferences change by adding the archetype weights for the chosen card to the drafters internal archetype preferences. In this way, each drafter develops a preference for a given archetype as the draft progresses, and they become more likely to choose cards in the preferred archetype(s).
+Notice that after choosing a card, the drafters archetype preferences change by adding the archetype weights for the chosen card to the drafters internal archetype preferences. In this way, each drafter develops a commitment to some archetype or aechetypes as the draft progresses; they become more likely to choose cards in their preferred archetype(s).
 
 ### Getting Set Metadata
 
@@ -141,7 +145,7 @@ $ cat M20.json | ./scripts/subset-json.jq > m20-cards.json
 
 ### Constructing Draft Archetype Weights
 
-The card weights per-archetype are stored in a `json` file which is loaded at draft time. This data is stored as a nested dictionary, with the keys in the inner dictionary archetype names.
+The card archetype weights are stored in a JSON file which is loaded at draft time. This data is structures as a nested dictionary, with archetype names as keys in the inner dictionary.
 
 ```
 {
@@ -166,10 +170,10 @@ $ python scripts/make-default-card-values.py m20-cards.json > m20-default-weight
 
 This script creates a default weight for each card in each archetype based on the card's color identity and rarity.
 
-If you would like to edit these default weights,  the  that will convert this format to a dictionary of tuples format that is more convenient for editing:
+You may want to edit these default weights with your own opinions about what cards are good or bad, or to acieve some desirable behaviour from the simulated drafters. The nested dictionary format is not particularly useful for editing, so you may want to use the `dicts-to-tuples` dictionary of tuples format that is more convenient for editing:
 
 ```
-$ python scripts/tuples-to-dicts.py < m20-weights-tuples.json
+$ python scripts/dicts-to-tuples.py < m20-weights.json
 
 {
     "archetype_names": [
@@ -186,7 +190,7 @@ $ python scripts/tuples-to-dicts.py < m20-weights-tuples.json
 }
 ```
 
-After editing to your liking, you can convert back into the nested dictionary format with :
+After editing to your liking, you can convert back into the nested dictionary format with:
 
 ```
 $ python scripts/tuples-to-dicts.py < m20-weights-tuples.json
@@ -231,19 +235,19 @@ draft.
 
 Since these are numpy arrays, the `n_cards` axis requires some metadata to determine which cards, exactly, correspond to each position. This information is contained inside the internal `set` attribute:
 
-```
+```python
 draft.set.card_names
 ```
 
 So, for example, to construct a data frame containing the draft picks for the third drafter:
 
-```
+```python
 df = pd.DataFrame(draft.picks[2, :, :], index=draft.set.card_names)
 ```
 
 And to make a series containing the names of the chosen card:
 
-```
+```python
 df.idxmax(axis=0)
 ```
 
@@ -251,11 +255,11 @@ df.idxmax(axis=0)
 
 After running a draft simulation, you can record the results in a `sqlite` database.
 
-```
+```python
 draft.write_to_database('data/sample.sqlite')
 ```
 
-This will write each of the array discussed above into a table in the database:
+This will write each outpus array discussed above into a table in the database:
 
 ```
 $ sqlite3 data/sample.sqlite
@@ -265,13 +269,13 @@ sqlite> .tables
 cards        options      picks        preferences
 ```
 
-Each of these tables has `(draft_id, drafter_num, pick_num)` as a unique id. Joining the tables together gives a complete picture of the progress of the draft, and can be used for training the machine learning algorithm discussed below. 
+Each of these tables has `(draft_id, drafter_num, pick_num)` as a unique id. Joining the tables together on this key gives a complete picture of the progress of the draft, and can be used for training the machine learning algorithm discussed below. 
 
-Note: If the database already exists, the tables will be appended to, not overwritten. Each set drafted should be stored in a separate database file, as the columns in some tables are either card names, or draft archetypes.
+Note: If the database already exists, the tables will be appended to, not overwritten. Each set drafted should be stored in a separate database file, as the columns in some tables are either card names, or draft archetypes, and these will differ across sets.
 
 ### Plotting the Draft Picks
 
-After the draft simulation is complete, you can easily plot the resulting draft picks.
+After the draft simulation is complete, you can plot the resulting draft picks.
 
 ```python
 from draftbot import DraftPlotter
@@ -284,7 +288,7 @@ You'll get something like this (one copy for each drafter):
 
 ![Example of Draft Picks Plot](img/izzet-draft.png)
 
-This plot has quite a few features:
+This plot has a few features:
 
   - Each dot represents a single draft pick. The color in the interior of the dot communicates the color identity of the card chosen, and the color of the outline represents the rarity of the card chosen.
   - The lines track the preferences of the drafter for each archetype. If the archetypes are the default color pairs, the lines will be colored accordingly.
@@ -298,9 +302,9 @@ Here's an example of a more difficult draft:
 This drafter committed to red-green halfway though pack one, but had trouble picking up a good mass of green cards. Eventually the drafter settled on taking some blue cards, putting them in a bit of a three color bind. 
 
 
-## Learning
+## Machine Learning
 
-The machine learning algorithm is capable of learning archetype weights for each card from real world draft data. That is, both the identities of draft archetypes (though not their labels), and the weights of each card in each archetype.
+The machine learning algorithm is capable of learning archetype weights for each card from real world draft data.
 
 ### Training Data
 
@@ -446,7 +450,7 @@ ax.set_title("Card Archetype Weights")
 
 There are ten rows here, one for each archetype learned by the algorithm. Each column corresponds to a single card, so the entries here are the weight given to a card in a specified archetype (for information on how these weights are used to simulate a draft, see the description of draft simulation above).
 
-The first 45 cards here are all single colored. For example, _Cavalier of Dawn_ through _Inspiring Captain_ are all white cards, and _Cavalier of Gales_ through _Winged Words_ are all blue. The banding structure of these weights is evident: within a single archetype the weights for a given card color are either all "on" or "off", so archetype is strongly influenced by color, as we would expect.
+The first 45 cards here are all single colored. For example, _Cavalier of Dawn_ through _Inspiring Captain_ are all white cards, and _Cavalier of Gales_ through _Winged Words_ are all blue. The banding structure of these weights is evident: within a single archetype the weights for a given card color are either all "on" or "off". So archetype weight is strongly influenced by color, as we would expect.
 
 The last three cards, _Bag of Holding_, _Meteor Golumn_, and _Heart-Peircer Bow_, are all colorless (they can be useful in almost any deck). The weights for the colorless cards are not strongly influenced by archetype, which also meets our expectations.
 
@@ -517,5 +521,3 @@ Since the archetypes no longer correspond to exact two color combinations, the r
 ![Gruul Fit Draft](img/gruul-fit-draft.png)
 
 But the results are good, drafters find there way into reasonable two color archetypes. This is good support that this methodology has promise when applied to real world draft data.
-
-
