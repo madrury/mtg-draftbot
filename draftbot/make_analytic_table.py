@@ -48,6 +48,7 @@ class AnalyticTableConstructor:
           the actual name of the card.
         """
         self.validate_db()
+        
         options = self.fetch_table('options',
                                    table_validator=validate_options,
                                    name_transformer=name_sanitizer('options'))
@@ -55,10 +56,16 @@ class AnalyticTableConstructor:
                                  table_validator=validate_cards,
                                  name_transformer=name_sanitizer('cards'))
         X = pd.merge(options, cards, left_index=True, right_index=True)
+        n_cards = int(X.shape[1] / 2)
+        # Convert from a count of available cards, to simple indicators for if
+        # a card is available. In real draft situations, each card is only
+        # available once in each pack.
+        X.iloc[:, 0:n_cards] = np.sign(X.iloc[:, 0:n_cards])
+        
         picks = self.fetch_table('picks',
                                  table_validator=validate_picks)
         y = pd.Series(np.argmax(picks.values, axis=1), 
-                          index=picks.index)
+                      index=picks.index)
         y_to_name_mapping = dict(enumerate(picks.columns))
         return X, y, y_to_name_mapping
 
