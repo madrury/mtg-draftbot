@@ -94,12 +94,24 @@ class DraftBotModel(torch.nn.Module):
         return log_probs
 
     def to_json(self, fp):
+        """Write learned weights to a JSON file, intended to be consumed by a
+        Draft object for simulation purposes.
+
+        Parameters
+        ----------
+        fp: TextIOWrapper
+          Open file for writing the JSON data to.
+        """
         weights = self.weights.detach().numpy().tolist()
         d = {
             cardnm: {
                 i: x for i, x in zip(range(len(row)), row)}
             for cardnm, row in zip(self.idx_names_mapping.values(), weights)}
         json.dump(d, fp)
+
+
+def l2_regularizer(weights):
+    return torch.sum(weights ** 2)
 
 
 class DraftBotModelTrainer:
@@ -120,9 +132,16 @@ class DraftBotModelTrainer:
     loss_function: (torch.Tensor, Torch.tensor) -> float
       Loss function to minimize during training. Default is the negative
       log-likelihood loss.
+    
+    regularization_function: torch.Tensor -> float
+      Regularization penalty term.
 
     report_freq: int
       How often to report model performance. Default is each epoch.
+
+    weight_path: Union[str, Path]
+      Path to a directory to write weights JSON file to each epoch. If None,
+      weights will not be written during model training.
 
     Output Attributes
     -----------------
@@ -136,7 +155,8 @@ class DraftBotModelTrainer:
                  n_epochs=25,
                  learning_rate=0.005,
                  alpha=0.001,
-                 loss_function=torch.nn.NLLLoss,
+                 loss_function=torch.nn.NLLLoss(),
+                 regularization_function=l2_regularizer,
                  report_freq=1,
                  weights_path=None):
         self.n_epochs = n_epochs
@@ -145,6 +165,7 @@ class DraftBotModelTrainer:
         self.learning_rate = learning_rate 
         self.alpha = alpha
         self.loss_function = loss_function
+        self.regularization_function = regularization_function
         self.epoch_training_losses = []
         self.epoch_testing_losses = []
         self.report_freq = report_freq
@@ -170,7 +191,8 @@ class DraftBotModelTrainer:
                 log_probs = model(Xb)
                 raw_loss = self.loss_function(log_probs, yb)
                 regularized_loss = (
-                    raw_loss + self.alpha * torch.sum(model.weights ** 2))
+                    raw_loss 
+                    + self.alpha * self.regularization_function(model.weights))
                 regularized_loss.backward()
                 with torch.no_grad():
                     model.weights -= lr * model.weights.grad
@@ -207,3 +229,5 @@ def stable_non_zero_log_softmax(x):
     log_sum_exps = torch.log(torch.sum(x.sign() * torch.exp(stabalized_x), dim=1))
     log_probs = x.sign() * (stabalized_x - log_sum_exps.view(-1, 1))
     return log_probs
+
+
