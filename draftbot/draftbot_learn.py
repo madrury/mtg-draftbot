@@ -110,10 +110,6 @@ class DraftBotModel(torch.nn.Module):
         json.dump(d, fp)
 
 
-def l2_regularizer(weights):
-    return torch.sum(weights ** 2)
-
-
 class DraftBotModelTrainer:
     """Utility for training draftbot models and tracking their performance.
 
@@ -156,7 +152,7 @@ class DraftBotModelTrainer:
                  learning_rate=0.005,
                  alpha=0.001,
                  loss_function=torch.nn.NLLLoss(),
-                 regularization_function=l2_regularizer,
+                 regularization_function=None,
                  report_freq=1,
                  weights_path=None):
         self.n_epochs = n_epochs
@@ -165,6 +161,8 @@ class DraftBotModelTrainer:
         self.learning_rate = learning_rate 
         self.alpha = alpha
         self.loss_function = loss_function
+        if regularization_function is None:
+            regularization_function = lambda x: 0.0
         self.regularization_function = regularization_function
         self.epoch_training_losses = []
         self.epoch_testing_losses = []
@@ -230,4 +228,12 @@ def stable_non_zero_log_softmax(x):
     log_probs = x.sign() * (stabalized_x - log_sum_exps.view(-1, 1))
     return log_probs
 
+def l2_regularizer(weights):
+    return torch.sum(weights ** 2)
 
+def l1_regularizer(weights):
+    return torch.sum(torch.abs(weights))
+
+def weight_elimination_regularizer(weights):
+    l2 = torch.sum(weights ** 2)
+    return l2 / (1 + l2)
