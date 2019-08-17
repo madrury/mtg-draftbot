@@ -14,7 +14,7 @@ rarity_modifiers = {
 
 set_json = sys.argv[1]
 with open(set_json, 'rb') as f:
-    m19 = json.load(f)
+    card_set = json.load(f)
 
 
 def card_weight(color_identity, color_pair, rarity):
@@ -27,7 +27,7 @@ def card_weight(color_identity, color_pair, rarity):
 
 
 card_ratings = {}
-for card in m19:
+for card in card_set:
     color_identity = card['colorIdentity']
     rarity = card['rarity']
     if color_identity == []:
