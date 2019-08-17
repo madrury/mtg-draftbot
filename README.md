@@ -4,6 +4,8 @@
 
 This library implements an algorithmic drafting strategy for Magic: The Gathering, in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from records of past drafts.
 
+## Table of Contents
+
   * [Installation](#installation)
   * [An Introduction to Drafting Magic: The Gathering](#an-introduction-to-drafting-magic-the-gathering)
      * [Magic Sets](#magic-sets)
