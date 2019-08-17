@@ -4,6 +4,28 @@
 
 This library implements an algorithmic drafting strategy for Magic: The Gathering, in the spirit of [MTG: Arena](https://en.wikipedia.org/wiki/Magic:_The_Gathering_Arena). It supports the ability to simulate drafters, and can learn a draft strategy from records of past drafts.
 
+  * [Installation](#installation)
+  * [An Introduction to Drafting Magic: The Gathering](#an-introduction-to-drafting-magic-the-gathering)
+     * [Magic Sets](#magic-sets)
+     * [Features of Magic Cards](#features-of-magic-cards)
+     * [Magic Decks](#magic-decks)
+     * [The Drafting Process](#the-drafting-process)
+  * [Simulation](#simulation)
+     * [Algorithm Description](#algorithm-description)
+     * [Getting Set Metadata](#getting-set-metadata)
+     * [Constructing Draft Archetype Weights](#constructing-draft-archetype-weights)
+     * [Using the Simulation Code](#using-the-simulation-code)
+     * [Saving Simulated Draft Data](#saving-simulated-draft-data)
+     * [Plotting the Draft Picks](#plotting-the-draft-picks)
+  * [Machine Learning](#machine-learning)
+     * [Training Data](#training-data)
+     * [Training a Model](#training-a-model)
+     * [Inspecting the Fit Weights](#inspecting-the-fit-weights)
+     * [Simulating Drafts with Learned Weights](#simulating-drafts-with-learned-weights)
+  * [Further Work](#further-work)
+     * [Non-Linear Preferences](#non-linear-preferences)
+     * [Memory and Other Information](#memory-and-other-information)
+
 ## Installation
 
 The `mtg-draftbot` library can be installed directly from github.
