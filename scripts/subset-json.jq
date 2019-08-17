@@ -4,5 +4,6 @@ jq '[.cards[] | {colorIdentity: .colorIdentity,
 		manaCost: .manaCost, 
 		name: .name, 
 		rarity: .rarity, 
+		scryfallId: .scryfallId,
 		type: .type, 
 		uuid: .uuid}]'

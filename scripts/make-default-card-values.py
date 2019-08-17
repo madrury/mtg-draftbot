@@ -7,9 +7,9 @@ color_pairs = list(itertools.combinations(colors, 2))
 
 rarity_modifiers = {
     'common': 0.0,
-    'uncommon': 0.1,
-    'rare': 0.25,
-    'mythic': 0.3
+    'uncommon': 0.25,
+    'rare': 0.5,
+    'mythic': 0.5
 }
 
 set_json = sys.argv[1]
