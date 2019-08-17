@@ -12,7 +12,7 @@ The `mtg-draftbot` library can be installed directly from github.
 pip install git+https://github.com/madrury/mtg-draftbot.git
 ```
 
-To use some of the data processing scripts provided, you will need to install the `jq` json processing tool.
+To use some of the data processing scripts provided, you will need to install the `jq` JSON processing tool.
 
 ## An Introduction to Drafting Magic: The Gathering
 
@@ -43,7 +43,7 @@ There are also multi-colored cards:
 
 The color identity of each of these cards is a *pair* of colors.  The first is white-blue, the second blue-black, the third red-green, the fourth green-blue, and the final is white-black. Each color and color pair has gameplay strengths and weaknesses in a actual gameplay, but that will not concern us in this project.
 
-A secondary feature of Magic cards that will be of some importance to us is their **rarity**. Some cards are more easily aquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: **commons, uncommons, rares, and mythics**.
+A secondary feature of Magic cards that will be of some importance to us is their **rarity**. Some cards are more easily acquired than others, with less common cards having generally more powerful effects in game. There are four discrete rarities of cards: **commons, uncommons, rares, and mythics**.
 
 ![One Card of each Rarity](img/cards-of-each-rarity.png)
 
@@ -51,7 +51,7 @@ Above, each card has a different rarity, as indicated by the color of the M20 sy
 
 ### Magic Decks
 
-The color identity of cards is very important when constructing Magic decks, due to the way resources are aquired and managed in Magic.
+The color identity of cards is very important when constructing Magic decks, due to the way resources are acquired and managed in Magic.
 
 There are five basic resource generating cards in Magic: the Gathering, the **basic lands**.
 
@@ -68,23 +68,23 @@ Lands are used to generate **mana** which is needed to actually use cards in gam
 A blue card requires blue mana to use, and so a player needs an _Island_ in play to use a blue card. A blue-white card, such as _Empyrian Eagle_ above, requires *both* blue *and* white mana, so a player must have *both* an _Island_ and a _Plains_ in play to use _Empyrian Eagle_. Since:
 
   - It is a basic rule of magic that only one card is drawn each turn, and only one land can be played each turn.
-  - Lands must be put in the the players deck, just like all other cards, meaning not every land type is always available due to draw variance.
+  - Lands must be put in the players deck, just like all other cards, meaning not every land type is always available due to draw variance.
 
 this balance of resources tends to push Magic decks to contain only a few colors of cards. **Most successful Magic: The Gathering decks contain cards of only two colors**.
 
-This two color identity of a Magic deck is, losely, referred to as the deck's **archetype**. A successful deck has a clear and well defined archetype, so the main constraint when building a deck is to ensure that the player has a sufficient number of cards that fit into a single archetype. The simplest version of this is ensuring that the player has a sufficient number of cards in at least one color pair.
+This two color identity of a Magic deck is, loosely, referred to as the deck's **archetype**. A successful deck has a clear and well defined archetype, so the main constraint when building a deck is to ensure that the player has a sufficient number of cards that fit into a single archetype. The simplest version of this is ensuring that the player has a sufficient number of cards in at least one color pair.
 
 ![Sample Cards from Selesnia Deck](img/selesnia-cards.png)
 
-Above is a sample of cards from a Magic: The Gathering deck. Notice that each card is one of two colors: either white or green. Losely speaking, this situation is representative of any successful Magic deck (at least in booster draft).
+Above is a sample of cards from a Magic: The Gathering deck. Notice that each card is one of two colors: either white or green. Loosely speaking, this situation is representative of any successful Magic deck (at least in booster draft).
 
 ### The Drafting Process
 
 Booster drafts involve eight different players each attempting to build a deck from a shared pool of cards.
 
-To begin the draft, each player recieves a random pack of 14 cards. The drafter's task is to take one of these cards for their deck, then the rest are passed to the drafter sitting to the left. This process continues, now with 13 cards to choose from, one is taken, the rest is passed. This continues until each drafter is forced to take the final card left in a pack. This entire process is then repeated two more times, resulting in each drafter holding 14 × 3 = 42 cards from which to construct a deck.
+To begin the draft, each player receives a random pack of 14 cards. The drafter's task is to take one of these cards for their deck, then the rest are passed to the drafter sitting to the left. This process continues, now with 13 cards to choose from, one is taken, the rest is passed. This continues until each drafter is forced to take the final card left in a pack. This entire process is then repeated two more times, resulting in each drafter holding 14 × 3 = 42 cards from which to construct a deck.
 
-Since the goal of the drafter is (again, this is a simplified picture) to end up with a deck that fits cleanly into one of the two color archetypes, each drafter must eventually commit to taking cards identifying with a color pair (i.e. only take white or green cards, when possible). Therefore the process of drafting has an explore / exploit mechanic where the drafter both influences what colors are available to the drafters they pass to, and recieves information about what colors are available from the drafter passing to them.
+Since the goal of the drafter is (again, this is a simplified picture) to end up with a deck that fits cleanly into one of the two color archetypes, each drafter must eventually commit to taking cards identifying with a color pair (i.e. only take white or green cards, when possible). Therefore the process of drafting has an explore / exploit mechanic where the drafter both influences what colors are available to the drafters they pass to, and receives information about what colors are available from the drafter passing to them.
 
 Our algorithm will manage this by tracking an internal state for each drafter indicating their preference for each possible archetype (generally, color pairs).
 
@@ -113,7 +113,7 @@ Each card in the set is given a **archetype weight** measuring its desirability 
 
 We have provided utilities for generating default archetype weights, see below.
 
-Given a single drafter considering a single pick from some number of available cards, the **preference** of the drafter for each available card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed, we call these the drafter's current **archetype preferences**. These preferences roughly corresponds to how "commited" the drafter is to that archetype. The archetype preferences are functions of the cards chosen by the drafter in precious picks from the draft (though they could also incorperate other information, see the **further work** section of this documentation). 
+Given a single drafter considering a single pick from some number of available cards, the **preference** of the drafter for each available card is computed as a two stage process. First, the preference of the drafter for each *archetype* is computed, we call these the drafter's current **archetype preferences**. These preferences roughly corresponds to how "committed" the drafter is to that archetype. The archetype preferences are functions of the cards chosen by the drafter in precious picks from the draft (though they could also incorporate other information, see the **further work** section of this documentation). 
 
 Specifically, each currently held card contributes its archetype weight additively to the drafter's preferences for each archetype. I.e., the drafters preference for the white-blue archetype is the total weight of all the cards held by the drafter in the white-blue archetype. Its easy to verify that this can be statically computed as a matrix product:
 
@@ -121,7 +121,7 @@ Specifically, each currently held card contributes its archetype weight additive
 drafter_archetype_preferences = current_cards_held @ card_archetype_weights
 ```
 
-Given these archetype preferences, the drafter's preference for each available *card* is computed as a dot product between the drafter's current archetype preference vector, and the arcetype weight vector of the card:
+Given these archetype preferences, the drafter's preference for each available *card* is computed as a dot product between the drafter's current archetype preference vector, and the archetype weight vector of the card:
 
 ```
 drafter_card_preference = dot(card_archetype_weights, drafter_archetype_perferences)
@@ -129,7 +129,7 @@ drafter_card_preference = dot(card_archetype_weights, drafter_archetype_perferen
 
 These preferences are now interpreted as log-probabilities. Applying a softmax function gives card pick probabilities, and we can use them to take a card by either choosing the most likely card, or drawing from the resulting categorical distribution over the available cards.
 
-Notice that after choosing a card, the drafters archetype preferences change by adding the archetype weights for the chosen card to the drafters internal archetype preferences. In this way, each drafter develops a commitment to some archetype or aechetypes as the draft progresses; they become more likely to choose cards in their preferred archetype(s).
+Notice that after choosing a card, the drafters archetype preferences change by adding the archetype weights for the chosen card to the drafters internal archetype preferences. In this way, each drafter develops a commitment to some archetype or archetypes as the draft progresses; they become more likely to choose cards in their preferred archetype(s).
 
 ### Getting Set Metadata
 
@@ -170,7 +170,7 @@ $ python scripts/make-default-card-values.py m20-cards.json > m20-default-weight
 
 This script creates a default weight for each card in each archetype based on the card's color identity and rarity.
 
-You may want to edit these default weights with your own opinions about what cards are good or bad, or to acieve some desirable behaviour from the simulated drafters. The nested dictionary format is not particularly useful for editing, so you may want to use the `dicts-to-tuples` dictionary of tuples format that is more convenient for editing:
+You may want to edit these default weights with your own opinions about what cards are good or bad, or to achieve some desirable behaviour from the simulated drafters. The nested dictionary format is not particularly useful for editing, so you may want to use the `dicts-to-tuples` dictionary of tuples format that is more convenient for editing:
 
 ```
 $ python scripts/dicts-to-tuples.py < m20-weights.json
@@ -259,7 +259,7 @@ After running a draft simulation, you can record the results in a `sqlite` datab
 draft.write_to_database('data/sample.sqlite')
 ```
 
-This will write each outpus array discussed above into a table in the database:
+This will write each output array discussed above into a table in the database:
 
 ```
 $ sqlite3 data/sample.sqlite
@@ -521,3 +521,35 @@ Since the archetypes no longer correspond to exact two color combinations, the r
 ![Gruul Fit Draft](img/gruul-fit-draft.png)
 
 But the results are good, drafters find there way into reasonable two color archetypes. This is good support that this methodology has promise when applied to real world draft data.
+
+
+## Further Work
+
+The current implementation of algorithmic drafting contained here is about the simplest possible, while meeting the requirement of learnability from data. There are some places where it could be evidently improved.
+
+### Non-Linear Preferences
+
+When computing the drafter's archetype preferences, we used a simple matrix multiplication, making the preferences simple linear functions of the cards currently held by the drafter.
+
+```
+drafter_archetype_preferences = current_cards_held @ card_archetype_weights
+```
+
+This choice leads to a simple and interpretable model, that is easy to learn from the data. There is nothing *requiring* the preferences to be a linear function of our current state, we could instead learn the archetype preference as a non-linear function of the current state:
+
+```
+drafter_archetype_preferences = f(current_cards_held)
+```
+
+This may be important when fitting real world draft data. For example, there are many examples of cards synergising, where the value of one card is increased (or decreased) relative to expected just from color information by the possession of some other card (in statistical jargon, this would be an interaction effect). Simple linear preferences would have difficulty capturing such an effect, introducing a non-linear mapping would rectify this deficiency.
+
+Possibly the most straight forward implementation of this idea would be to use a simple multi-layer neural network to parameterize `f`. This has the advantage of introducing flexible non-linearities, improving the fit to real world draft data, but also being relatively easy to learn.
+
+Of course, given the simulated data we have used to test our ideas an implementations, this currently would not offer any benefit. We hope to try this out on real human draft data in the future.
+
+### Memory and Other Information
+
+Skilled human drafters consider more information than just the cards they currently hold when making draft picks. For example, practiced drafters attempt to actively identify the open archetype, by remembering what good cards they have been passed in the past, even if they did not select those cards. Tracking what cards the drafter has seen but not selected may be an important feature when fitting real human draft data.
+
+Additionally, how far along the draft has progressed may influence human drafter's picks. In early picks, drafters may speculate on cards that may lead to synergistic interactions later on. Later on, drafters may value cards more if they fill holes in the strategic plan of their deck (see the concept of [mana curve](https://mtg.gamepedia.com/Mana_curve) in deck design for the most basic example of this). This would be a simple feature to add to our model, and again, it will probably be important when fitting to real world draft data.
+
